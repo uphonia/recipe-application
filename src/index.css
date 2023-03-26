@@ -15,3 +15,7 @@ code {
 h1, h2 { 
   margin: 0;
 }
+
+input {
+  padding: 0;
+}
