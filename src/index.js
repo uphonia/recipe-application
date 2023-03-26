@@ -7,11 +7,16 @@ import {
 
 import './index.css';
 import { Home } from './Home/Home';
+import { RecipeAdd } from './RecipeAdd/RecipeAdd';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />
+  },
+  {
+    path: "add-recipe",
+    element: <RecipeAdd />,
   }
 ])
 
