@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "react-select";
+import { Link } from "react-router-dom";
 import { Formik } from "formik";
 
 import {
@@ -31,16 +32,18 @@ export const RecipeAdd = () => {
                 <Label>Category</Label>
                 <Select options={categories} />
               </Section>
-              <Section>
+              <Section column>
                 <Label>Ingredients</Label>
                 <AddButton>Add Ingredient</AddButton>
               </Section>
-              <Section>
+              <Section column>
                 <Label>Steps</Label>
                 <input />
               </Section>
               <ButtonContainer>
-                <FormButton>Cancel</FormButton>
+                <Link to="/">
+                  <FormButton>Cancel</FormButton>
+                </Link>
                 <FormButton>Submit</FormButton>
               </ButtonContainer>
             </Form>
