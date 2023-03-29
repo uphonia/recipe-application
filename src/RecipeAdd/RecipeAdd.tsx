@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { Formik } from "formik";
 
+import { FormButton } from "../components/Button/button.styles";
 import {
   Wrapper,
   Header,
@@ -11,12 +12,13 @@ import {
   Section,
   Label,
   ButtonContainer,
-  AddButton,
-  FormButton,
 } from "./recipeAdd.styles";
 import { categories } from "../consts/categories.consts";
+import { IngredientAddModal } from "./IngredientAddModal/IngredientAddModal";
 
 export const RecipeAdd = () => {
+  const [openAddModal, setOpenAddModal] = useState(false);
+
   return (
     <Wrapper>
       <Container>
@@ -34,7 +36,13 @@ export const RecipeAdd = () => {
               </Section>
               <Section column>
                 <Label>Ingredients</Label>
-                <AddButton>Add Ingredient</AddButton>
+                <FormButton
+                  isLarge
+                  onClick={() => setOpenAddModal(true)}
+                  type="button"
+                >
+                  Add Ingredient
+                </FormButton>
               </Section>
               <Section column>
                 <Label>Steps</Label>
@@ -49,6 +57,7 @@ export const RecipeAdd = () => {
             </Form>
           )}
         </Formik>
+        {openAddModal && <IngredientAddModal setModalClose={setOpenAddModal} />}
       </Container>
     </Wrapper>
   );

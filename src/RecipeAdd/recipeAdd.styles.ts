@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 export const Wrapper = styled.div`
   background-color: #559A90;
   height: 100vh;
+  padding: 30px 50px;
+  position: relative;
 `
 
 export const Container = styled.div`
@@ -10,7 +12,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 30px 50px;
 `;
 
 export const Form = styled.form`
@@ -29,16 +30,11 @@ export const Section = styled.div<{column?: boolean}>`
 `;
 
 export const Label = styled.p`
-  
+  margin-bottom: 10px;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-export const AddButton = styled.button``;
-
-export const FormButton = styled.button`
-
+  justify-content: space-between;
 `;
