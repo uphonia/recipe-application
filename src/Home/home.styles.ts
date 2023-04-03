@@ -11,12 +11,22 @@ export const Wrapper = styled.div`
   text-align: center;
 `;
 
+export const Container = styled.div`
+
+`;
+
 export const Header = styled.h1`
   color: white;
+  margin-bottom: 40px;
 `
 
 export const Subheader = styled.h2`
   color: white;
+  margin-bottom: 40px;
 `;
 
-export const AddButton = styled.button``
+export const AddIcon = styled.img`
+  height: 16px;
+  margin-right: 8px;
+  width: 16px;
+`

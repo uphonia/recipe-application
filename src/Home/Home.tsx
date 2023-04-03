@@ -1,18 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import { Wrapper, Header, Subheader, AddButton } from "./home.styles";
+import { Wrapper, Header, Subheader } from "./home.styles";
+import { HomeEmptyState } from "./HomeEmptyState/HomeEmptyState";
 
 export const Home = () => {
-  return (
-    <Wrapper>
-      <Header>Welcome!</Header>
-      <Subheader>
-        There are currently no recipes added. Get started here!
-      </Subheader>
-      <Link to="/add-recipe">
-        <AddButton>Add Recipe</AddButton>
-      </Link>
-    </Wrapper>
-  );
+  return <HomeEmptyState />;
 };

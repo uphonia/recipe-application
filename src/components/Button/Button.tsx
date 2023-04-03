@@ -1,21 +1,21 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { FormButton } from "./button.styles";
 
 type Props = {
+  children: ReactNode;
   isCancel?: boolean;
   isConfirm?: boolean;
   isLarge?: boolean;
   onClick: () => void;
-  text: string;
 };
 
 export const Button = ({
+  children,
   isCancel,
   isConfirm,
   isLarge,
   onClick,
-  text,
 }: Props) => {
   return (
     <FormButton
@@ -24,7 +24,7 @@ export const Button = ({
       isLarge={isLarge}
       onClick={onClick}
     >
-      {text}
+      {children}
     </FormButton>
   );
 };

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import { Link } from "react-router-dom";
 import { Formik } from "formik";
 
 import { FormButton } from "../components/Button/button.styles";
+import { Link } from "../components/Link/Link";
 import {
   Wrapper,
   Header,
