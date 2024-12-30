@@ -23,6 +23,7 @@ export const LayoutSidebar = styled.div`
   display: none;
   flex-direction: column;
   grid-area: sidebar;
+  height: 100%;
 
   ${mq.medium(css`
     display: flex;
@@ -34,6 +35,7 @@ export const LayoutContent = styled.div`
   flex-direction: column;
   gap: 24px;
   grid-area: content;
+  height: 100%;
   overflow-y: auto;
 
   ${mq.medium(css`
