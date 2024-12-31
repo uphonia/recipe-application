@@ -1,8 +1,9 @@
 import { css } from "@emotion/react";
 
 export default css`
-  body,
   html,
+  body,
+  #__next,
   #root {
     font-family: Helvetica;
     height: 100%;

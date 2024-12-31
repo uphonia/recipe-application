@@ -5,6 +5,7 @@ import { Search } from "./components/Search/Search";
 import { Sidebar } from "../common/components/SideBar/Sidebar";
 import { RecipeCard } from "./components/RecipeCard/RecipeCard";
 import { Wrapper, RecipeList } from "./allRecipes.styles";
+import { mockData } from "./allRecipes.consts";
 
 export const AllRecipes = () => {
   return (
@@ -13,13 +14,19 @@ export const AllRecipes = () => {
         <Wrapper>
           <Search />
           <RecipeList>
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
+            {mockData.map((recipe, index) => (
+              <RecipeCard
+                createdDate={recipe.createdDate}
+                image={recipe.image}
+                isFavorited={recipe.isFavorited}
+                key={index}
+                name={recipe.name}
+              />
+            ))}
           </RecipeList>
         </Wrapper>
       }
+      noHeader
       sidebar={<Sidebar />}
     />
   );

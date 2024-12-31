@@ -11,12 +11,13 @@ import {
 type Props = {
   content: ReactNode;
   header?: ReactNode;
+  noHeader?: boolean;
   sidebar?: ReactNode;
 };
 
-export const Layout = ({ content, header, sidebar }: Props) => {
+export const Layout = ({ content, header, noHeader, sidebar }: Props) => {
   return (
-    <MainWrapper>
+    <MainWrapper noHeader={noHeader}>
       <LayoutHeader>{header}</LayoutHeader>
       <LayoutSidebar>{sidebar}</LayoutSidebar>
       <LayoutContent>{content}</LayoutContent>

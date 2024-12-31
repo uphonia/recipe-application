@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { mq } from "../../utils/mediaQueries";
 
-export const MainWrapper = styled.div`
+export const MainWrapper = styled.div<{ noHeader?: boolean }>`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -13,6 +13,13 @@ export const MainWrapper = styled.div`
     grid-template: "sidebar header" "sidebar content";
     grid-template-columns: 15% 85%;
   `)}
+
+  ${({ noHeader }) =>
+    noHeader &&
+    mq.medium(css`
+      grid-template: "sidebar content";
+      grid-template-columns: 15% 85%;
+    `)}
 `;
 
 export const LayoutHeader = styled.div`

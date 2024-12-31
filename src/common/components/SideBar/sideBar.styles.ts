@@ -2,7 +2,6 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  align-items: center;
   background-color: #218131;
   border-right: 2px solid black;
   display: flex;
@@ -26,7 +25,6 @@ export const NavigationWrapper = styled.div`
 
 export const Navigation = styled.div`
   background-color: #ebf143;
-
   display: flex;
   justify-content: center;
   padding: 12px 24px;
