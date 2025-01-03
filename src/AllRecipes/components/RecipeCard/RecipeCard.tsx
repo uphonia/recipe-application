@@ -28,24 +28,34 @@ export const RecipeCard = ({
   image,
   isFavorited,
   name,
-}: Props) => (
-  <Wrapper>
-    <Content>
-      <Image src={image} />
-      <Info>
-        <Title>{name}</Title>
-        <ActionButtons>
-          <IconButton>
-            {isFavorited ? <FavoritedIcon /> : <FavoriteIcon />}
-          </IconButton>
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </ActionButtons>
-      </Info>
-    </Content>
-    <CardFooter>
-      <Date>{createdDate}</Date>
-    </CardFooter>
-  </Wrapper>
-);
+}: Props) => {
+  const onFavoriteClick = async () => {
+    // endpoint to set isFavorited field
+  };
+
+  return (
+    <Wrapper>
+      <Content>
+        <Image src={image} />
+        <Info>
+          <Title>{name}</Title>
+          <ActionButtons>
+            <IconButton onClick={onFavoriteClick}>
+              {isFavorited ? (
+                <FavoritedIcon style={{ color: "#e0115f" }} />
+              ) : (
+                <FavoriteIcon />
+              )}
+            </IconButton>
+            <IconButton>
+              <DeleteIcon />
+            </IconButton>
+          </ActionButtons>
+        </Info>
+      </Content>
+      <CardFooter>
+        <Date>{createdDate}</Date>
+      </CardFooter>
+    </Wrapper>
+  );
+};
