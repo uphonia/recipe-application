@@ -6,12 +6,14 @@ import { Sidebar } from "../common/components/SideBar/Sidebar";
 import { RecipeCard } from "./components/RecipeCard/RecipeCard";
 import { Wrapper, RecipeList } from "./allRecipes.styles";
 import { mockData } from "./allRecipes.consts";
+import { CreateRecipeForm } from "../CreateRecipeForm/CreateRecipeForm";
 
 export const AllRecipes = () => {
   return (
     <Layout
       content={
         <Wrapper>
+          {/*
           <Search />
           <RecipeList>
             {mockData.map((recipe, index) => (
@@ -23,7 +25,8 @@ export const AllRecipes = () => {
                 name={recipe.name}
               />
             ))}
-          </RecipeList>
+          </RecipeList> */}
+          <CreateRecipeForm />
         </Wrapper>
       }
       noHeader
