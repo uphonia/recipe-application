@@ -16,3 +16,5 @@ node_modules/
 *-lock.json
 
 .next
+*storybook.log
+storybook-static
