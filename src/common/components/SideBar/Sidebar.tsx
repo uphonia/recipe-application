@@ -2,9 +2,9 @@ import React from "react";
 
 import {
   Wrapper,
-  Image,
   NavigationWrapper,
   Navigation,
+  SubNavigation
 } from "./sideBar.styles";
 
 export const Sidebar = () => {
@@ -12,7 +12,7 @@ export const Sidebar = () => {
     <Wrapper>
       <NavigationWrapper>
         <Navigation>Home</Navigation>
-        <Navigation>Contact</Navigation>
+        <SubNavigation>Create</SubNavigation>
       </NavigationWrapper>
     </Wrapper>
   );

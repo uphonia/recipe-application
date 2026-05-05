@@ -10,8 +10,8 @@ export const MainWrapper = styled.div`
 
   ${mq.medium(css`
     display: grid;
-    grid-template: "sidebar content"
-    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "sidebar content";
+    grid-template-columns: 1fr minmax(0, 5fr);
   `)}
 `;
 
@@ -19,11 +19,13 @@ export const LayoutSidebar = styled.div`
   display: none;
   flex-direction: column;
   height: 100%;
-  position: fixed;
+  min-width: 0;
 
   ${mq.medium(css`
-    display: grid;
+    display: flex;
     grid-area: sidebar;
+    position: sticky;
+    top: 0;
   `)}
 `;
 
@@ -31,10 +33,10 @@ export const LayoutContent = styled.div`
   display: flex;
   height: 100%;
   overflow-y: auto;
+  min-width: 0;
 
   ${mq.medium(css`
-    display: grid;
-    padding: 64px;
+    display: flex;
     grid-area: content;
   `)}
 `;
