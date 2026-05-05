@@ -35,27 +35,27 @@ export const RecipeCard = ({
 
   return (
     <Wrapper>
+      <Image src={image} />
+      <IconButton isOnTop onClick={onFavoriteClick}>
+        {isFavorited ? (
+          <FavoritedIcon style={{ color: "#e01126" }} stroke="white" />
+        ) : (
+          <FavoriteIcon style={{ color: "white" }}  />
+        )}
+      </IconButton>
       <Content>
-        <Image src={image} />
         <Info>
           <Title>{name}</Title>
-          <ActionButtons>
-            <IconButton onClick={onFavoriteClick}>
-              {isFavorited ? (
-                <FavoritedIcon style={{ color: "#e0115f" }} />
-              ) : (
-                <FavoriteIcon />
-              )}
-            </IconButton>
-            <IconButton>
-              <DeleteIcon />
-            </IconButton>
-          </ActionButtons>
         </Info>
+        <ActionButtons>
+          <IconButton>
+            <DeleteIcon />
+          </IconButton>
+        </ActionButtons>
+        <CardFooter>
+          <Date>{createdDate}</Date>
+        </CardFooter>
       </Content>
-      <CardFooter>
-        <Date>{createdDate}</Date>
-      </CardFooter>
     </Wrapper>
   );
 };

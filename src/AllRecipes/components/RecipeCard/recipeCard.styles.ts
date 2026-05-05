@@ -3,34 +3,34 @@ import { mq } from "../../../common/utils/mediaQueries";
 import { css } from "@emotion/react";
 
 export const Wrapper = styled.div`
+  background-color: #f2f0f0;
   border: 1px solid black;
   border-radius: 8px;
   cursor: pointer;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 180px;
   position: relative;
   width: 100%;
 
   ${mq.medium(css`
-    width: 300px;
+    max-width: 300px;
   `)}
 `;
 
 export const Content = styled.div`
-  align-items: center;
   display: flex;
-  flex-direction: row;
-  gap: 24px;
-  height: 100%;
-  padding: 0px 24px;
-  width: 100%;
+  flex: 1;
+  padding: 24px;
+  position: relative;
 `;
 
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+  height: 100%;
+  padding-top: 10px;
 `;
 
 export const Title = styled.h3`
@@ -43,21 +43,21 @@ export const Title = styled.h3`
 `;
 
 export const Image = styled.img`
-  border-radius: 4px;
-  height: 120px;
+  border-radius: 8px 0px 0px 8px;
+  position: relative;
+  width: 150px;
 `;
 
 export const CardFooter = styled.div`
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  background-color: #add8e6;
-  padding: 4px;
+  bottom: 4px;
+  position: absolute;
+  right: 4px;
 `;
 
 export const Date = styled.p`
   color: black;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 400;
 `;
 
 export const ActionButtons = styled.div`
@@ -69,7 +69,11 @@ export const ActionButtons = styled.div`
   top: 8px;
 `;
 
-export const IconButton = styled.button`
+type IconButtonProps = {
+  isOnTop?: boolean;
+};
+
+export const IconButton = styled.button<IconButtonProps>`
   align-items: center;
   background-color: transparent;
   border-radius: 4px;
@@ -80,4 +84,12 @@ export const IconButton = styled.button`
     background-color: #d3d3d3d3;
     cursor: pointer;
   }
+
+  ${({ isOnTop }) =>
+    isOnTop &&
+    css`
+      left: 4px;
+      position: absolute;
+      top: 4px;
+    `}
 `;
