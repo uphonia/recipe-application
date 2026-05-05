@@ -5,20 +5,16 @@ import {
   MainWrapper,
   LayoutSidebar,
   LayoutContent,
-  LayoutHeader,
 } from "./layout.styles";
 
 type Props = {
   content: ReactNode;
-  header?: ReactNode;
-  noHeader?: boolean;
   sidebar?: ReactNode;
 };
 
-export const Layout = ({ content, header, noHeader, sidebar }: Props) => {
+export const Layout = ({ content, sidebar }: Props) => {
   return (
-    <MainWrapper noHeader={noHeader}>
-      <LayoutHeader>{header}</LayoutHeader>
+    <MainWrapper >
       <LayoutSidebar>{sidebar}</LayoutSidebar>
       <LayoutContent>{content}</LayoutContent>
     </MainWrapper>

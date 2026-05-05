@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   height: 100%;
   gap: 50px;
-  width: 100%;
 `;
 
 export const Image = styled.img`
