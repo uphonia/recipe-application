@@ -93,3 +93,13 @@ export const IconButton = styled.button<IconButtonProps>`
       top: 4px;
     `}
 `;
+
+export const EmptyImage = styled.div`
+  align-items: center;
+  border-radius: 8px 0px 0px 8px;
+  border-right: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 150px;
+`;

@@ -3,11 +3,13 @@ import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoritedIcon from "@mui/icons-material/Favorite";
 import FavoriteIcon from "@mui/icons-material/FavoriteBorder";
+import EmptyImageStateIcon from '@mui/icons-material/Restaurant';
 
 import {
   Wrapper,
   Info,
   Image,
+  EmptyImage,
   Title,
   Date,
   ActionButtons,
@@ -35,7 +37,7 @@ export const RecipeCard = ({
 
   return (
     <Wrapper>
-      <Image src={image} />
+      {image ? <Image src={image} /> : <EmptyImage><EmptyImageStateIcon /></EmptyImage>}
       <IconButton isOnTop onClick={onFavoriteClick}>
         {isFavorited ? (
           <FavoritedIcon style={{ color: "#e01126" }} stroke="white" />

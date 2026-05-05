@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   gap: 16px;
   height: 100%;
-  padding: 16px;
+  padding: 24px 42px;
 `;
 
 export const RecipeList = styled.div`
