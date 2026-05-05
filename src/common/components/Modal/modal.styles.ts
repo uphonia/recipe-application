@@ -1,24 +1,40 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  background-color: orange;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-`;
-
-export const Overlay = styled.div`
-  background-color: rgba(0, 0, 0, 0.2);
-  height: 100vh;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  left: 50%;
   position: absolute;
-  width: 100vw;
-  z-index: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
 `;
 
-export const CloseButton = styled.img`
+export const Header = styled.div`
+  align-items: center;
+  background-color: #f5dab8;
+  box-sizing: border-box;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: flex;
+  flex: 0 0 40px;
+  height: 40px;
+  justify-content: space-between;
+  padding: 8px 16px;
+`;
+
+export const Content = styled.div`
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+  padding: 24px;
+  width: 100%;
+`;
+
+export const CloseButton = styled.button`
   height: 30px;
   width: 30px;
-  position: absolute;
-  right: 10px;
-  top: 10px;
 `;

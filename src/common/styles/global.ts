@@ -45,4 +45,21 @@ export default css`
     color: black;
     text-decoration: none;
   }
+
+  input {
+    &:focus {
+      outline: none !important;
+    }
+  }
+
+  div {
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: transparent;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
