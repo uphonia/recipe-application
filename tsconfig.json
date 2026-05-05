@@ -3,17 +3,17 @@
   "display": "Node 20",
   "_version": "20.1.0",
   "compilerOptions": {
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "lib": [
       "es2023",
       "dom"
     ],
-    "module": "node16",
+    "module": "esnext",
     "target": "es2022",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node16",
+    "moduleResolution": "bundler",
     "allowJs": true,
     "noEmit": true,
     "incremental": true,

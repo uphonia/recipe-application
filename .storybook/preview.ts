@@ -1,6 +1,19 @@
 import type { Preview } from '@storybook/nextjs-vite'
+import React from "react";
+import { Global } from "@emotion/react";
+
+import globalStyles from "../src/common/styles/global";
 
 const preview: Preview = {
+  decorators: [
+    (Story: any) =>
+      React.createElement(
+        React.Fragment,
+        null,
+        React.createElement(Global, { styles: globalStyles }),
+        React.createElement(Story)
+      ),
+  ],
   parameters: {
     controls: {
       matchers: {
