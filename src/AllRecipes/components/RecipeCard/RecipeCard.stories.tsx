@@ -13,6 +13,9 @@ export const Primary: Story = {
   args: {
     createdDate: '3/25/26',
     isFavorited: true,
-    name: 'Croque Monseiur'
+    name: 'Croque Monseiur',
+    onClick: () => {},
+    onDelete: () => {},
+    onFavorite: () => {}
   },
 };
