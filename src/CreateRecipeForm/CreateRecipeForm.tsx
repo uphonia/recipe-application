@@ -1,137 +1,98 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Formik } from "formik";
+import Editor from "react-simple-wysiwyg";
 
 import {
-  Wrapper,
-  Field,
+  FormWrapper,
   Label,
   OptionalNote,
   Input,
-  ListWrapper,
-  ListInput,
-  Divider,
-  NewLineButton,
   Footer,
-  FormButton,
   TextArea,
   FileInput,
 } from "./createRecipeForm.styles";
 import { initialValues } from "./createRecipeForm.types";
+import { FieldWrapper } from "../common/components/FieldWrapper/FieldWrapper";
 import {
+  IMAGE_FORMATS,
   INGREDIENTS_INPUT_PLACEHOLDER,
   INSTRUCTIONS_INPUT_PLACEHOLDER,
 } from "./createRecipeForm.consts";
+import { useCreateRecipeForm } from "./createRecipeForm.hooks";
+import { Button } from "../common/components/Button/Button";
 
 export const CreateRecipeForm = () => {
-  const [steps, setSteps] = useState<string[]>([]);
-  const addNextStep = () => {
-    setSteps((prevState) => [...prevState, ""]);
-  };
-
-  const [ingredients, setIngredients] = useState<string[]>([]);
-  const addIngredient = () => {
-    setIngredients((prevState) => [...prevState, ""]);
-  };
-
-  const initialStepAdd = !steps.length;
-  const initialIngredientAdd = !ingredients.length;
+  const { ingredients, onIngredientsChange, onStepsChange, steps } =
+    useCreateRecipeForm();
 
   return (
     <Formik initialValues={initialValues} onSubmit={() => {}}>
       {({ handleChange, isSubmitting, resetForm }) => (
-        <Wrapper>
-          <Field>
-            <Label>Name</Label>
-            <Input />
-          </Field>
-          <Field>
-            <Label>
-              # of Servings<OptionalNote>{"(Optional)"}</OptionalNote>
-            </Label>
-            <Input />
-          </Field>
-          <Field column>
-            <Label>
-              Ingredients
-              {initialIngredientAdd && (
-                <NewLineButton onClick={addIngredient}>
-                  Add Ingredient
-                </NewLineButton>
-              )}
-            </Label>
-            <ListWrapper>
-              <ul>
-                {ingredients.map((_, index) => (
-                  <ListInput key={`ingredient_${index}`}>
-                    <li>
-                      <Input
-                        onChange={handleChange}
-                        placeholder={INGREDIENTS_INPUT_PLACEHOLDER}
-                      />
-                    </li>
-                    {index === ingredients.length - 1 && (
-                      <NewLineButton onClick={addIngredient}>
-                        Next Ingredient
-                      </NewLineButton>
-                    )}
-                  </ListInput>
-                ))}
-              </ul>
-            </ListWrapper>
-          </Field>
-          <Field column>
-            <Label>
-              Steps{" "}
-              {initialStepAdd && (
-                <NewLineButton onClick={addNextStep}>Add Step</NewLineButton>
-              )}
-            </Label>
-            <ListWrapper>
-              <ol>
-                {steps.map((_, index) => (
-                  <ListInput key={`step_${index}`}>
-                    <li>
-                      <Input
-                        onChange={handleChange}
-                        placeholder={INSTRUCTIONS_INPUT_PLACEHOLDER}
-                      />
-                    </li>
-                    {index === steps.length - 1 && (
-                      <NewLineButton onClick={addNextStep}>
-                        Next Step
-                      </NewLineButton>
-                    )}
-                  </ListInput>
-                ))}
-              </ol>
-            </ListWrapper>
-          </Field>
-          <Field>
-            <Label>Image</Label>
+        <FormWrapper>
+          <FieldWrapper>
+            <Label htmlFor="name">Name</Label>
+            <Input id="name" name="name" onChange={handleChange} />
+          </FieldWrapper>
+          <FieldWrapper>
+            <Label htmlFor="numServings"># of Servings</Label>
+            <Input
+              id="numServings"
+              name="numServings"
+              onChange={handleChange}
+            />
+          </FieldWrapper>
+          <FieldWrapper>
+            <Label>Ingredients</Label>
+            <Editor
+              value={ingredients}
+              onChange={onIngredientsChange}
+              placeholder={INGREDIENTS_INPUT_PLACEHOLDER}
+            />
+          </FieldWrapper>
+          <FieldWrapper>
+            <Label>Steps</Label>
+            <Editor
+              value={steps}
+              onChange={onStepsChange}
+              placeholder={INSTRUCTIONS_INPUT_PLACEHOLDER}
+            />
+          </FieldWrapper>
+          <FieldWrapper>
+            <Label htmlFor="image">Image</Label>
             <FileInput
-              accept="image/png, image/jpeg, image/pneg, image/jpg"
+              accept={IMAGE_FORMATS}
               id="image"
               name="image"
               type="file"
             />
-          </Field>
-          <Field>
-            <Label>
+          </FieldWrapper>
+          <FieldWrapper>
+            <Label htmlFor="blurb">
               Blurb
               <OptionalNote>(Optional)</OptionalNote>
             </Label>
-            <TextArea />
-          </Field>
+            <TextArea id="blurb" name="blurb" onChange={handleChange} />
+          </FieldWrapper>
           <Footer>
-            <FormButton isSubmit type="submit">
-              Save
-            </FormButton>
-            <FormButton onClick={() => resetForm()} type="reset">
+            <Button
+              disabled={isSubmitting}
+              onClick={() => resetForm()}
+              type="reset"
+              variant="secondary"
+            >
               Clear
-            </FormButton>
+            </Button>
+            <Button
+              disabled={isSubmitting}
+              onClick={() => {}}
+              type="submit"
+              variant="primary"
+            >
+              Save
+            </Button>
           </Footer>
-        </Wrapper>
+        </FormWrapper>
       )}
     </Formik>
   );

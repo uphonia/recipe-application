@@ -2,48 +2,30 @@ import styled from "@emotion/styled";
 
 export const Title = styled.h1``;
 
-export const Wrapper = styled.div`
+export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 24px;
   width: 60%;
 `;
 
-export const Field = styled.div<{ column?: boolean }>`
-  display: flex;
-  flex-direction: ${({ column }) => (column ? "column" : "row")};
-  gap: 8px;
-  width: 100%;
-`;
-
-export const Label = styled.div`
+export const Label = styled.label`
   display: flex;
   gap: 4px;
   font-size: 16px;
-  width: 100%;
+  width: 30%;
 `;
 
-export const OptionalNote = styled.p`
+export const OptionalNote = styled.span`
   color: gray;
 `;
 
 export const Input = styled.input`
+  border: 1px solid black;
+  height: 30px;
+  padding: 0 8px;
   width: 100%;
-`;
-
-export const ListWrapper = styled.div`
-  padding: 0px 36px;
-`;
-
-export const ListInput = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  width: 100%;
-`;
-
-export const NewLineButton = styled.button`
-  border-radius: 4px;
 `;
 
 export const Divider = styled.div`
@@ -63,10 +45,4 @@ export const Footer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;
-`;
-
-export const FormButton = styled.button<{ isSubmit?: boolean }>`
-  border-radius: 4px;
-  padding: 8px;
-  width: 50px;
 `;

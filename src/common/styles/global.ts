@@ -62,4 +62,20 @@ export default css`
       cursor: pointer;
     }
   }
+
+  .rsw-ce ul {
+    gap: 4px;
+    list-style: disc;
+    padding-left: 2em;
+  }
+
+  .rsw-ce ol {
+    gap: 4px;
+    list-style: decimal;
+    padding-left: 2em;
+  }
+
+  .rsw-editor {
+    max-height: 350px;
+  }
 `;
