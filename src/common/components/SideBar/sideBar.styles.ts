@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
@@ -23,11 +22,13 @@ export const NavigationWrapper = styled.div`
   width: 100%;
 `;
 
-export const Navigation = styled.div`
+export const Navigation = styled.a`
   background-color: #f4f4f4;
+  color: inherit;
   display: flex;
   justify-content: center;
   padding: 12px 24px;
+  text-decoration: none;
 
   &:hover {
     background-color: #c9c5c5;
@@ -35,14 +36,16 @@ export const Navigation = styled.div`
   }
 `;
 
-export const SubNavigation = styled.div`
+export const SubNavigation = styled.a`
   background-color: #f4f4f4;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+  color: inherit;
   display: flex;
   justify-content: center;
   margin-left: auto;
   padding: 12px 24px;
+  text-decoration: none;
   width: 40%;
 
   &:hover {
