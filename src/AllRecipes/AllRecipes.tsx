@@ -13,6 +13,7 @@ export const AllRecipes = () => {
   const {
     closeModal,
     handleDeleteOnClick,
+    handleDeleteConfirm,
     handleFavoriteOnClick,
     handleOnClick,
     isModalOpen,
@@ -46,6 +47,8 @@ export const AllRecipes = () => {
         closeModal={closeModal}
         description="Do you want to delete this recipe?"
         isOpen={isModalOpen}
+        onConfirm={handleDeleteConfirm}
+        onConfirmText="Delete"
         title="Delete"
       />
     </>

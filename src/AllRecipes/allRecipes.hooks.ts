@@ -11,7 +11,7 @@ export const useAllRecipes = () => {
   } = useSwitch();
 
   const handleFavoriteOnClick = (index: number) => {
-    // API call to set favorite based on index
+    // API call to set favorite based on index (not async)
   };
 
   const handleOnClick = (index: number) => {
@@ -24,8 +24,9 @@ export const useAllRecipes = () => {
     openModal();
   };
 
-  const handleDeleteConfirm = (index: number) => {
+  const handleDeleteConfirm = () => {
     // API call to delete recipe based on index
+    closeModal();
   };
 
   return {

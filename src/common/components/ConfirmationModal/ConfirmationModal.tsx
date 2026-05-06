@@ -8,6 +8,8 @@ type Props = {
   closeModal: () => void;
   description: string;
   isOpen: boolean;
+  onConfirm: () => void;
+  onConfirmText: string;
   title?: string;
 };
 
@@ -15,6 +17,8 @@ export const ConfirmationModal = ({
   closeModal,
   description,
   isOpen,
+  onConfirm,
+  onConfirmText,
   title,
 }: Props) => (
   <Modal closeModal={closeModal} isOpen={isOpen} title={title}>
@@ -24,8 +28,8 @@ export const ConfirmationModal = ({
         <Button buttonType="secondary" onClick={closeModal}>
           Cancel
         </Button>
-        <Button buttonType="primary" onClick={() => {}}>
-          Delete
+        <Button buttonType="primary" onClick={onConfirm}>
+          {onConfirmText}
         </Button>
       </Footer>
     </Content>

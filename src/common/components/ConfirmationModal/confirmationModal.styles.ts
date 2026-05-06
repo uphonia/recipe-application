@@ -3,8 +3,7 @@ import styled from "@emotion/styled";
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 16px;
+  gap: 24px;
 `;
 
 export const Footer = styled.div`
