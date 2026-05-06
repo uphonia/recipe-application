@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { BUTTON_SIZE, BUTTON_TYPE } from "./button.type";
+import { BUTTON_SIZE, BUTTON_VARIANT } from "./button.type";
 import { css } from "@emotion/react";
 import {
   getBackgroundColor,
@@ -13,15 +13,15 @@ import {
 } from "./button.utils";
 
 type ButtonProps = {
-  buttonType: BUTTON_TYPE;
+  variant: BUTTON_VARIANT;
   fluid?: boolean;
   size: BUTTON_SIZE;
 };
 
 export const FormButton = styled.button<ButtonProps>`
   align-items: center;
-  background-color: ${({ buttonType }) => getBackgroundColor(buttonType)};
-  border: 1px solid ${({ buttonType }) => getBorderColor(buttonType)};
+  background-color: ${({ variant }) => getBackgroundColor(variant)};
+  border: 1px solid ${({ variant }) => getBorderColor(variant)};
   border-radius: 8px;
   display: flex;
   font-size: ${({ size }) => getFontSize(size)};
@@ -37,7 +37,6 @@ export const FormButton = styled.button<ButtonProps>`
     `}
 
   &:hover {
-    background-color: ${({ buttonType }) =>
-      getHoverBackgroundColor(buttonType)};
+    background-color: ${({ variant }) => getHoverBackgroundColor(variant)};
   }
 `;

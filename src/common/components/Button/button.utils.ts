@@ -1,7 +1,7 @@
-import { BUTTON_SIZE, BUTTON_TYPE } from "./button.type";
+import { BUTTON_SIZE, BUTTON_VARIANT } from "./button.type";
 
-export const getBackgroundColor = (buttonType: BUTTON_TYPE) => {
-  switch (buttonType) {
+export const getBackgroundColor = (variant: BUTTON_VARIANT) => {
+  switch (variant) {
     case "primary":
       return "#fc6c05";
     case "secondary":
@@ -9,8 +9,8 @@ export const getBackgroundColor = (buttonType: BUTTON_TYPE) => {
   }
 };
 
-export const getHoverBackgroundColor = (buttonType: BUTTON_TYPE) => {
-  switch (buttonType) {
+export const getHoverBackgroundColor = (variant: BUTTON_VARIANT) => {
+  switch (variant) {
     case "primary":
       return "#e86305";
     case "secondary":
@@ -18,8 +18,8 @@ export const getHoverBackgroundColor = (buttonType: BUTTON_TYPE) => {
   }
 };
 
-export const getBorderColor = (buttonType: BUTTON_TYPE) => {
-  switch (buttonType) {
+export const getBorderColor = (variant: BUTTON_VARIANT) => {
+  switch (variant) {
     case "primary":
       return "#e4d9d9";
     case "secondary":
