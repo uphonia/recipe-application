@@ -1,8 +1,8 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  background-color: white;
-  border-right: 1px solid #a8a2a2;
+  background-color: #574b40;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -22,8 +22,12 @@ export const NavigationWrapper = styled.div`
   width: 100%;
 `;
 
-export const Navigation = styled.a`
-  background-color: #f4f4f4;
+type NavigationProps = {
+  selected?: boolean;
+};
+
+export const Navigation = styled.div<NavigationProps>`
+  background-color: #d6a577;
   color: inherit;
   display: flex;
   justify-content: center;
@@ -31,13 +35,20 @@ export const Navigation = styled.a`
   text-decoration: none;
 
   &:hover {
-    background-color: #c9c5c5;
+    background-color: #96887a;
     cursor: pointer;
   }
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      background-color: #96887a;
+      color: white;
+    `}
 `;
 
-export const SubNavigation = styled.a`
-  background-color: #f4f4f4;
+export const SubNavigation = styled.div<NavigationProps>`
+  background-color: #d6a577;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   color: inherit;
@@ -46,10 +57,16 @@ export const SubNavigation = styled.a`
   margin-left: auto;
   padding: 12px 24px;
   text-decoration: none;
-  width: 40%;
+  width: 60%;
 
   &:hover {
-    background-color: #c9c5c5;
+    background-color: #96887a;
     cursor: pointer;
   }
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      background-color: #96887a;
+    `}
 `;
