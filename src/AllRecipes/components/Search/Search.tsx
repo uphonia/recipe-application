@@ -10,8 +10,14 @@ export const Search = () => {
     <Wrapper>
       <InputWrapper>
         <SearchInput placeholder="Ex: Name, Category" type="text" />
-        <FormButton>Search</FormButton>
-        <FormButton onClick={() => setShowFilters(!showFilters)}>
+        <FormButton buttonType="primary" size="medium">
+          Search
+        </FormButton>
+        <FormButton
+          buttonType="secondary"
+          size="medium"
+          onClick={() => setShowFilters(!showFilters)}
+        >
           {`${showFilters ? "Hide" : "Show"} Filters`}
         </FormButton>
       </InputWrapper>
