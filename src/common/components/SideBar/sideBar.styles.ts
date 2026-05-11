@@ -43,30 +43,14 @@ export const Navigation = styled.div<NavigationProps>`
     selected &&
     css`
       background-color: #96887a;
-      color: white;
+      text-decoration: underline;
+      text-underline-offset: 2px;
     `}
 `;
 
-export const SubNavigation = styled.div<NavigationProps>`
-  background-color: #d6a577;
+export const SubNavigation = styled(Navigation)`
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
-  color: inherit;
-  display: flex;
-  justify-content: center;
   margin-left: auto;
-  padding: 12px 24px;
-  text-decoration: none;
   width: 60%;
-
-  &:hover {
-    background-color: #96887a;
-    cursor: pointer;
-  }
-
-  ${({ selected }) =>
-    selected &&
-    css`
-      background-color: #96887a;
-    `}
 `;
