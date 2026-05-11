@@ -35,6 +35,7 @@ export default css`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    list-style-position: inside;
   }
 
   input {
