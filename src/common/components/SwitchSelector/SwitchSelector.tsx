@@ -1,24 +1,21 @@
-import { useState } from "react";
+import React from "react";
+
 import { Wrapper, Switch } from "./switchSelector.styles";
 
 type Props = {
+  activeSwitch: string | null;
+  onSelect: (label: string) => void;
   switches: string[];
 };
 
-export const SwitchSelector = ({ switches }: Props) => {
-  const [active, setActive] = useState<string | null>(switches[0]);
-  const onClick = (label: string) => {
-    if (active === label) return;
-    setActive(label);
-  };
-
+export const SwitchSelector = ({ activeSwitch, onSelect, switches }: Props) => {
   return (
     <Wrapper>
       {switches.map((label) => (
         <Switch
           key={label}
-          isActive={active === label}
-          onClick={() => onClick(label)}
+          isActive={activeSwitch === label}
+          onClick={() => onSelect(label)}
         >
           {label}
         </Switch>
