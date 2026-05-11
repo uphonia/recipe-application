@@ -12,6 +12,7 @@ export const MainWrapper = styled.div`
     display: grid;
     grid-template-areas: "sidebar content";
     grid-template-columns: 1fr minmax(0, 5fr);
+    grid-template-rows: minmax(0, 1fr);
   `)}
 `;
 
@@ -31,6 +32,9 @@ export const LayoutSidebar = styled.div`
 
 export const LayoutContent = styled.div`
   display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
   height: 100%;
   overflow-y: auto;
   min-width: 0;

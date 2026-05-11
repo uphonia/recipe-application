@@ -4,6 +4,7 @@ export const Title = styled.h1``;
 
 export const FormWrapper = styled.div`
   display: flex;
+  flex: 1 0 auto;
   flex-direction: column;
   gap: 20px;
   padding: 24px;

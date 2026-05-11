@@ -63,6 +63,7 @@ export default css`
     }
   }
 
+  // rich text editor
   .rsw-ce ul {
     gap: 4px;
     list-style: disc;
