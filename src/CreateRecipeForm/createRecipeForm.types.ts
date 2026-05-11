@@ -3,8 +3,8 @@ export type FormValues = {
   name: string;
   numServings: string;
   image?: string;
-  ingredients: string[];
-  instructions: string[];
+  ingredients: string;
+  instructions: string;
 };
 
 export const initialValues: FormValues = {
@@ -12,6 +12,6 @@ export const initialValues: FormValues = {
   name: "",
   numServings: "",
   image: "",
-  ingredients: [],
-  instructions: [],
+  ingredients: "",
+  instructions: "",
 };

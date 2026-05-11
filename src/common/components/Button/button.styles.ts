@@ -21,7 +21,6 @@ type ButtonProps = {
 export const FormButton = styled.button<ButtonProps>`
   align-items: center;
   background-color: ${({ variant }) => getBackgroundColor(variant)};
-  border: 1px solid ${({ variant }) => getBorderColor(variant)};
   border-radius: 8px;
   display: flex;
   font-size: ${({ size }) => getFontSize(size)};

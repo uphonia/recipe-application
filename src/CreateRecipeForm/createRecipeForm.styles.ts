@@ -2,6 +2,10 @@ import styled from "@emotion/styled";
 
 export const Title = styled.h1``;
 
+export const Main = styled.div`
+  position: relative;
+`;
+
 export const FormWrapper = styled.div`
   display: flex;
   flex: 1 0 auto;
@@ -43,7 +47,19 @@ export const FileInput = styled.input`
 `;
 
 export const Footer = styled.div`
+  background-color: #d6a577;
+  border-top: 2px solid #574b40;
+  bottom: 0;
+  margin-left: auto;
+  overflow: hidden;
+  padding: 16px;
+  position: sticky;
+  z-index: 1;
+`;
+
+export const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;
+  justify-content: space-between;
 `;

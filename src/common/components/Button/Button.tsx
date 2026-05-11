@@ -7,7 +7,7 @@ type Props = {
   children: ReactNode;
   disabled?: boolean;
   fluid?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   size?: BUTTON_SIZE;
   type?: BUTTON_TYPE;
   variant?: BUTTON_VARIANT;

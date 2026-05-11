@@ -13,7 +13,12 @@ export const useCreateRecipeForm = () => {
     setIngredients(e.target.value);
   };
 
+  const handleSubmit = () => {
+    // call API to submit form data
+  };
+
   return {
+    handleSubmit,
     ingredients,
     onIngredientsChange,
     onStepsChange,
