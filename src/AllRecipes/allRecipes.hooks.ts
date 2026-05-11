@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useSwitch } from "../common/hooks/useSwitch";
+import { useRouter } from "next/router";
+import { RECIPE } from "../common/consts/navigation.consts";
 
 export const useAllRecipes = () => {
+  const { push } = useRouter();
+
   const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
 
   const {
@@ -16,6 +20,7 @@ export const useAllRecipes = () => {
 
   const handleOnClick = (index: number) => {
     // redirect to individual recipe page
+    push(`${RECIPE}/${index}`);
   };
 
   const handleDeleteOnClick = (index: number) => {

@@ -8,7 +8,7 @@ import {
   Navigation,
   SubNavigation,
 } from "./sideBar.styles";
-import { CREATE_RECIPE, HOME } from "./sideBar.consts";
+import { CREATE_RECIPE, HOME } from "../../consts/navigation.consts";
 
 export const Sidebar = () => {
   const router = useRouter();
