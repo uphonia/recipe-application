@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { mq } from "../../utils/mediaQueries";
 
 export const MainWrapper = styled.div`
+  background-color: #737e81;
   display: flex;
   flex-direction: column;
   height: 100%;
