@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Search } from "./components/Search/Search";
 import { RecipeCard } from "./components/RecipeCard/RecipeCard";
 import { Wrapper, RecipeList } from "./allRecipes.styles";
 import { mockData } from "./allRecipes.consts";
 import { useAllRecipes } from "./allRecipes.hooks";
 import { ConfirmationModal } from "../common/components/ConfirmationModal/ConfirmationModal";
+import { Filter } from "./components/Filter/Filter";
 
 export const AllRecipes = () => {
   const {
@@ -20,7 +20,6 @@ export const AllRecipes = () => {
   return (
     <>
       <Wrapper>
-        <Search />
         <RecipeList>
           {mockData.map((recipe, index) => (
             <RecipeCard
@@ -35,6 +34,7 @@ export const AllRecipes = () => {
             />
           ))}
         </RecipeList>
+        <Filter />
       </Wrapper>
       <ConfirmationModal
         closeModal={closeModal}
