@@ -71,10 +71,10 @@ export const getFontSize = (size: BUTTON_SIZE) => {
     case "small":
       return "12px";
     case "medium":
-      return "14px";
-    case "large":
       return "16px";
+    case "large":
+      return "24px";
     default:
-      return "14px";
+      return "16px";
   }
 };

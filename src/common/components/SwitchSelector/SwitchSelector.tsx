@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Wrapper, Switch } from "./switchSelector.styles";
+import { Typography } from "../Typography/Typography";
 
 type Props = {
   activeSwitch: string | null;
@@ -17,7 +18,7 @@ export const SwitchSelector = ({ activeSwitch, onSelect, switches }: Props) => {
           isActive={activeSwitch === label}
           onClick={() => onSelect(label)}
         >
-          {label}
+          <Typography variant="h6">{label}</Typography>
         </Switch>
       ))}
     </Wrapper>

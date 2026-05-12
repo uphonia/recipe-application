@@ -24,6 +24,7 @@ export const FormButton = styled.button<ButtonProps>`
   border-radius: 8px;
   display: flex;
   font-size: ${({ size }) => getFontSize(size)};
+  gap: 8px;
   height: ${({ size }) => getHeight(size)};
   justify-content: center;
   width: ${({ size }) => getWidth(size)};
