@@ -36,34 +36,50 @@ export const RecipeCard = ({
   isFavorited,
   name,
   onClick,
-}: Props) => (
-  <Wrapper onClick={onClick}>
-    {image ? (
-      <Image src={image} />
-    ) : (
-      <EmptyImage>
-        <EmptyImageStateIcon />
-      </EmptyImage>
-    )}
-    <IconButton isOnTop onClick={onFavorite}>
-      {isFavorited ? (
-        <FavoritedIcon style={{ color: "#e01126" }} stroke="white" />
+}: Props) => {
+  const handleOnDelete = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.stopPropagation();
+    onDelete();
+  };
+
+  const handleOnFavorite = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.stopPropagation();
+    onFavorite();
+  };
+
+  return (
+    <Wrapper onClick={onClick}>
+      {image ? (
+        <Image src={image} />
       ) : (
-        <FavoriteIcon style={{ color: "white" }} />
+        <EmptyImage>
+          <EmptyImageStateIcon />
+        </EmptyImage>
       )}
-    </IconButton>
-    <Content>
-      <Info>
-        <Title>{name}</Title>
-      </Info>
-      <ActionButtons>
-        <IconButton onClick={onDelete}>
-          <DeleteIcon />
-        </IconButton>
-      </ActionButtons>
-      <CardFooter>
-        <Date>{createdDate}</Date>
-      </CardFooter>
-    </Content>
-  </Wrapper>
-);
+      <IconButton isOnTop onClick={(e) => handleOnFavorite(e)}>
+        {isFavorited ? (
+          <FavoritedIcon style={{ color: "#e01126" }} stroke="white" />
+        ) : (
+          <FavoriteIcon style={{ color: "white" }} />
+        )}
+      </IconButton>
+      <Content>
+        <Info>
+          <Title>{name}</Title>
+        </Info>
+        <ActionButtons>
+          <IconButton onClick={(e) => handleOnDelete(e)}>
+            <DeleteIcon />
+          </IconButton>
+        </ActionButtons>
+        <CardFooter>
+          <Date>{createdDate}</Date>
+        </CardFooter>
+      </Content>
+    </Wrapper>
+  );
+};
