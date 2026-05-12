@@ -53,4 +53,15 @@ export const SubNavigation = styled(Navigation)`
   border-bottom-left-radius: 8px;
   margin-left: auto;
   width: 60%;
+
+  &:hover {
+    transition: width 0.5s;
+    width: 65%;
+  }
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      width: 65%;
+    `}
 `;
