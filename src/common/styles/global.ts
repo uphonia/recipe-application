@@ -79,5 +79,6 @@ export default css`
 
   .rsw-editor {
     max-height: 350px;
+    width: 100%;
   }
 `;
