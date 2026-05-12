@@ -8,7 +8,7 @@ import {
   Navigation,
   SubNavigation,
 } from "./sideBar.styles";
-import { CREATE_RECIPE, HOME } from "../../consts/navigation.consts";
+import { CREATE_RECIPE, HOME, ORGANIZE } from "../../consts/navigation.consts";
 
 export const Sidebar = () => {
   const router = useRouter();
@@ -24,6 +24,9 @@ export const Sidebar = () => {
           <SubNavigation selected={isActive(CREATE_RECIPE)}>
             Create
           </SubNavigation>
+        </Link>
+        <Link href={ORGANIZE} passHref>
+          <SubNavigation selected={isActive(ORGANIZE)}>Organize</SubNavigation>
         </Link>
       </NavigationWrapper>
     </Wrapper>
