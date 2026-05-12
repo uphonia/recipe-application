@@ -16,6 +16,11 @@ export const Switch = styled.div<{ isActive: boolean }>`
   flex: 1;
   justify-content: center;
   padding: 4px 0;
-  text-underline-offset: 2px;
-  transition: transform 1s ease-out;
+  text-decoration: ${({ isActive }) => (!isActive ? "underline" : "none")};
+  text-underline-offset: 3px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
