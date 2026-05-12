@@ -9,7 +9,6 @@ import {
   getWidth,
   getPadding,
   getHoverBackgroundColor,
-  getBorderColor,
 } from "./button.utils";
 
 type ButtonProps = {

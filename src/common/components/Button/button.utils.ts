@@ -18,15 +18,6 @@ export const getHoverBackgroundColor = (variant: BUTTON_VARIANT) => {
   }
 };
 
-export const getBorderColor = (variant: BUTTON_VARIANT) => {
-  switch (variant) {
-    case "primary":
-      return "#e4d9d9";
-    case "secondary":
-      return "#e4d9d9";
-  }
-};
-
 export const getHeight = (size: BUTTON_SIZE) => {
   switch (size) {
     case "small":

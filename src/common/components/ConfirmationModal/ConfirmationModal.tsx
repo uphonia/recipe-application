@@ -25,10 +25,10 @@ export const ConfirmationModal = ({
     <Content>
       <p>{description}</p>
       <Footer>
-        <Button buttonType="secondary" onClick={closeModal}>
+        <Button onClick={closeModal} variant="secondary">
           Cancel
         </Button>
-        <Button buttonType="primary" onClick={onConfirm}>
+        <Button onClick={onConfirm} variant="primary">
           {onConfirmText}
         </Button>
       </Footer>
