@@ -9,7 +9,7 @@ export const Card = styled.div`
   border: 1px solid black;
   border-radius: 16px;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1.5fr;
   height: 100%;
   padding: 24px;
   width: 100%;

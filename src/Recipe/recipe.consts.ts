@@ -4,6 +4,7 @@ export const recipeMock = {
   image: "/assets/images/croquemonsieur.jpg",
   ingredients:
     "<ul><li>2 slices of toast</li><li>1 tsp dijon</li><li>1 tsp mayo</li><li>1 egg</li><li>3 slices of deli ham</li></ul>",
+  isFavorited: true,
   name: "Croque Monseiur",
   servings: "1",
   steps:
@@ -11,6 +12,7 @@ export const recipeMock = {
 };
 
 export const SWITCHES = {
+  BLURB: "Blurb",
   INGREDIENTS: "Ingredients",
   STEPS: "Steps",
 };
