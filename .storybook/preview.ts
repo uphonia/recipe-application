@@ -1,24 +1,24 @@
-import type { Preview } from '@storybook/nextjs-vite'
-import React from "react";
+import type { Preview } from "@storybook/nextjs-vite";
 import { Global } from "@emotion/react";
+import { createElement, Fragment } from "react";
 
 import globalStyles from "../src/common/styles/global";
 
 const preview: Preview = {
   decorators: [
     (Story: any) =>
-      React.createElement(
-        React.Fragment,
+      createElement(
+        Fragment,
         null,
-        React.createElement(Global, { styles: globalStyles }),
-        React.createElement(Story)
+        createElement(Global, { styles: globalStyles }),
+        createElement(Story),
       ),
   ],
   parameters: {
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
 
@@ -26,8 +26,8 @@ const preview: Preview = {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
-      test: 'todo'
-    }
+      test: "todo",
+    },
   },
 };
 

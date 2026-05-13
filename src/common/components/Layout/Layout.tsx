@@ -1,11 +1,5 @@
-import React from "react";
-
 import { ReactNode } from "react";
-import {
-  MainWrapper,
-  LayoutSidebar,
-  LayoutContent,
-} from "./layout.styles";
+import { MainWrapper, LayoutSidebar, LayoutContent } from "./layout.styles";
 
 type Props = {
   content: ReactNode;
@@ -14,7 +8,7 @@ type Props = {
 
 export const Layout = ({ content, sidebar }: Props) => {
   return (
-    <MainWrapper >
+    <MainWrapper>
       <LayoutSidebar>{sidebar}</LayoutSidebar>
       <LayoutContent>{content}</LayoutContent>
     </MainWrapper>

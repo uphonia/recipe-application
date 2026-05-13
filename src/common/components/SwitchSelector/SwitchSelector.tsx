@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Wrapper, Switch } from "./switchSelector.styles";
 import { Typography } from "../Typography/Typography";
 

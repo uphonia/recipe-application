@@ -1,4 +1,4 @@
-import React, { ComponentProps } from "react";
+import { ComponentProps } from "react";
 import { css, SerializedStyles } from "@emotion/react";
 
 import Responsive from "react-responsive";
@@ -37,7 +37,7 @@ export const mq = Object.keys(breakpoints).reduce<MediaQueries>(
 
     return acc;
   },
-  {} as MediaQueries
+  {} as MediaQueries,
 );
 
 export const Mobile = (props: MediaQueryProps) => (

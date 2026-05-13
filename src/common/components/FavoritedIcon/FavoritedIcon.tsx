@@ -1,4 +1,3 @@
-import React from "react";
 import FavoriteActive from "@mui/icons-material/Favorite";
 import FavoriteInactive from "@mui/icons-material/FavoriteBorder";
 

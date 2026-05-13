@@ -1,5 +1,3 @@
-import React from "react";
-
 import { CreateRecipeForm } from "../CreateRecipeForm/CreateRecipeForm";
 import { Wrapper } from "./createRecipe.styles";
 

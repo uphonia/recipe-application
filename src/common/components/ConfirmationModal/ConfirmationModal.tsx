@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Button } from "../Button/Button";
 import { Content, Footer } from "./confirmationModal.styles";
 import { Modal } from "../Modal/Modal";

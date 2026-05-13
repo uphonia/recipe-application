@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { createTheme, Typography as TypographyBase } from "@mui/material";
 import { TypographyVariant } from "./typography.types";

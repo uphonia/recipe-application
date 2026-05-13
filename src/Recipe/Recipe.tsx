@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { recipeMock, SWITCHES } from "./recipe.consts";
 import { Wrapper, Card, Section, Title, Image, Content } from "./recipe.styles";

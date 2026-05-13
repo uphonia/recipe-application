@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { FormButton } from "./button.styles";
 import { BUTTON_SIZE, BUTTON_TYPE, BUTTON_VARIANT } from "./button.type";

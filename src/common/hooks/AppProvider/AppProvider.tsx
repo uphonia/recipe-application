@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { useApp } from "./appProvider.hooks";
 import { AppProviderContext } from "./appProvider.context";
 

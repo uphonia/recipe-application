@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Formik } from "formik";
 import Editor from "react-simple-wysiwyg";
 

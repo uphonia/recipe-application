@@ -1,6 +1,6 @@
 import { Modal as ModalBase } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { Header, Wrapper, Content, CloseButton } from "./modal.styles";
 

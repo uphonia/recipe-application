@@ -1,5 +1,3 @@
-import React from "react";
-
 import { RecipeCard } from "./components/RecipeCard/RecipeCard";
 import { Wrapper, RecipeList } from "./allRecipes.styles";
 import { mockData } from "./allRecipes.consts";

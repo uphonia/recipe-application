@@ -1,5 +1,3 @@
-import React from "react";
-
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoritedIcon from "@mui/icons-material/Favorite";
 import FavoriteIcon from "@mui/icons-material/FavoriteBorder";
