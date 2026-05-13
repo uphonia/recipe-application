@@ -10,9 +10,10 @@ export const Wrapper = styled.div`
 `;
 
 export const RecipeList = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 16px;
+  align-content: start;
+  column-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   padding: 24px 42px;
+  row-gap: 20px;
 `;

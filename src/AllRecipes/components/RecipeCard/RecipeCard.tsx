@@ -5,12 +5,11 @@ import EmptyImageStateIcon from "@mui/icons-material/Restaurant";
 
 import {
   Wrapper,
-  Info,
   Image,
   EmptyImage,
   Title,
   Date,
-  ActionButtons,
+  // ActionButtons,
   IconButton,
   CardFooter,
   Content,
@@ -66,14 +65,12 @@ export const RecipeCard = ({
         )}
       </IconButton>
       <Content>
-        <Info>
-          <Title>{name}</Title>
-        </Info>
-        <ActionButtons>
+        <Title>{name}</Title>
+        {/* <ActionButtons>
           <IconButton onClick={(e) => handleOnDelete(e)}>
             <DeleteIcon />
           </IconButton>
-        </ActionButtons>
+        </ActionButtons> */}
         <CardFooter>
           <Date>{createdDate}</Date>
         </CardFooter>

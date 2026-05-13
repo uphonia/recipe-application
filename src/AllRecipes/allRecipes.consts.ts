@@ -8,7 +8,7 @@ export const mockData = [
   {
     createdDate: "12/25/24",
     isFavorited: false,
-    name: "Croque Monsieur",
+    name: "Sweet & Sour Pork",
   },
   {
     createdDate: "12/25/24",

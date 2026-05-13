@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import { mq } from "../../../common/utils/mediaQueries";
 import { css } from "@emotion/react";
+
+import { mq } from "../../../common/utils/mediaQueries";
 
 export const Wrapper = styled.div`
   background-color: #f2f0f0;
@@ -8,44 +9,37 @@ export const Wrapper = styled.div`
   border-radius: 8px;
   cursor: pointer;
   display: flex;
-  flex-direction: row;
-  height: 180px;
+  flex-direction: column;
+  height: 300px;
   position: relative;
-  width: 100%;
 
   ${mq.medium(css`
-    max-width: 300px;
+    width: 200px;
   `)}
 `;
 
 export const Content = styled.div`
+  align-items: center;
   display: flex;
   flex: 1;
   padding: 24px;
   position: relative;
 `;
 
-export const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  height: 100%;
-  padding-top: 10px;
-`;
-
 export const Title = styled.h3`
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 100px;
   line-clamp: 3;
+  text-align: center;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 `;
 
 export const Image = styled.img`
-  border-radius: 8px 0px 0px 8px;
+  border-radius: 8px 8px 0px 0px;
+  height: 50%;
+  object-fit: stretch;
   position: relative;
-  width: 150px;
 `;
 
 export const CardFooter = styled.div`
@@ -88,7 +82,7 @@ export const IconButton = styled.button<IconButtonProps>`
   ${({ isOnTop }) =>
     isOnTop &&
     css`
-      left: 4px;
+      right: 4px;
       position: absolute;
       top: 4px;
     `}
@@ -96,10 +90,9 @@ export const IconButton = styled.button<IconButtonProps>`
 
 export const EmptyImage = styled.div`
   align-items: center;
-  border-radius: 8px 0px 0px 8px;
-  border-right: 1px solid gray;
+  border-bottom: 1px solid black;
   display: flex;
+  height: 50%;
   justify-content: center;
   position: relative;
-  width: 150px;
 `;
