@@ -23,3 +23,7 @@ storybook-static
 **/.DS_Store
 
 */.tsbuildinfo
+
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
