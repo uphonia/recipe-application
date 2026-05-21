@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSwitch } from "../common/hooks/useSwitch";
 import { useRouter } from "next/router";
 import { RECIPE } from "../common/consts/navigation.consts";
+import { testConnection } from "../../backend/api";
 
 export const useAllRecipes = () => {
   const { push } = useRouter();
@@ -33,6 +34,10 @@ export const useAllRecipes = () => {
     // API call to delete recipe based on index
     closeModal();
   };
+
+  useEffect(() => {
+    testConnection().then((data) => console.log(data));
+  }, []);
 
   return {
     closeModal,
