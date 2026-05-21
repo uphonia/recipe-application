@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-six5e3o%kftszt_3+pne4gv#o+wh9kqvus_(^my+1x6i!d(=zl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://recipe-application-ni7m.onrender.com', 'localhost']
 
 
 # Application definition
@@ -122,6 +122,7 @@ STATIC_URL = 'static/'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # your React dev server, change port if different
+    'https://recipe-application-ni7m.onrender.com'
 ]
 
 REST_FRAMEWORK = {
