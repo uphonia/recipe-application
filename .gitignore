@@ -5,6 +5,7 @@ node_modules/
 
 # Ignore environment variables and secrets
 .env
+.env.local
 
 # Ignore build folder
 /dist
