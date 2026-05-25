@@ -1,0 +1,6 @@
+djangorestframework
+gunicorn
+psycopg2-binary
+PyJWT
+sqlparse
+dj-database-url

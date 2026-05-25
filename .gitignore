@@ -28,3 +28,4 @@ storybook-static
 backend/venv/
 backend/__pycache__/
 backend/*.pyc
+backend/media/
