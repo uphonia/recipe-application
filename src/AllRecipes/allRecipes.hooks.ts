@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useSwitch } from "../common/hooks/useSwitch";
 import { useRouter } from "next/router";
 import { RECIPE } from "../common/consts/navigation.consts";
-import { testConnection } from "../../backend/api";
+import { getRecipes } from "../../backend/api";
 
 export const useAllRecipes = () => {
   const { push } = useRouter();
 
+  const [recipes, setRecipes] = useState("");
   const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
 
   const {
@@ -36,7 +37,7 @@ export const useAllRecipes = () => {
   };
 
   useEffect(() => {
-    testConnection().then((data) => console.log(data));
+    getRecipes().then((data) => setRecipes(data));
   }, []);
 
   return {
