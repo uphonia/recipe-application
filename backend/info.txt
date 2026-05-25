@@ -4,3 +4,6 @@ psycopg2-binary
 PyJWT
 sqlparse
 dj-database-url
+
+serializers.py
+    how Django REST Framework convers models to and from JSOn
