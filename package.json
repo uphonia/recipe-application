@@ -24,7 +24,7 @@
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
-    "date-fns": "^4.1.0",
+    "date-fns": "^4.3.0",
     "formik": "^2.4.6",
     "next": "^16.1.6",
     "react": "^19.2.4",
@@ -32,7 +32,8 @@
     "react-responsive": "^10.0.0",
     "react-select": "^5.8.0",
     "react-simple-wysiwyg": "^3.4.1",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
