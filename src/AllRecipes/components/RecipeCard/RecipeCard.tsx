@@ -17,7 +17,7 @@ import {
 
 type Props = {
   createdDate: string;
-  image?: string;
+  image?: File;
   isFavorited: boolean;
   name: string;
   onClick: () => void;
@@ -51,7 +51,7 @@ export const RecipeCard = ({
   return (
     <Wrapper onClick={onClick}>
       {image ? (
-        <Image src={image} />
+        <Image src={image.name} /> // TODO
       ) : (
         <EmptyImage>
           <EmptyImageStateIcon />
