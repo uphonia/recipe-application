@@ -2,11 +2,13 @@ import { ReactNode } from "react";
 
 import { FormButton } from "./button.styles";
 import { BUTTON_SIZE, BUTTON_TYPE, BUTTON_VARIANT } from "./button.type";
+import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
 
 type Props = {
   children: ReactNode;
   disabled?: boolean;
   fluid?: boolean;
+  loading?: boolean;
   onClick?: () => void;
   size?: BUTTON_SIZE;
   type?: BUTTON_TYPE;
@@ -16,6 +18,7 @@ type Props = {
 export const Button = ({
   children,
   disabled = false,
+  loading = false,
   fluid = false,
   onClick,
   size = "medium",
@@ -31,7 +34,7 @@ export const Button = ({
       type={type}
       variant={variant}
     >
-      {children}
+      {loading ? <LoadingSpinner size="20px" /> : children}
     </FormButton>
   );
 };
