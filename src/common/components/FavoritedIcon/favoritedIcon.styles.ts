@@ -12,3 +12,11 @@ export const IconButton = styled.button`
     cursor: pointer;
   }
 `;
+
+export const IconStatic = styled.div`
+  align-items: center;
+  background-color: transparent;
+  border-radius: 4px;
+  display: flex;
+  padding: 2px;
+`;
