@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { ContentEditableEvent } from "react-simple-wysiwyg";
 import { FormValues } from "./createRecipeForm.types";
 import { createRecipe } from "../../backend/api";
 import { useRouter } from "next/router";
