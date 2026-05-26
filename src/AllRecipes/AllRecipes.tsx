@@ -1,6 +1,7 @@
+import { format } from "date-fns";
+
 import { RecipeCard } from "./components/RecipeCard/RecipeCard";
 import { Wrapper, RecipeList } from "./allRecipes.styles";
-import { mockData } from "./allRecipes.consts";
 import { useAllRecipes } from "./allRecipes.hooks";
 import { ConfirmationModal } from "../common/components/ConfirmationModal/ConfirmationModal";
 import { Filter } from "./components/Filter/Filter";
@@ -13,24 +14,28 @@ export const AllRecipes = () => {
     handleFavoriteOnClick,
     handleOnClick,
     isModalOpen,
+    recipes,
   } = useAllRecipes();
 
   return (
     <>
       <Wrapper>
         <RecipeList>
-          {mockData.map((recipe, index) => (
-            <RecipeCard
-              createdDate={recipe.createdDate}
-              image={recipe.image}
-              isFavorited={recipe.isFavorited}
-              key={index}
-              name={recipe.name}
-              onClick={() => handleOnClick(index)}
-              onDelete={() => handleDeleteOnClick(index)}
-              onFavorite={() => handleFavoriteOnClick(index)}
-            />
-          ))}
+          {recipes.map((recipe) => {
+            const createdDate = format(new Date(recipe.created_at), "MM/dd/yy");
+            return (
+              <RecipeCard
+                createdDate={createdDate}
+                image={recipe.image}
+                isFavorited={false} // TODO
+                key={recipe.id}
+                name={recipe.name}
+                onClick={() => handleOnClick(recipe.id)}
+                onDelete={() => handleDeleteOnClick(recipe.id)}
+                onFavorite={() => handleFavoriteOnClick(recipe.id)}
+              />
+            );
+          })}
         </RecipeList>
         <Filter />
       </Wrapper>

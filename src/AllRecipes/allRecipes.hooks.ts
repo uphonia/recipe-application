@@ -3,11 +3,12 @@ import { useSwitch } from "../common/hooks/useSwitch";
 import { useRouter } from "next/router";
 import { RECIPE } from "../common/consts/navigation.consts";
 import { getRecipes } from "../../backend/api";
+import { Recipe } from "../common/models/Recipe";
 
 export const useAllRecipes = () => {
   const { push } = useRouter();
 
-  const [recipes, setRecipes] = useState("");
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
 
   const {
@@ -37,7 +38,9 @@ export const useAllRecipes = () => {
   };
 
   useEffect(() => {
-    getRecipes().then((data) => setRecipes(data));
+    getRecipes().then((data) => {
+      setRecipes(data);
+    });
   }, []);
 
   return {
@@ -47,5 +50,6 @@ export const useAllRecipes = () => {
     handleFavoriteOnClick,
     handleOnClick,
     isModalOpen,
+    recipes,
   };
 };
