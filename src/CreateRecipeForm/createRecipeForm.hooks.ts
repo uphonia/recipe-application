@@ -1,28 +1,22 @@
 import { useState } from "react";
 import { ContentEditableEvent } from "react-simple-wysiwyg";
+import { FormValues } from "./createRecipeForm.types";
+import { createRecipe } from "../../backend/api";
+import { useRouter } from "next/router";
+import { HOME } from "../common/consts/navigation.consts";
 
 export const useCreateRecipeForm = () => {
-  const [ingredients, setIngredients] = useState("");
-  const [steps, setSteps] = useState("");
+  const { push } = useRouter();
 
-  const onStepsChange = (e: ContentEditableEvent) => {
-    setSteps(e.target.value);
-  };
-
-  const onIngredientsChange = (e: ContentEditableEvent) => {
-    setIngredients(e.target.value);
-  };
-
-  const handleSubmit = () => {
-    // call API to submit form data
+  const handleSubmit = async (values: FormValues) => {
+    const recipeData = await createRecipe({ ...values });
+    if (recipeData) push(HOME);
+    else {
+      // TODO - error handling
+    }
   };
 
   return {
     handleSubmit,
-    ingredients,
-    onIngredientsChange,
-    onStepsChange,
-    setSteps,
-    steps,
   };
 };

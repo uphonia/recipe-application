@@ -30,7 +30,6 @@ export const Input = styled.input`
   border: 1px solid black;
   height: 30px;
   padding: 0 8px;
-  width: 100%;
 `;
 
 export const Divider = styled.div`
@@ -62,4 +61,15 @@ export const ButtonsWrapper = styled.div`
   flex-direction: row;
   gap: 16px;
   justify-content: space-between;
+`;
+
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+`;
+
+export const ErrorText = styled.p`
+  color: red;
 `;
