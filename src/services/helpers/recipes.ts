@@ -1,4 +1,4 @@
-import { CreateRecipePayload } from "../consts/CreateRecipePayload";
+import { CreateRecipePayload } from "../payloads/CreateRecipePayload";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
