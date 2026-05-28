@@ -1,8 +1,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Recipe
-from .serializers import RecipeSerializer
+from api.models import Recipe
+from api.serializers import RecipeSerializer
 
 @api_view(['POST'])
 def create_recipe(request):

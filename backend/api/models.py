@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Recipe(models.Model):
     name = models.CharField(max_length=255)
     servings = models.TextField()
@@ -12,3 +11,14 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+
+# ToDo - add user_id column
+class Favorites(models.Model):
+    favorited = models.BooleanField()
+    recipe_id = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE,
+        related_name="favorites"
+    )
+
+# ToDo - add user column
