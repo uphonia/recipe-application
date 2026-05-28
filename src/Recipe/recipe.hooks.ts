@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import { getRecipe } from "../../backend/api";
-
 import { SWITCHES } from "./recipe.consts";
 import { Recipe } from "../common/models/Recipe";
+import { getRecipe } from "../services/helpers/recipes";
 
 export const useRecipe = () => {
   const { query } = useRouter();

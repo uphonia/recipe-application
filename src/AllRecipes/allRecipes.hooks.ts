@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useSwitch } from "../common/hooks/useSwitch";
 import { useRouter } from "next/router";
 import { RECIPE } from "../common/consts/navigation.consts";
-import { getRecipes } from "../../backend/api";
 import { Recipe } from "../common/models/Recipe";
+import { getRecipes } from "../services/helpers/recipes";
 
 export const useAllRecipes = () => {
   const { push } = useRouter();
