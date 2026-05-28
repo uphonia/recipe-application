@@ -4,14 +4,20 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const getRecipes = async () => {
   const response = await fetch(`${API_URL}/api/recipes/`);
-  const data = await response.json();
-  return data;
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch recipes");
+  }
+  return response.json();
 };
 
 export const getRecipe = async (id: string) => {
   const response = await fetch(`${API_URL}/api/recipes/${id}`);
-  const data = await response.json();
-  return data;
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch recipe");
+  }
+  return response.json();
 };
 
 export const createRecipe = async (content: CreateRecipePayload) => {
@@ -27,5 +33,9 @@ export const createRecipe = async (content: CreateRecipePayload) => {
     body: formData,
   });
 
-  return await response.json();
+  if (!response.ok) {
+    throw new Error("Failed to create rescipe.");
+  }
+
+  return response.json();
 };

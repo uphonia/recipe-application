@@ -7,11 +7,11 @@ export const useCreateRecipeForm = () => {
   const { push } = useRouter();
 
   const handleSubmit = async (values: FormValues) => {
-    const recipeData = await createRecipe({ ...values });
-    if (recipeData) push(HOME);
-    else {
-      // TODO - error handling
-    }
+    createRecipe({ ...values })
+      .then(() => push(HOME))
+      .catch((error) => {
+        // handle error
+      });
   };
 
   return {

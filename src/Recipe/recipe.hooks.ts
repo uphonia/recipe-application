@@ -12,6 +12,7 @@ export const useRecipe = () => {
 
   const [active, setActive] = useState<string | null>(SWITCHES.INGREDIENTS);
   const [recipe, setRecipe] = useState<Recipe | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getContent = () => {
     switch (active) {
@@ -29,12 +30,23 @@ export const useRecipe = () => {
   const subActionText = `${recipe?.isFavorited ? "Remove from " : "Add to "} favorites`;
 
   useEffect(() => {
-    if (recipeId) getRecipe(recipeId).then((data) => setRecipe(data));
-  });
+    if (!recipeId) return;
+    getRecipe(recipeId)
+      .then((data) => {
+        setRecipe(data);
+      })
+      .catch((error) => {
+        // react to error
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [recipeId]);
 
   return {
     active,
     getContent,
+    isLoading,
     recipe,
     setActive,
     subActionText,

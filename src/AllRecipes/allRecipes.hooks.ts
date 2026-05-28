@@ -10,6 +10,7 @@ export const useAllRecipes = () => {
 
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const {
     isOn: isModalOpen,
@@ -38,9 +39,16 @@ export const useAllRecipes = () => {
   };
 
   useEffect(() => {
-    getRecipes().then((data) => {
-      setRecipes(data);
-    });
+    getRecipes()
+      .then((data) => {
+        setRecipes(data);
+      })
+      .catch((error) => {
+        // react to error
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   return {
