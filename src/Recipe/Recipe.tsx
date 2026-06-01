@@ -1,5 +1,16 @@
+import EmptyImageStateIcon from "@mui/icons-material/Restaurant";
+
 import { SWITCHES } from "./recipe.consts";
-import { Wrapper, Card, Section, Title, Image, Content } from "./recipe.styles";
+import {
+  Wrapper,
+  Card,
+  Section,
+  Title,
+  ImageContainer,
+  Image,
+  EmptyImage,
+  Content,
+} from "./recipe.styles";
 import { SwitchSelector } from "../common/components/SwitchSelector/SwitchSelector";
 import { FavoritedIcon } from "../common/components/FavoritedIcon/FavoritedIcon";
 import { Typography } from "../common/components/Typography/Typography";
@@ -20,7 +31,16 @@ export const Recipe = () => {
       <Card>
         <Section>
           <Title>{recipe.name}</Title>
-          {recipe.image && <Image src={recipe.image.name} />}
+          <ImageContainer>
+            {recipe.image ? (
+              <Image src={recipe.image.name} />
+            ) : (
+              <EmptyImage>
+                <EmptyImageStateIcon />
+                <p>No image provided</p>
+              </EmptyImage>
+            )}
+          </ImageContainer>
           <Button fluid variant="secondary">
             {/* <FavoritedIcon isFavorite={recipe.isFavorited} /> // TODO */}
             <Typography variant="body2">{subActionText}</Typography>

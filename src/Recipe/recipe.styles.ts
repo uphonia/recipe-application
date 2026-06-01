@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  height: 100vh;
   padding: 24px;
 `;
 
@@ -31,3 +32,20 @@ export const Image = styled.img`
 `;
 
 export const Content = styled.div``;
+
+export const ImageContainer = styled.div`
+  align-items: center;
+  background-color: #f2f0f0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  height: 400px;
+  width: 100%;
+`;
+
+export const EmptyImage = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+`;

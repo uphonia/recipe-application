@@ -16,7 +16,7 @@ export const Switch = styled.div<{ isActive: boolean }>`
   flex: 1;
   justify-content: center;
   padding: 4px 0;
-  text-decoration: ${({ isActive }) => (!isActive ? "underline" : "none")};
+  text-decoration: ${({ isActive }) => (isActive ? "underline" : "none")};
   text-underline-offset: 3px;
   transition: background-color 0.3s;
 
