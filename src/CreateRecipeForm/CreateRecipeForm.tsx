@@ -23,6 +23,7 @@ import {
 } from "./createRecipeForm.consts";
 import { useCreateRecipeForm } from "./createRecipeForm.hooks";
 import { Button } from "../common/components/Button/Button";
+import { FormLabel } from "../common/components/FormLabel/FormLabel";
 
 export const CreateRecipeForm = () => {
   const { handleSubmit } = useCreateRecipeForm();
@@ -47,14 +48,14 @@ export const CreateRecipeForm = () => {
           <Main>
             <FormWrapper>
               <FieldWrapper>
-                <Label htmlFor="name">Name</Label>
+                <FormLabel label="Name" name="name" />
                 <InputWrapper>
                   <Input id="name" name="name" onChange={handleChange} />
                   <ErrorText>{errors.name ? errors.name : ""}</ErrorText>
                 </InputWrapper>
               </FieldWrapper>
               <FieldWrapper>
-                <Label htmlFor="servings"># of Servings</Label>
+                <FormLabel label="# of Servings" name="servings" />
                 <InputWrapper>
                   <Input
                     id="servings"
@@ -67,7 +68,7 @@ export const CreateRecipeForm = () => {
                 </InputWrapper>
               </FieldWrapper>
               <FieldWrapper>
-                <Label htmlFor="ingredients">Ingredients</Label>
+                <FormLabel label="Ingredients" name="ingredients" />
                 <InputWrapper>
                   <Editor
                     id="ingredients"
@@ -84,7 +85,7 @@ export const CreateRecipeForm = () => {
                 </InputWrapper>
               </FieldWrapper>
               <FieldWrapper>
-                <Label htmlFor="instructions">Instructions</Label>
+                <FormLabel label="Instructions" name="instructions" />
                 <InputWrapper>
                   <Editor
                     id="instructions"
@@ -101,10 +102,9 @@ export const CreateRecipeForm = () => {
                 </InputWrapper>
               </FieldWrapper>
               <FieldWrapper>
-                <Label htmlFor="image">
-                  Image
+                <FormLabel label="Image" name="image">
                   <OptionalNote>(Optional)</OptionalNote>
-                </Label>
+                </FormLabel>
                 <FileInput
                   accept={IMAGE_FORMATS}
                   id="image"
@@ -113,10 +113,9 @@ export const CreateRecipeForm = () => {
                 />
               </FieldWrapper>
               <FieldWrapper>
-                <Label htmlFor="blurb">
-                  Blurb
+                <FormLabel label="Blurb" name="blurb">
                   <OptionalNote>(Optional)</OptionalNote>
-                </Label>
+                </FormLabel>
                 <TextArea id="blurb" name="blurb" onChange={handleChange} />
               </FieldWrapper>
             </FormWrapper>
