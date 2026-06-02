@@ -5,6 +5,7 @@ import { Wrapper, RecipeList } from "./allRecipes.styles";
 import { useAllRecipes } from "./allRecipes.hooks";
 import { ConfirmationModal } from "../common/components/ConfirmationModal/ConfirmationModal";
 import { Filter } from "./components/Filter/Filter";
+import { EmptyState } from "./components/EmptyState/EmptyState";
 
 export const AllRecipes = () => {
   const {
@@ -16,6 +17,10 @@ export const AllRecipes = () => {
     isModalOpen,
     recipes,
   } = useAllRecipes();
+
+  if (!recipes.length) {
+    return <EmptyState />;
+  }
 
   return (
     <>
