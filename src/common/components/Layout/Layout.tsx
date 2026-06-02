@@ -8,7 +8,7 @@ type Props = {
 
 export const Layout = ({ content, sidebar }: Props) => {
   return (
-    <MainWrapper>
+    <MainWrapper showSidebar={!!sidebar}>
       <LayoutSidebar>{sidebar}</LayoutSidebar>
       <LayoutContent>{content}</LayoutContent>
     </MainWrapper>

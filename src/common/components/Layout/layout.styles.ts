@@ -2,19 +2,31 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { mq } from "../../utils/mediaQueries";
 
-export const MainWrapper = styled.div`
+type MainWrapperProps = {
+  showSidebar?: boolean;
+};
+
+export const MainWrapper = styled.div<MainWrapperProps>`
   background-color: #737e81;
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
 
-  ${mq.medium(css`
-    display: grid;
-    grid-template-areas: "sidebar content";
-    grid-template-columns: 1fr minmax(0, 5fr);
-    grid-template-rows: minmax(0, 1fr);
-  `)}
+  ${({ showSidebar }) =>
+    showSidebar
+      ? mq.medium(css`
+          display: grid;
+          grid-template-areas: "sidebar content";
+          grid-template-columns: 1fr minmax(0, 5fr);
+          grid-template-rows: minmax(0, 1fr);
+        `)
+      : mq.medium(css`
+          display: grid;
+          grid-template-areas: "content content";
+          grid-template-columns: 1fr;
+          grid-template-rows: minmax(0, 1fr);
+        `)}
 `;
 
 export const LayoutSidebar = styled.div`
