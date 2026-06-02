@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 import { LinkComponent } from "./textLink.styles";
 
 type Props = {
-  children: ReactNode;
   href: string;
+  text: string;
 };
 
-export const TextLink = ({ children, href }: Props) => (
-  <LinkComponent href={href}>{children}</LinkComponent>
+export const TextLink = ({ href, text }: Props) => (
+  <LinkComponent href={href}>{text}</LinkComponent>
 );
