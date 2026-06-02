@@ -1,11 +1,16 @@
 import { ReactNode } from "react";
 
-import { createTheme, Typography as TypographyBase } from "@mui/material";
+import {
+  createTheme,
+  SxProps,
+  Typography as TypographyBase,
+} from "@mui/material";
 import { TypographyVariant } from "./typography.types";
 import { ThemeProvider } from "@mui/material/styles";
 
 type Props = {
   children: ReactNode;
+  styles?: SxProps;
   variant: TypographyVariant;
 };
 
@@ -29,8 +34,10 @@ const theme = createTheme({
   },
 });
 
-export const Typography = ({ children, variant }: Props) => (
+export const Typography = ({ children, styles, variant }: Props) => (
   <ThemeProvider theme={theme}>
-    <TypographyBase variant={variant}>{children}</TypographyBase>
+    <TypographyBase sx={styles} variant={variant}>
+      {children}
+    </TypographyBase>
   </ThemeProvider>
 );
