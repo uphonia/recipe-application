@@ -1,5 +1,3 @@
-import { AllRecipes } from "../AllRecipes/AllRecipes";
-
-const App = () => <AllRecipes />;
+const App = () => <></>;
 
 export default App;
