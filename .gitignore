@@ -30,6 +30,7 @@ backend/__pycache__/
 backend/*.pyc
 backend/media/
 backend/.env
+backend/db.sqlite3
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
