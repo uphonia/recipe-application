@@ -15,6 +15,7 @@ import { Button } from "../common/components/Button/Button";
 import { Typography } from "../common/components/Typography/Typography";
 import { TextLink } from "../common/components/TextLink/TextLink";
 import { LOGIN } from "../common/consts/navigation.consts";
+import { PasswordField } from "../common/components/PasswordField/PasswordField";
 
 export const SignUp = () => (
   <Wrapper>
@@ -39,14 +40,18 @@ export const SignUp = () => (
             <FieldWrapper>
               <FormLabel label="Password:" name="password" />
               <InputWrapper>
-                <Input id="password" name="password" onChange={handleChange} />
+                <PasswordField
+                  id="password"
+                  name="password"
+                  onChange={handleChange}
+                />
                 <ErrorText>{errors.password ? errors.password : ""}</ErrorText>
               </InputWrapper>
             </FieldWrapper>
             <FieldWrapper>
               <FormLabel label="Confirm Password:" name="passwordConfirm" />
               <InputWrapper>
-                <Input
+                <PasswordField
                   id="passwordConfirm"
                   name="passwordConfirm"
                   onChange={handleChange}
