@@ -1,17 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { TextLink } from "./TextLink";
+import { TextField } from "./TextField";
 
 const meta = {
-  component: TextLink,
-} satisfies Meta<typeof TextLink>;
+  component: TextField,
+} satisfies Meta<typeof TextField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    href: "",
-    text: "Underlined text link",
+    id: "",
+    name: "",
+    onChange: () => {},
+    type: "text",
   },
 };

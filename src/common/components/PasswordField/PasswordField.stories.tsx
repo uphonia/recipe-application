@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { TextLink } from "./TextLink";
+import { PasswordField } from "./PasswordField";
 
 const meta = {
-  component: TextLink,
-} satisfies Meta<typeof TextLink>;
+  component: PasswordField,
+} satisfies Meta<typeof PasswordField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    href: "",
-    text: "Underlined text link",
+    id: "password",
+    name: "password",
   },
 };
