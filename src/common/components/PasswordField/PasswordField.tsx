@@ -1,15 +1,17 @@
+import { ChangeEventHandler, useState } from "react";
+
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import { TextField } from "../TextField/TextField";
-import { useState } from "react";
 
 type Props = {
   id: string;
   name: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 };
 
-export const PasswordField = ({ id, name }: Props) => {
+export const PasswordField = ({ id, name, onChange }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword((show) => !show);
 
@@ -17,7 +19,7 @@ export const PasswordField = ({ id, name }: Props) => {
     <TextField
       id={id}
       name={name}
-      onChange={() => {}}
+      onChange={onChange}
       slotInputProps={{
         input: {
           endAdornment: (

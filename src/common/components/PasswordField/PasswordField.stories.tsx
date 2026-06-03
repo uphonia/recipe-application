@@ -13,5 +13,6 @@ export const Primary: Story = {
   args: {
     id: "password",
     name: "password",
+    onChange: () => {},
   },
 };
