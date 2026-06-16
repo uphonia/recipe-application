@@ -3,7 +3,7 @@ import { useSwitch } from "../common/hooks/useSwitch";
 import { useRouter } from "next/router";
 import { RECIPE } from "../common/consts/navigation.consts";
 import { Recipe } from "../common/models/Recipe";
-import { getRecipes } from "../services/helpers/recipes";
+import { getRecipes } from "../api/helpers/recipes";
 
 export const useAllRecipes = () => {
   const { push } = useRouter();

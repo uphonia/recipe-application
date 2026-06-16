@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import { SWITCHES } from "./recipe.consts";
 import { Recipe } from "../common/models/Recipe";
-import { getRecipe } from "../services/helpers/recipes";
+import { getRecipe } from "../api/helpers/recipes";
 
 export const useRecipe = () => {
   const { query } = useRouter();

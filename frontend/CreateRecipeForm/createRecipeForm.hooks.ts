@@ -1,7 +1,7 @@
 import { FormValues } from "./createRecipeForm.types";
 import { useRouter } from "next/router";
 import { HOME } from "../common/consts/navigation.consts";
-import { createRecipe } from "../services/helpers/recipes";
+import { createRecipe } from "../api/helpers/recipes";
 
 export const useCreateRecipeForm = () => {
   const { push } = useRouter();
