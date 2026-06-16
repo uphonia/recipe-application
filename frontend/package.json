@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.tsx",
   "scripts": {
-    "dev": "cd frontend && next dev",
-    "start": "cd frontend && next start",
-    "build": "cd frontend && next build",
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

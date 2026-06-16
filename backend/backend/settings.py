@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['recipe-application-ni7m.onrender.com', 'localhost']
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -85,12 +85,34 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3'
-    )
-}
+# DATABASES = {
+#     # 'default': dj_database_url.config(
+#     #     default='sqlite:///db.sqlite3'
+#     # )
+#     'default': os.environ.get('DATABASE_URL')
+# }
 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASS"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
+        "CONN_MAX_AGE": 0,
+        "ATOMIC_REQUESTS": True,  # sensible default - caution that it only applies to Views
+        "OPTIONS": {
+            "pool": {
+                "min_size": 2,
+                "max_size": 8,
+                "timeout": 30,
+                "max_lifetime": 1800,
+                "max_idle": 900,
+            },
+        },
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -130,7 +152,6 @@ STATIC_URL = 'static/'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # your React dev server, change port if different
-    'https://recipe-application-ni7m.onrender.com'
 ]
 
 REST_FRAMEWORK = {
