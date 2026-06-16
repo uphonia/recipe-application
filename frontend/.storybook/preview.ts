@@ -2,7 +2,7 @@ import type { Preview } from "@storybook/nextjs-vite";
 import { Global } from "@emotion/react";
 import { createElement, Fragment } from "react";
 
-import globalStyles from "../src/common/styles/global";
+import globalStyles from "../common/styles/global";
 
 const preview: Preview = {
   decorators: [

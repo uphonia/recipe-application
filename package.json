@@ -1,12 +1,12 @@
 {
-  "name": "profile",
+  "name": "recipe-application",
   "version": "1.0.0",
   "description": "",
   "main": "index.tsx",
   "scripts": {
-    "dev": "next dev",
-    "start": "next start",
-    "build": "next build",
+    "dev": "cd frontend && next dev",
+    "start": "cd frontend && next start",
+    "build": "cd frontend && next build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
