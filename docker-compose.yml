@@ -26,7 +26,8 @@ services:
       - DB_PASS=${DB_PASS}
       - DB_HOST=${DB_HOST}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - recipe-app-network
 
@@ -44,6 +45,12 @@ services:
       - postgres_data:/var/lib/postgresql
     networks:
       - recipe-app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   pgadmin:
     container_name: recipe-app-pgadmin
@@ -55,6 +62,9 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
     networks:
       - recipe-app-network
+
+volumes:
+  postgres_data:
 
 networks:
   recipe-app-network:
