@@ -16,7 +16,7 @@ export const signUpValidation = object({
   password: string().required("A password is required"),
   passwordConfirm: string()
     .required("Please enter your password again")
-    .oneOf([ref("password"), "Passwords must match"]),
+    .oneOf([ref("password")], "Passwords must match"),
   username: string().required("Username is required"),
 });
 

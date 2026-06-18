@@ -1,4 +1,4 @@
-import { LogIn } from "../Account/LogIn";
+import { LogIn } from "../Account/LogIn/LogIn";
 
 export default function LogInPage() {
   return <LogIn />;
