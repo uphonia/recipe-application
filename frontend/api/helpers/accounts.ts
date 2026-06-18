@@ -19,7 +19,7 @@ export const signUp = async (payload: SignUpPayload) => {
 };
 
 export const logIn = async (payload: LogInPayload) => {
-  const response = await fetch(`${API_URL}/api/token/`, {
+  const response = await fetch(`${API_URL}/accounts/login/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),

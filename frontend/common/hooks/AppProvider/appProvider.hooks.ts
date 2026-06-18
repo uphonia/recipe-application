@@ -1,12 +1,13 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useState } from "react";
 import { AppProviderContext } from "./appProvider.context";
-import { AppContextState } from "./appProvider.types";
+import { User } from "../../models/User";
 
 export const useApp = () => {
-  const state: AppContextState = useMemo(() => ({}), []);
+  const [user, setUser] = useState<User | null>(null);
 
   return {
-    state,
+    user,
+    setUser,
   };
 };
 

@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const AppProvider = ({ children }: Props) => {
-  const { state } = useApp();
+  const state = useApp();
 
   return (
     <AppProviderContext.Provider value={state}>
