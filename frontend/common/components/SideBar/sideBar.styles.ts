@@ -65,3 +65,24 @@ export const SubNavigation = styled(Navigation)`
       width: 65%;
     `}
 `;
+
+export const LogOutButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const LogOutButton = styled.button`
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  bottom: 16px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 8px 16px;
+  position: absolute;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;

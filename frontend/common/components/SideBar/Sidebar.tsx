@@ -1,17 +1,19 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import {
   Wrapper,
   NavigationWrapper,
   Navigation,
   SubNavigation,
+  LogOutButton,
+  LogOutButtonWrapper,
 } from "./sideBar.styles";
 import { CREATE_RECIPE, HOME, ORGANIZE } from "../../consts/navigation.consts";
+import { useSideBar } from "./sideBar.hooks";
 
-export const Sidebar = () => {
-  const router = useRouter();
-  const isActive = (path: string) => router.pathname === path;
+export const SideBar = () => {
+  const { handleLogOut, isActive } = useSideBar();
 
   return (
     <Wrapper>
@@ -27,6 +29,12 @@ export const Sidebar = () => {
         <Link href={ORGANIZE} passHref>
           <SubNavigation selected={isActive(ORGANIZE)}>Organize</SubNavigation>
         </Link>
+        {/* TODO - temp button. need to make it cohesive with rest of app style */}
+        <LogOutButtonWrapper>
+          <LogOutButton onClick={handleLogOut}>
+            Log Out <LogoutIcon />
+          </LogOutButton>
+        </LogOutButtonWrapper>
       </NavigationWrapper>
     </Wrapper>
   );

@@ -4,8 +4,8 @@ import { Global } from "@emotion/react";
 
 import globalStyles from "../common/styles/global";
 import { AppProvider } from "../common/hooks/AppProvider/AppProvider";
-import { Sidebar } from "../common/components/SideBar/Sidebar";
 import { Layout } from "../common/components/Layout/Layout";
+import { SideBar } from "../common/components/SideBar/Sidebar";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -16,7 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <AppProvider>
       <Global styles={globalStyles} />
       <Layout
-        sidebar={showSidebar ? <Sidebar /> : null}
+        sidebar={showSidebar ? <SideBar /> : null}
         content={<Component {...pageProps} />}
       />
     </AppProvider>
