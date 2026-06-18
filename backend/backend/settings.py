@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'api',
     'accounts',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -83,15 +84,6 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
-# DATABASES = {
-#     # 'default': dj_database_url.config(
-#     #     default='sqlite:///db.sqlite3'
-#     # )
-#     'default': os.environ.get('DATABASE_URL')
-# }
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
