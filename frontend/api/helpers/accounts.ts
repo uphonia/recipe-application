@@ -29,6 +29,8 @@ export const logIn = async (payload: LogInPayload) => {
     const error = await response.json();
     throw new Error(error.message || "Failed to log in");
   }
+
+  return response.json();
 };
 
 export const logOut = async () => {
