@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 import { Global } from "@emotion/react";
 
 import globalStyles from "../common/styles/global";
-import { useRouter } from "next/router";
 import { AppProvider } from "../common/hooks/AppProvider/AppProvider";
 import { Sidebar } from "../common/components/SideBar/Sidebar";
 import { Layout } from "../common/components/Layout/Layout";

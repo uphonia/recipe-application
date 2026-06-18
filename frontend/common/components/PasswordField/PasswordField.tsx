@@ -23,7 +23,7 @@ export const PasswordField = ({ id, name, onChange }: Props) => {
       id={id}
       name={name}
       onChange={onChange}
-      slotInputProps={{
+      slotProps={{
         input: {
           endAdornment: (
             <button onClick={(e) => handleShowPassword(e)}>

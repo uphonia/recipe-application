@@ -17,6 +17,7 @@ export const FormWrapper = styled.div`
   gap: 16px;
   padding: 16px;
   text-align: center;
+  width: 30vw;
 `;
 
 export const Title = styled(Typography)`
@@ -27,14 +28,9 @@ export const FieldWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 16px;
+  justify-content: flex-start;
   width: 100%;
-`;
-
-export const Input = styled.input`
-  border: 1px solid black;
-  height: 30px;
-  padding: 0 8px;
 `;
 
 export const InputWrapper = styled.div`

@@ -1,4 +1,4 @@
-import { TextField as TextFieldBase } from "@mui/material";
+import { TextField as TextFieldBase, TextFieldProps } from "@mui/material";
 import { ChangeEventHandler } from "react";
 
 import { styles } from "./textField.styles";
@@ -9,8 +9,8 @@ type Props = {
   name: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
   size?: "small" | "medium";
-  slotInputProps?: { input: Record<string, any> };
-  type: string;
+  slotProps?: TextFieldProps["slotProps"];
+  type?: string;
 };
 
 export const TextField = ({
@@ -19,8 +19,8 @@ export const TextField = ({
   name,
   onChange,
   size = "small",
-  slotInputProps,
-  type,
+  slotProps,
+  type = "text",
 }: Props) => (
   <TextFieldBase
     autoFocus={autoFocus}
@@ -28,7 +28,10 @@ export const TextField = ({
     name={name}
     onChange={onChange}
     size={size}
-    slotProps={slotInputProps}
+    slotProps={{
+      input: { notched: false },
+      ...slotProps,
+    }}
     sx={styles}
     type={type}
     variant="outlined"
