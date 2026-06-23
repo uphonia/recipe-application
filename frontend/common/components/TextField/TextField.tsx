@@ -5,6 +5,7 @@ import { styles } from "./textField.styles";
 
 type Props = {
   autoFocus?: boolean;
+  fluid?: boolean;
   id: string;
   name: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
@@ -15,6 +16,7 @@ type Props = {
 
 export const TextField = ({
   autoFocus,
+  fluid,
   id,
   name,
   onChange,
@@ -25,6 +27,7 @@ export const TextField = ({
   <TextFieldBase
     autoFocus={autoFocus}
     id={id}
+    fullWidth={fluid}
     name={name}
     onChange={onChange}
     size={size}

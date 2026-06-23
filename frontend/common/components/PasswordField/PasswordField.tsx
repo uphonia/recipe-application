@@ -6,12 +6,13 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { TextField } from "../TextField/TextField";
 
 type Props = {
+  fluid?: boolean;
   id: string;
   name: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
 };
 
-export const PasswordField = ({ id, name, onChange }: Props) => {
+export const PasswordField = ({ fluid, id, name, onChange }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ export const PasswordField = ({ id, name, onChange }: Props) => {
 
   return (
     <TextField
+      fluid={fluid}
       id={id}
       name={name}
       onChange={onChange}
