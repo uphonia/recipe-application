@@ -15,7 +15,7 @@ export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 16px;
+  padding: 16px 36px;
   text-align: center;
   width: 30vw;
 `;
@@ -28,16 +28,23 @@ export const FieldWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: 16px;
-  justify-content: flex-start;
+  gap: 8px;
   width: 100%;
 `;
 
 export const InputWrapper = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+  width: 100%;
+`;
+
+export const ErrorsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: 100%;
+  gap: 4px;
 `;
 
 export const ErrorText = styled.p`

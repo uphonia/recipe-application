@@ -5,6 +5,7 @@ import {
   FormWrapper,
   FieldWrapper,
   InputWrapper,
+  ErrorsWrapper,
   ErrorText,
   Title,
   Footer,
@@ -26,7 +27,9 @@ export const LogIn = () => {
     <Wrapper>
       <Formik
         initialValues={logInInitialValues}
-        onSubmit={handleSubmit}
+        onSubmit={(values, formikHelpers) =>
+          handleSubmit(values, formikHelpers)
+        }
         validateOnBlur={true}
         validateOnChange={false}
         validationSchema={logInValidation}
@@ -36,31 +39,27 @@ export const LogIn = () => {
             <FormWrapper>
               <Title variant="h6">Log In</Title>
               <FieldWrapper>
-                <FormLabel label="Username:" name="username" />
-                <InputWrapper>
+                  <FormLabel label="Username:" name="username" />
                   <TextField
+                    fluid
                     id="username"
                     name="username"
                     onChange={handleChange}
                   />
-                  <ErrorText>
-                    {errors.username ? errors.username : ""}
-                  </ErrorText>
-                </InputWrapper>
               </FieldWrapper>
               <FieldWrapper>
-                <FormLabel label="Password:" name="password" />
-                <InputWrapper>
+                  <FormLabel label="Password:" name="password" />
                   <PasswordField
+                    fluid
                     id="password"
                     name="password"
                     onChange={handleChange}
                   />
-                  <ErrorText>
-                    {errors.password ? errors.password : ""}
-                  </ErrorText>
-                </InputWrapper>
               </FieldWrapper>
+              <ErrorsWrapper>
+                <ErrorText>{errors.username ? errors.username : ""}</ErrorText>
+                <ErrorText>{errors.password ? errors.password : ""}</ErrorText>
+              </ErrorsWrapper>
               <Footer>
                 <Button
                   loading={isSubmitting}
