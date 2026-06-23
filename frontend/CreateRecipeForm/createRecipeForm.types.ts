@@ -1,4 +1,4 @@
-import { mixed, object, string } from "yup";
+import { mixed, number, object, string } from "yup";
 
 export type FormValues = {
   blurb?: string;
@@ -6,16 +6,13 @@ export type FormValues = {
   instructions: string;
   name: string;
   image?: File;
-  servings: string;
+  servings?: number;
 };
 
 export const initialValues: FormValues = {
-  blurb: "",
-  image: undefined,
   ingredients: "",
   instructions: "",
   name: "",
-  servings: "",
 };
 
 export const validation = object({
@@ -24,5 +21,5 @@ export const validation = object({
   ingredients: string().required("Ingredients are required"),
   instructions: string().required("Instructions are required"),
   name: string().required("Name is required"),
-  servings: string().required("Servings is required"),
+  servings: number().optional(),
 });

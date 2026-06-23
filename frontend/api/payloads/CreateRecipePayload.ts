@@ -1,6 +1,6 @@
 export type CreateRecipePayload = {
   name: string;
-  servings: string;
+  servings?: number;
   ingredients: string;
   instructions: string;
   blurb?: string;
