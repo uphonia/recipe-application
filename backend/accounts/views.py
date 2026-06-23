@@ -4,6 +4,9 @@ from rest_framework import status
 from .serializers import SignUpSerializer 
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class SignUpView(APIView):
     def post(self, request):
@@ -24,9 +27,22 @@ class LogInView(APIView):
         username = request.data.get("username")
         password = request.data.get("password")
 
-        user = authenticate(username=username, password=password)
-        if not user:
-            return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Response({
+                "error": "No account found with that username."
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        if not user.check_password(password):
+            return Response({
+                "error": "Incorrect password"
+            }, status=status.HTTP_401_UNAUTHORIZED)
+
+        if not user.is_active:
+            return Response({
+                "error": "This account is inactive."
+            }, status=status.HTTP_403_FORBIDDEN)
         
         refresh = RefreshToken.for_user(user)
         return Response({
