@@ -15,13 +15,6 @@ export const FormWrapper = styled.div`
   width: 60%;
 `;
 
-export const Label = styled.label`
-  display: flex;
-  gap: 4px;
-  font-size: 16px;
-  width: 30%;
-`;
-
 export const OptionalNote = styled.span`
   color: gray;
 `;

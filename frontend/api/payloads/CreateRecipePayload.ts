@@ -1,4 +1,5 @@
 export type CreateRecipePayload = {
+  created_by?: string;
   name: string;
   servings?: number;
   ingredients: string;

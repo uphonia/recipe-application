@@ -24,7 +24,7 @@ export const createRecipe = async (content: CreateRecipePayload) => {
   const formData = new FormData();
   Object.entries(content).forEach(([key, value]) => {
     if (value !== undefined && value !== null) {
-      const valueToStore = typeof value === 'number' ? value.toString() : value;
+      const valueToStore = typeof value === "number" ? value.toString() : value;
       formData.append(key, valueToStore);
     }
   });

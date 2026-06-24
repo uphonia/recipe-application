@@ -4,7 +4,6 @@ import Editor from "react-simple-wysiwyg";
 import {
   Main,
   FormWrapper,
-  Label,
   OptionalNote,
   InputWrapper,
   Input,
@@ -50,7 +49,12 @@ export const CreateRecipeForm = () => {
               <FieldWrapper>
                 <FormLabel label="Name" name="name" />
                 <InputWrapper>
-                  <Input id="name" name="name" onChange={handleChange} />
+                  <Input
+                    id="name"
+                    name="name"
+                    onChange={handleChange}
+                    value={values.name}
+                  />
                   <ErrorText>{errors.name ? errors.name : ""}</ErrorText>
                 </InputWrapper>
               </FieldWrapper>
@@ -61,6 +65,8 @@ export const CreateRecipeForm = () => {
                     id="servings"
                     name="servings"
                     onChange={handleChange}
+                    type="number"
+                    value={values.servings}
                   />
                   <ErrorText>
                     {errors.servings ? errors.servings : ""}
@@ -116,7 +122,12 @@ export const CreateRecipeForm = () => {
                 <FormLabel label="Blurb" name="blurb">
                   <OptionalNote>(Optional)</OptionalNote>
                 </FormLabel>
-                <TextArea id="blurb" name="blurb" onChange={handleChange} />
+                <TextArea
+                  id="blurb"
+                  name="blurb"
+                  onChange={handleChange}
+                  value={values.blurb}
+                />
               </FieldWrapper>
             </FormWrapper>
             <Footer>

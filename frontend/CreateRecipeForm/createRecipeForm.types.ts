@@ -10,9 +10,11 @@ export type FormValues = {
 };
 
 export const initialValues: FormValues = {
+  blurb: "",
   ingredients: "",
   instructions: "",
   name: "",
+  servings: 0,
 };
 
 export const validation = object({
