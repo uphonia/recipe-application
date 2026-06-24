@@ -12,10 +12,11 @@ export const signUpInitialValues: SignUpFormValues = {
   username: "",
 };
 
+// TODO - add strict password requirements
 export const signUpValidation = object({
-  password: string().required("A password is required"),
+  password: string().required("Password is required"),
   passwordConfirm: string()
-    .required("Please enter your password again")
+    .required("Please confirm your password")
     .oneOf([ref("password")], "Passwords must match"),
   username: string().required("Username is required"),
 });
@@ -31,6 +32,6 @@ export const logInInitialValues: LogInFormValues = {
 };
 
 export const logInValidation = object({
-  password: string().required("A password is required"),
+  password: string().required("Password is required"),
   username: string().required("Username is required"),
 });

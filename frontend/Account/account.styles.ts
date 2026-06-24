@@ -32,15 +32,6 @@ export const FieldWrapper = styled.div`
   width: 100%;
 `;
 
-export const InputWrapper = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  justify-content: center;
-  width: 100%;
-`;
-
 export const ErrorsWrapper = styled.div`
   display: flex;
   flex-direction: column;

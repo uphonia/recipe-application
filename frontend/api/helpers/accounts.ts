@@ -12,7 +12,7 @@ export const signUp = async (payload: SignUpPayload) => {
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.message || "Failed to create user account.");
+    throw new Error(error.error || "Failed to create user account.");
   }
 
   return response.json();

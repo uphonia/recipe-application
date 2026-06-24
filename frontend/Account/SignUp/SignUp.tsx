@@ -3,7 +3,7 @@ import {
   Wrapper,
   FormWrapper,
   FieldWrapper,
-  InputWrapper,
+  ErrorsWrapper,
   ErrorText,
   Title,
   Footer,
@@ -36,43 +36,42 @@ export const SignUp = () => {
               <Title variant="h6">Sign Up</Title>
               <FieldWrapper>
                 <FormLabel label="Username:" name="username" />
-                <InputWrapper>
-                  <TextField
-                    id="username"
-                    name="username"
-                    onChange={handleChange}
-                  />
-                  <ErrorText>
-                    {errors.username ? errors.username : ""}
-                  </ErrorText>
-                </InputWrapper>
+                <TextField
+                  fluid
+                  id="username"
+                  name="username"
+                  onChange={handleChange}
+                />
               </FieldWrapper>
               <FieldWrapper>
                 <FormLabel label="Password:" name="password" />
-                <InputWrapper>
-                  <PasswordField
-                    id="password"
-                    name="password"
-                    onChange={handleChange}
-                  />
-                  <ErrorText>
-                    {errors.password ? errors.password : ""}
-                  </ErrorText>
-                </InputWrapper>
+                <PasswordField
+                  fluid
+                  id="password"
+                  name="password"
+                  onChange={handleChange}
+                />
               </FieldWrapper>
               <FieldWrapper>
                 <FormLabel label="Confirm Password:" name="passwordConfirm" />
-                <InputWrapper>
-                  <PasswordField
-                    id="passwordConfirm"
-                    name="passwordConfirm"
-                    onChange={handleChange}
-                  />
-                  <ErrorText>
-                    {errors.passwordConfirm ? errors.passwordConfirm : ""}
-                  </ErrorText>
-                </InputWrapper>
+                <PasswordField
+                  fluid
+                  id="passwordConfirm"
+                  name="passwordConfirm"
+                  onChange={handleChange}
+                />
               </FieldWrapper>
+              <ErrorsWrapper>
+                <ErrorText>
+                  {errors.username ? `• ${errors.username}` : ""}
+                </ErrorText>
+                <ErrorText>
+                  {errors.password ? `• ${errors.password}` : ""}
+                </ErrorText>
+                <ErrorText>
+                  {errors.passwordConfirm ? `• ${errors.passwordConfirm}` : ""}
+                </ErrorText>
+              </ErrorsWrapper>
               <Footer>
                 <Button
                   loading={isSubmitting}

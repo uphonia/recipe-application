@@ -4,7 +4,6 @@ import {
   Wrapper,
   FormWrapper,
   FieldWrapper,
-  InputWrapper,
   ErrorsWrapper,
   ErrorText,
   Title,
@@ -39,26 +38,30 @@ export const LogIn = () => {
             <FormWrapper>
               <Title variant="h6">Log In</Title>
               <FieldWrapper>
-                  <FormLabel label="Username:" name="username" />
-                  <TextField
-                    fluid
-                    id="username"
-                    name="username"
-                    onChange={handleChange}
-                  />
+                <FormLabel label="Username:" name="username" />
+                <TextField
+                  fluid
+                  id="username"
+                  name="username"
+                  onChange={handleChange}
+                />
               </FieldWrapper>
               <FieldWrapper>
-                  <FormLabel label="Password:" name="password" />
-                  <PasswordField
-                    fluid
-                    id="password"
-                    name="password"
-                    onChange={handleChange}
-                  />
+                <FormLabel label="Password:" name="password" />
+                <PasswordField
+                  fluid
+                  id="password"
+                  name="password"
+                  onChange={handleChange}
+                />
               </FieldWrapper>
               <ErrorsWrapper>
-                <ErrorText>{errors.username ? errors.username : ""}</ErrorText>
-                <ErrorText>{errors.password ? errors.password : ""}</ErrorText>
+                <ErrorText>
+                  {errors.username ? `• ${errors.username}` : ""}
+                </ErrorText>
+                <ErrorText>
+                  {errors.password ? `• ${errors.password}` : ""}
+                </ErrorText>
               </ErrorsWrapper>
               <Footer>
                 <Button
