@@ -9,6 +9,7 @@ type Props = {
   id: string;
   name: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
   size?: "small" | "medium";
   slotProps?: TextFieldProps["slotProps"];
   type?: string;
@@ -20,6 +21,7 @@ export const TextField = ({
   id,
   name,
   onChange,
+  placeholder,
   size = "small",
   slotProps,
   type = "text",
@@ -30,6 +32,7 @@ export const TextField = ({
     fullWidth={fluid}
     name={name}
     onChange={onChange}
+    placeholder={placeholder}
     size={size}
     slotProps={{
       input: { notched: false },

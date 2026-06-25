@@ -10,9 +10,16 @@ type Props = {
   id: string;
   name: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
 };
 
-export const PasswordField = ({ fluid, id, name, onChange }: Props) => {
+export const PasswordField = ({
+  fluid,
+  id,
+  name,
+  onChange,
+  placeholder,
+}: Props) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -25,6 +32,7 @@ export const PasswordField = ({ fluid, id, name, onChange }: Props) => {
       id={id}
       name={name}
       onChange={onChange}
+      placeholder={placeholder}
       slotProps={{
         input: {
           endAdornment: (
