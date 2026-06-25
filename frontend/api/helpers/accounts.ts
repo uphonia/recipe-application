@@ -23,6 +23,7 @@ export const logIn = async (payload: LogInPayload) => {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
+    credentials: "include",
   });
 
   if (!response.ok) {
@@ -37,14 +38,23 @@ export const logOut = async () => {
   const response = await fetch(`${API_URL}/accounts/logout/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ refresh: localStorage.getItem("refresh") }),
+    credentials: "include",
   });
 
   if (!response.ok) {
     const error = await response.json();
     throw new Error(error.message || "Failed to log out");
   }
+};
 
-  localStorage.removeItem("access");
-  localStorage.removeItem("refresh");
+export const me = async () => {
+  const response = await fetch(`${API_URL}/accounts/me`, {
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    throw new Error("Invalid session");
+  }
+
+  return response.json();
 };

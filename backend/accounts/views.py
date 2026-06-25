@@ -1,10 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from .serializers import SignUpSerializer 
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
+from .serializers import SignUpSerializer 
+from .serializers import UserSerializer
 
 User = get_user_model()
 
@@ -42,11 +44,48 @@ class LogInView(APIView):
         if not user.is_active:
             return Response({
                 "error": "This account is inactive."
-            }, status=status.HTTP_403_FORBIDDEN)
+        }, status=status.HTTP_403_FORBIDDEN)
         
         refresh = RefreshToken.for_user(user)
-        return Response({
-            "id": user.id,
-            "access": str(refresh.access_token),
-            "refresh": str(refresh),
-        }, status=status.HTTP_200_OK)
+        response = Response({ "id": user.id}, status=200)
+
+        response.set_cookie(
+            key="access",
+            value=str(refresh.access_token),
+            httponly=True,
+            secure=False,
+            samesite="Lax",
+            path="/",
+        )
+        response.set_cookie(
+            key="refresh",
+            value=str(refresh),
+            httponly=True,
+            secure=False,
+            samesite="Lax",
+            path="/",
+        )
+        return response
+
+class LogOutView(APIView):
+    def post(self, request):
+        refresh_token = request.COOKIES.get("refresh")
+
+        if refresh_token:
+            try:
+                token = RefreshToken(refresh_token)
+                token.blacklist()
+            except Exception:
+                pass
+
+        response = Response({"message": "Logged out successfully"}, status=200)
+        response.delete_cookie("access", path="/")
+        response.delete_cookie("refresh", path="/")
+        return response
+
+class MeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)

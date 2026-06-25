@@ -1,14 +1,23 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+import { LOGIN, PUBLIC_PATHS, ROOT } from "./common/consts/navigation.consts";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const NEXT_URL = process.env.NEXT_PUBLIC_URL;
 
 export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (PUBLIC_PATHS.includes(pathname)) {
+    return NextResponse.next();
+  }
+
   const token = request.cookies.get("access")?.value;
   const refresh = request.cookies.get("refresh")?.value;
 
   if (!token && !refresh) {
-    return NextResponse.redirect(new URL("/signup", "http://localhost:3000"));
+    return NextResponse.redirect(new URL(LOGIN, NEXT_URL));
   }
 
   if (!token && refresh) {
@@ -20,12 +29,29 @@ export async function proxy(request: NextRequest) {
     });
 
     if (!res.ok) {
-      return NextResponse.redirect(new URL("/login", "http://localhost:3000"));
+      return NextResponse.redirect(new URL(LOGIN, NEXT_URL));
     }
 
     const data = await res.json();
     const response = NextResponse.next();
-    response.cookies.set("access", data.access, { path: "/" });
+    response.cookies.set("access", data.access, {
+      path: ROOT,
+      httpOnly: true,
+      secure: false, // true once on HTTPS
+      sameSite: "lax",
+    });
+    request.cookies.set("access", data.access);
+
+    if (data.refresh) {
+      response.cookies.set("refresh", data.refresh, {
+        path: ROOT,
+        httpOnly: true,
+        secure: false, // true once on HTTPS
+        sameSite: "lax",
+      });
+      request.cookies.set("refresh", data.refresh);
+    }
+
     return response;
   }
 
@@ -33,5 +59,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!login|signup|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
