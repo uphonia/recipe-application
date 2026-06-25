@@ -1,15 +1,18 @@
 import { Formik, Form } from "formik";
+
 import {
   Wrapper,
   FormWrapper,
-  FieldWrapper,
   ErrorsWrapper,
   ErrorText,
   Title,
   Footer,
 } from "../account.styles";
-import { FormLabel } from "../../common/components/FormLabel/FormLabel";
-import { signUpInitialValues, signUpValidation } from "../account.consts";
+import {
+  signUpFieldOrder,
+  signUpInitialValues,
+  signUpValidation,
+} from "../account.consts";
 import { Button } from "../../common/components/Button/Button";
 import { Typography } from "../../common/components/Typography/Typography";
 import { TextLink } from "../../common/components/TextLink/TextLink";
@@ -34,43 +37,33 @@ export const SignUp = () => {
           <Form>
             <FormWrapper>
               <Title variant="h6">Sign Up</Title>
-              <FieldWrapper>
-                <FormLabel label="Username:" name="username" />
-                <TextField
-                  fluid
-                  id="username"
-                  name="username"
-                  onChange={handleChange}
-                />
-              </FieldWrapper>
-              <FieldWrapper>
-                <FormLabel label="Password:" name="password" />
-                <PasswordField
-                  fluid
-                  id="password"
-                  name="password"
-                  onChange={handleChange}
-                />
-              </FieldWrapper>
-              <FieldWrapper>
-                <FormLabel label="Confirm Password:" name="passwordConfirm" />
-                <PasswordField
-                  fluid
-                  id="passwordConfirm"
-                  name="passwordConfirm"
-                  onChange={handleChange}
-                />
-              </FieldWrapper>
+              <TextField
+                fluid
+                id="username"
+                name="username"
+                onChange={handleChange}
+                placeholder="Username"
+              />
+              <PasswordField
+                fluid
+                id="password"
+                name="password"
+                onChange={handleChange}
+                placeholder="Password"
+              />
+              <PasswordField
+                fluid
+                id="passwordConfirm"
+                name="passwordConfirm"
+                onChange={handleChange}
+                placeholder="Confirm Password"
+              />
               <ErrorsWrapper>
-                <ErrorText>
-                  {errors.username ? `• ${errors.username}` : ""}
-                </ErrorText>
-                <ErrorText>
-                  {errors.password ? `• ${errors.password}` : ""}
-                </ErrorText>
-                <ErrorText>
-                  {errors.passwordConfirm ? `• ${errors.passwordConfirm}` : ""}
-                </ErrorText>
+                {signUpFieldOrder.map((fieldName) => {
+                  const errorMessage = errors[fieldName];
+                  if (typeof errorMessage !== "string") return null;
+                  return <ErrorText>• {errorMessage}</ErrorText>;
+                })}
               </ErrorsWrapper>
               <Footer>
                 <Button

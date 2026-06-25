@@ -1,5 +1,6 @@
 import { object, ref, string } from "yup";
 
+// signup
 export type SignUpFormValues = {
   password: string;
   passwordConfirm: string;
@@ -21,6 +22,13 @@ export const signUpValidation = object({
   username: string().required("Username is required"),
 });
 
+export const signUpFieldOrder: Array<keyof SignUpFormValues> = [
+  "username",
+  "password",
+  "passwordConfirm",
+];
+
+// login
 export type LogInFormValues = {
   password: string;
   username: string;
@@ -35,3 +43,8 @@ export const logInValidation = object({
   password: string().required("Password is required"),
   username: string().required("Username is required"),
 });
+
+export const logInFieldOrder: Array<keyof LogInFormValues> = [
+  "username",
+  "password",
+];

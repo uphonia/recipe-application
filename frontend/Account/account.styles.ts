@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import { Typography } from "../common/components/Typography/Typography";
 
 export const Wrapper = styled.div`
@@ -24,18 +25,14 @@ export const Title = styled(Typography)`
   text-decoration: underline;
 `;
 
-export const FieldWrapper = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  width: 100%;
-`;
-
 export const ErrorsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  &:empty {
+    display: none;
+  }
 `;
 
 export const ErrorText = styled.p`
