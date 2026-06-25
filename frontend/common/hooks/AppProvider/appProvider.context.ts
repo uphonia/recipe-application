@@ -2,9 +2,6 @@ import { createContext } from "react";
 
 import { AppContextState } from "./appProvider.types";
 
-const initialState: AppContextState = {
-  setUser: () => {},
-  user: null,
-};
+const initialState: AppContextState = {};
 
 export const AppProviderContext = createContext<AppContextState>(initialState);
