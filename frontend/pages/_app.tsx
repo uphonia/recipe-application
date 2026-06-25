@@ -6,6 +6,7 @@ import globalStyles from "../common/styles/global";
 import { AppProvider } from "../common/hooks/AppProvider/AppProvider";
 import { Layout } from "../common/components/Layout/Layout";
 import { SideBar } from "../common/components/SideBar/Sidebar";
+import { AuthProvider } from "../common/hooks/AuthProvider/AuthProvider";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -13,12 +14,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     !router.pathname.includes("signup") && !router.pathname.includes("login");
 
   return (
-    <AppProvider>
-      <Global styles={globalStyles} />
-      <Layout
-        sidebar={showSidebar ? <SideBar /> : null}
-        content={<Component {...pageProps} />}
-      />
-    </AppProvider>
+    <AuthProvider>
+      <AppProvider>
+        <Global styles={globalStyles} />
+        <Layout
+          sidebar={showSidebar ? <SideBar /> : null}
+          content={<Component {...pageProps} />}
+        />
+      </AppProvider>
+    </AuthProvider>
   );
 }
