@@ -1,5 +1,5 @@
-import { TextField as TextFieldBase, TextFieldProps } from "@mui/material";
 import { ChangeEventHandler } from "react";
+import { TextField as TextFieldBase, TextFieldProps } from "@mui/material";
 
 import { styles } from "./textField.styles";
 

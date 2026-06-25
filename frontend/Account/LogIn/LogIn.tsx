@@ -3,6 +3,7 @@ import { Formik, Form } from "formik";
 import {
   Wrapper,
   FormWrapper,
+  FieldsWrapper,
   ErrorsWrapper,
   ErrorText,
   Title,
@@ -19,6 +20,7 @@ import { TextLink } from "../../common/components/TextLink/TextLink";
 import { Typography } from "../../common/components/Typography/Typography";
 import { PasswordField } from "../../common/components/PasswordField/PasswordField";
 import { TextField } from "../../common/components/TextField/TextField";
+
 import { useLogIn } from "./logIn.hooks";
 
 export const LogIn = () => {
@@ -39,20 +41,22 @@ export const LogIn = () => {
           <Form>
             <FormWrapper>
               <Title variant="h6">Log In</Title>
-              <TextField
-                fluid
-                id="username"
-                name="username"
-                onChange={handleChange}
-                placeholder="Username"
-              />
-              <PasswordField
-                fluid
-                id="password"
-                name="password"
-                onChange={handleChange}
-                placeholder="Password"
-              />
+              <FieldsWrapper>
+                <TextField
+                  fluid
+                  id="username"
+                  name="username"
+                  onChange={handleChange}
+                  placeholder="Username"
+                />
+                <PasswordField
+                  fluid
+                  id="password"
+                  name="password"
+                  onChange={handleChange}
+                  placeholder="Password"
+                />
+              </FieldsWrapper>
               <ErrorsWrapper>
                 {logInFieldOrder.map((fieldName) => {
                   const errorMessage = errors[fieldName];

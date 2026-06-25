@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { useSwitch } from "../common/hooks/useSwitch";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
+import { useSwitch } from "../common/hooks/useSwitch";
 import { RECIPE } from "../common/consts/navigation.consts";
 import { Recipe } from "../common/models/Recipe";
 import { getRecipes } from "../api/helpers/recipes";
@@ -19,16 +20,14 @@ export const useAllRecipes = () => {
   } = useSwitch();
 
   const handleFavoriteOnClick = (index: number) => {
-    // API call to set favorite based on index (not async)
+    // API call to set favorite based on index
   };
 
   const handleOnClick = (index: number) => {
-    // redirect to individual recipe page
     push(`${RECIPE}/${index}`);
   };
 
   const handleDeleteOnClick = (index: number) => {
-    // pop-up modal to confirm deletion
     setIndexToDelete(index);
     openModal();
   };
@@ -39,16 +38,16 @@ export const useAllRecipes = () => {
   };
 
   useEffect(() => {
-    getRecipes()
-      .then((data) => {
-        setRecipes(data);
-      })
-      .catch((error) => {
-        // react to error
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    const handleFetch = async () => {
+      try {
+        const recipeData = await getRecipes();
+        setRecipes(recipeData);
+      } catch (error) {
+        // handle error
+      }
+      setIsLoading(false);
+    };
+    handleFetch();
   }, []);
 
   return {

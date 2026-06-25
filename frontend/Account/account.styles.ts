@@ -15,10 +15,16 @@ export const FormWrapper = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 16px 36px;
+  gap: 24px;
+  padding: 16px 32px;
   text-align: center;
   width: 30vw;
+`;
+
+export const FieldsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 export const Title = styled(Typography)`

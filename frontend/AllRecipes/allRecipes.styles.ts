@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import { mq } from "../common/utils/mediaQueries";
-import { css } from "@emotion/react";
 
 export const Wrapper = styled.div`
   display: grid;

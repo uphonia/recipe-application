@@ -1,5 +1,15 @@
 import React, { useState } from "react";
 
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+
+import { Typography } from "../../../common/components/Typography/Typography";
+import { Button } from "../../../common/components/Button/Button";
+
 import { categoryList, sortList } from "./filter.consts";
 import {
   Wrapper,
@@ -8,14 +18,6 @@ import {
   Section,
   CheckboxList,
 } from "./filter.styles";
-import { Typography } from "../../../common/components/Typography/Typography";
-import { Button } from "../../../common/components/Button/Button";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 export const Filter = () => {
   const [sortBy, setSortBy] = useState("");

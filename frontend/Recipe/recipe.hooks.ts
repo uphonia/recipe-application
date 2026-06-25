@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import { SWITCHES } from "./recipe.consts";
 import { Recipe } from "../common/models/Recipe";
 import { getRecipe } from "../api/helpers/recipes";
+
+import { SWITCHES } from "./recipe.consts";
 
 export const useRecipe = () => {
   const { query } = useRouter();
@@ -29,17 +30,16 @@ export const useRecipe = () => {
   const subActionText = `${recipe?.isFavorited ? "Remove from " : "Add to "} favorites`;
 
   useEffect(() => {
-    if (!recipeId) return;
-    getRecipe(recipeId)
-      .then((data) => {
-        setRecipe(data);
-      })
-      .catch((error) => {
-        // react to error
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    const fetchRecipe = async (recipeId: string) => {
+      try {
+        const recipeData = await getRecipe(recipeId);
+        setRecipe(recipeData);
+      } catch (error) {
+        // handle error
+      }
+      setIsLoading(false);
+    };
+    if (recipeId) fetchRecipe(recipeId);
   }, [recipeId]);
 
   return {

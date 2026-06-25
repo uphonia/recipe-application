@@ -1,6 +1,7 @@
 import { Button } from "../Button/Button";
-import { Content, Footer } from "./confirmationModal.styles";
 import { Modal } from "../Modal/Modal";
+
+import { Content, Footer } from "./confirmationModal.styles";
 
 type Props = {
   closeModal: () => void;

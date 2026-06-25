@@ -1,7 +1,8 @@
 import { Typography } from "../../../common/components/Typography/Typography";
-import { Wrapper, Container } from "./emptyState.styles";
 import { CREATE_RECIPE } from "../../../common/consts/navigation.consts";
 import { TextLink } from "../../../common/components/TextLink/TextLink";
+
+import { Wrapper, Container } from "./emptyState.styles";
 
 export const EmptyState = () => (
   <Wrapper>

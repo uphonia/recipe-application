@@ -1,11 +1,12 @@
 import { format } from "date-fns";
 
-import { RecipeCard } from "./components/RecipeCard/RecipeCard";
-import { Wrapper, RecipeList } from "./allRecipes.styles";
-import { useAllRecipes } from "./allRecipes.hooks";
 import { ConfirmationModal } from "../common/components/ConfirmationModal/ConfirmationModal";
+import { RecipeCard } from "./components/RecipeCard/RecipeCard";
 import { Filter } from "./components/Filter/Filter";
 import { EmptyState } from "./components/EmptyState/EmptyState";
+
+import { Wrapper, RecipeList } from "./allRecipes.styles";
+import { useAllRecipes } from "./allRecipes.hooks";
 
 export const AllRecipes = () => {
   const {

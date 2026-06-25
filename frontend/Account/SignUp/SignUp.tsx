@@ -3,6 +3,7 @@ import { Formik, Form } from "formik";
 import {
   Wrapper,
   FormWrapper,
+  FieldsWrapper,
   ErrorsWrapper,
   ErrorText,
   Title,
@@ -37,27 +38,29 @@ export const SignUp = () => {
           <Form>
             <FormWrapper>
               <Title variant="h6">Sign Up</Title>
-              <TextField
-                fluid
-                id="username"
-                name="username"
-                onChange={handleChange}
-                placeholder="Username"
-              />
-              <PasswordField
-                fluid
-                id="password"
-                name="password"
-                onChange={handleChange}
-                placeholder="Password"
-              />
-              <PasswordField
-                fluid
-                id="passwordConfirm"
-                name="passwordConfirm"
-                onChange={handleChange}
-                placeholder="Confirm Password"
-              />
+              <FieldsWrapper>
+                <TextField
+                  fluid
+                  id="username"
+                  name="username"
+                  onChange={handleChange}
+                  placeholder="Username"
+                />
+                <PasswordField
+                  fluid
+                  id="password"
+                  name="password"
+                  onChange={handleChange}
+                  placeholder="Password"
+                />
+                <PasswordField
+                  fluid
+                  id="passwordConfirm"
+                  name="passwordConfirm"
+                  onChange={handleChange}
+                  placeholder="Confirm Password"
+                />
+              </FieldsWrapper>
               <ErrorsWrapper>
                 {signUpFieldOrder.map((fieldName) => {
                   const errorMessage = errors[fieldName];

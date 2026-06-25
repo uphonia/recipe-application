@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import { AuthProviderContext } from "./authProvider.context";
 import { User } from "../../models/User";
 import { me } from "../../../api/helpers/accounts";
 import { LOGIN, SIGNUP } from "../../consts/navigation.consts";
+
+import { AuthProviderContext } from "./authProvider.context";
 
 export const useAuthProvider = () => {
   const [user, setUser] = useState<User | null>(null);

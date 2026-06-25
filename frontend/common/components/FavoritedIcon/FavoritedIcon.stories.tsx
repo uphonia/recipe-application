@@ -1,7 +1,7 @@
+import styled from "@emotion/styled";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { FavoritedIcon } from "./FavoritedIcon";
-import styled from "@emotion/styled";
 
 const meta = {
   component: FavoritedIcon,

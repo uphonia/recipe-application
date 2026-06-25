@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { LinkComponent } from "./textLink.styles";
 
 type Props = {

@@ -5,8 +5,9 @@ import {
   SxProps,
   Typography as TypographyBase,
 } from "@mui/material";
-import { TypographyVariant } from "./typography.types";
 import { ThemeProvider } from "@mui/material/styles";
+
+import { TypographyVariant } from "./typography.types";
 
 type Props = {
   children: ReactNode;

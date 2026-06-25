@@ -1,5 +1,6 @@
-import { Wrapper, Switch } from "./switchSelector.styles";
 import { Typography } from "../Typography/Typography";
+
+import { Wrapper, Switch } from "./switchSelector.styles";
 
 type Props = {
   activeSwitch: string | null;

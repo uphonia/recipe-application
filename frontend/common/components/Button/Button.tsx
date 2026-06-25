@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
 
+import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
+
 import { FormButton } from "./button.styles";
 import { BUTTON_SIZE, BUTTON_TYPE, BUTTON_VARIANT } from "./button.type";
-import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
 
 type Props = {
   children: ReactNode;

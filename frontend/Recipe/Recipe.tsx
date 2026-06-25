@@ -1,5 +1,10 @@
 import EmptyImageStateIcon from "@mui/icons-material/Restaurant";
 
+import { SwitchSelector } from "../common/components/SwitchSelector/SwitchSelector";
+import { FavoritedIcon } from "../common/components/FavoritedIcon/FavoritedIcon";
+import { Typography } from "../common/components/Typography/Typography";
+import { Button } from "../common/components/Button/Button";
+
 import { SWITCHES } from "./recipe.consts";
 import {
   Wrapper,
@@ -11,10 +16,6 @@ import {
   EmptyImage,
   Content,
 } from "./recipe.styles";
-import { SwitchSelector } from "../common/components/SwitchSelector/SwitchSelector";
-import { FavoritedIcon } from "../common/components/FavoritedIcon/FavoritedIcon";
-import { Typography } from "../common/components/Typography/Typography";
-import { Button } from "../common/components/Button/Button";
 import { useRecipe } from "./recipe.hooks";
 
 export const Recipe = () => {

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 import { BUTTON_SIZE, BUTTON_VARIANT } from "./button.type";
-import { css } from "@emotion/react";
 import {
   getBackgroundColor,
   getFontSize,

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import LogoutIcon from "@mui/icons-material/Logout";
 
+import { CREATE_RECIPE, HOME, ORGANIZE } from "../../consts/navigation.consts";
+
 import {
   Wrapper,
   NavigationWrapper,
@@ -9,7 +11,6 @@ import {
   LogOutButton,
   LogOutButtonWrapper,
 } from "./sideBar.styles";
-import { CREATE_RECIPE, HOME, ORGANIZE } from "../../consts/navigation.consts";
 import { useSideBar } from "./sideBar.hooks";
 
 export const SideBar = () => {

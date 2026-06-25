@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
+
+import { signUp } from "../../api/helpers/accounts";
 import { SignUpFormValues } from "../account.consts";
 import { HOME } from "../../common/consts/navigation.consts";
-import { signUp } from "../../api/helpers/accounts";
 import { useAuth } from "../../common/hooks/AuthProvider/authProvider.hooks";
 
 export const useSignUp = () => {
