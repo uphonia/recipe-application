@@ -28,7 +28,7 @@ export const AllRecipes = () => {
       <Wrapper>
         <RecipeList>
           {recipes.map((recipe) => {
-            const createdDate = format(new Date(recipe.created_at), "MM/dd/yy");
+            const createdDate = format(new Date(recipe.createdAt), "MM/dd/yy");
             return (
               <RecipeCard
                 createdDate={createdDate}

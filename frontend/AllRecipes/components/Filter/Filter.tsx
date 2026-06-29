@@ -42,7 +42,7 @@ export const Filter = () => {
             size="small"
           >
             {sortList.map((sort) => (
-              <MenuItem>{sort}</MenuItem>
+              <MenuItem key={sort}>{sort}</MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -54,6 +54,7 @@ export const Filter = () => {
             <FormControlLabel
               control={<Checkbox defaultChecked={false} size="small" />}
               label={category}
+              key={category}
             />
           ))}
         </CheckboxList>

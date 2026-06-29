@@ -1,5 +1,6 @@
 export type Recipe = {
-  created_at: string;
+  createdAt: string;
+  createdBy: string;
   id: number;
   isFavorited: boolean;
   name: string;
