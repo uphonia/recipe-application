@@ -1,3 +1,4 @@
 export type AddFavoritePayload = {
-  recipeId: number;
+  recipe: number;
+  favoritedBy: string;
 };
