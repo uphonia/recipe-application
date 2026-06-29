@@ -15,13 +15,34 @@ class SignUpView(APIView):
     def post(self, request):
         serializer = SignUpSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.save()
+            user = serializer.save() # creates user in db
             refresh = RefreshToken.for_user(user)
-            return Response({
-                "id": user.id,
-                "refresh": str(refresh),
-                "access": str(refresh.access_token),
+
+            user_data = SignUpSerializer(user).data
+
+            response = Response({
+                "user": user_data
             }, status=status.HTTP_201_CREATED)
+
+            response.set_cookie(
+                key="access",
+                value=str(refresh.access_token),
+                httponly=True,
+                secure=False, # check to True for prod
+                samesite="Lax",
+                path="/",
+            )
+            response.set_cookie(
+                key="refresh",
+                value=str(refresh),
+                httponly=True,
+                secure=False,
+                samesite="Lax",
+                path="/",
+            )
+
+            return response
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
