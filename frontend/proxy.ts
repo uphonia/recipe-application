@@ -29,7 +29,10 @@ export async function proxy(request: NextRequest) {
     });
 
     if (!res.ok) {
-      return NextResponse.redirect(new URL(LOGIN, NEXT_URL));
+      const response = NextResponse.redirect(new URL(LOGIN, NEXT_URL));
+      response.cookies.delete("access");
+      response.cookies.delete("refresh");
+      return response;
     }
 
     const data = await res.json();
