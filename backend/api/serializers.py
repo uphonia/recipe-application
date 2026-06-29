@@ -10,3 +10,7 @@ class FavoritesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorites
         fields = "__all__"
+
+        extra_kwargs = {
+            'favorited': {'required': False, 'default': True}
+        }

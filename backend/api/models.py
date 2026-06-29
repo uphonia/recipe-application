@@ -19,7 +19,7 @@ class Recipe(models.Model):
         return self.name
 
 class Favorites(models.Model):
-    favorited = models.BooleanField()
+    favorited = models.BooleanField(default=True)
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
