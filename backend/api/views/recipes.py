@@ -16,7 +16,6 @@ def create_recipe(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-@authentication_classes([CookieJWTAuthentication])
 @permission_classes([IsAuthenticatedOrReadOnly])
 def get_recipes(request):
     user = request.user

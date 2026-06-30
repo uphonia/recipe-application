@@ -28,14 +28,31 @@ export const useAllRecipes = () => {
       return;
     }
 
+    // optimistically update UI to show recipe was favorited
+    setRecipes((prevRecipes) =>
+      prevRecipes.map((recipe) =>
+        recipe.id === recipeId
+          ? { ...recipe, favorited: !recipe.favorited }
+          : recipe,
+      ),
+    );
+
     try {
       await addFavorite({
         recipe: recipeId,
         favoritedBy: user?.id,
       });
-      // TODO - do something after success
     } catch {
-      // TODO - error
+      // rollback if request failed
+      setRecipes((prevRecipes) =>
+        prevRecipes.map((recipe) =>
+          recipe.id === recipeId
+            ? { ...recipe, favorited: !recipe.favorited }
+            : recipe,
+        ),
+      );
+      // TODO - better error UI
+      console.log("Failed to save favorite. Please try again.");
     }
   };
 

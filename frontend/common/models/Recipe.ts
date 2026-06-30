@@ -1,12 +1,12 @@
 export type Recipe = {
+  blurb?: string;
   createdAt: string;
   createdBy: string;
+  favorited: boolean;
   id: number;
-  isFavorited: boolean;
-  name: string;
-  servings: string;
+  image?: File;
   ingredients: string;
   instructions: string;
-  blurb?: string;
-  image?: File;
+  name: string;
+  servings: string;
 };

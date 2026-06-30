@@ -33,7 +33,7 @@ export const AllRecipes = () => {
               <RecipeCard
                 createdDate={createdDate}
                 image={recipe.image}
-                isFavorited={false} // TODO
+                isFavorited={recipe.favorited}
                 key={recipe.id}
                 name={recipe.name}
                 onClick={() => handleOnClick(recipe.id)}
