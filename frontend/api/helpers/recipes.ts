@@ -3,7 +3,10 @@ import { CreateRecipePayload } from "../payloads/CreateRecipePayload";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const getRecipes = async () => {
-  const response = await fetch(`${API_URL}/api/recipes/`);
+  const response = await fetch(`${API_URL}/api/recipes/`, {
+    method: "GET",
+    credentials: "include",
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch recipes");

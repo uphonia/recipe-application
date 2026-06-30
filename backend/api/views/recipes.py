@@ -1,8 +1,11 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework import status
-from api.models import Recipe
+from django.db.models import OuterRef, Exists, Value, BooleanField
+from api.models import Recipe, Favorites
 from api.serializers import RecipeSerializer
+from accounts.authentication import CookieJWTAuthentication
 
 @api_view(['POST'])
 def create_recipe(request):
@@ -13,10 +16,25 @@ def create_recipe(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
+@authentication_classes([CookieJWTAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def get_recipes(request):
-    recipes = Recipe.objects.all()
-    serializer = RecipeSerializer(recipes, many=True)
-    return Response(serializer.data)
+    user = request.user
+
+    queryset = Recipe.objects.all()
+
+    if user.is_authenticated:
+        is_favorited_subquery = Favorites.objects.filter(
+            recipe=OuterRef('pk'),
+            favorited_by=user,
+            favorited=True
+        )
+        queryset = queryset.annotate(favorited=Exists(is_favorited_subquery))
+    else:
+        queryset = queryset.annotate(favorited=Value(False, outputfield_BooleanField()))
+
+    serializer = RecipeSerializer(queryset, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 def get_recipe(request, id):
