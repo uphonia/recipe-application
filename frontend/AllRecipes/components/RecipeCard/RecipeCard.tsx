@@ -8,7 +8,7 @@ import {
   Image,
   EmptyImage,
   Title,
-  Date,
+  Text,
   // ActionButtons,
   IconButton,
   CardFooter,
@@ -16,6 +16,7 @@ import {
 } from "./recipeCard.styles";
 
 type Props = {
+  createdByText: string;
   createdDate: string;
   image?: File;
   isFavorited: boolean;
@@ -26,6 +27,7 @@ type Props = {
 };
 
 export const RecipeCard = ({
+  createdByText,
   createdDate,
   onDelete,
   onFavorite,
@@ -72,7 +74,8 @@ export const RecipeCard = ({
           </IconButton>
         </ActionButtons> */}
         <CardFooter>
-          <Date>{createdDate}</Date>
+          <Text>{createdDate}</Text>
+          <Text>Created by {createdByText}</Text>
         </CardFooter>
       </Content>
     </Wrapper>

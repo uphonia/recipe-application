@@ -22,6 +22,7 @@ export const Content = styled.div`
   align-items: center;
   display: flex;
   flex: 1;
+  justify-content: center;
   padding: 24px;
   position: relative;
 `;
@@ -30,7 +31,6 @@ export const Title = styled.h3`
   overflow: hidden;
   text-overflow: ellipsis;
   line-clamp: 3;
-  text-align: center;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 `;
@@ -44,11 +44,15 @@ export const Image = styled.img`
 
 export const CardFooter = styled.div`
   bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   position: absolute;
   right: 4px;
+  text-align: end;
 `;
 
-export const Date = styled.p`
+export const Text = styled.p`
   color: black;
   font-size: 12px;
   font-weight: 400;

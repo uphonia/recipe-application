@@ -7,10 +7,12 @@ import { EmptyState } from "./components/EmptyState/EmptyState";
 
 import { Wrapper, RecipeList } from "./allRecipes.styles";
 import { useAllRecipes } from "./allRecipes.hooks";
+import { createdByWhom } from "./utils/createdByWhom";
 
 export const AllRecipes = () => {
   const {
     closeModal,
+    currentUserId,
     handleDeleteOnClick,
     handleDeleteConfirm,
     handleFavoriteOnClick,
@@ -31,6 +33,7 @@ export const AllRecipes = () => {
             const createdDate = format(new Date(recipe.createdAt), "MM/dd/yy");
             return (
               <RecipeCard
+                createdByText={createdByWhom(recipe.createdBy, currentUserId)}
                 createdDate={createdDate}
                 image={recipe.image}
                 isFavorited={recipe.favorited}

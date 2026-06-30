@@ -97,6 +97,7 @@ export const useAllRecipes = () => {
 
   return {
     closeModal,
+    currentUserId: user?.id,
     handleDeleteOnClick,
     handleDeleteConfirm,
     handleFavoriteOnClick,
