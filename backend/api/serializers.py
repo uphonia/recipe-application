@@ -13,5 +13,6 @@ class FavoritesSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
         extra_kwargs = {
-            'favorited': {'required': False, 'default': True}
+            'favorited': {'required': False, 'default': True},
+            'favorited_by': {'read_only': True}
         }

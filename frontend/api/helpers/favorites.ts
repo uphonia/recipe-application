@@ -1,14 +1,16 @@
 import { buildFormData } from "../../common/utils/buildFormData";
 import { AddFavoritePayload } from "../payloads/AddFavoritePayload";
-import { UnfavoritePayload } from "../payloads/UnfavoritePayload";
+import { RemoveFavoritePayload } from "../payloads/RemoveFavoritePayload";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const addFavorite = async (payload: AddFavoritePayload) => {
   const formData = buildFormData(payload);
-  const response = await fetch(`${API_URL}/api/favorites/favorite/`, {
-    method: "POST",
+
+  const response = await fetch(`${API_URL}/api/favorites/add_favorite/`, {
     body: formData,
+    credentials: "include",
+    method: "POST",
   });
 
   if (!response.ok) {
@@ -17,16 +19,19 @@ export const addFavorite = async (payload: AddFavoritePayload) => {
   return response.json();
 };
 
-export const unfavorite = async (payload: UnfavoritePayload) => {
-  const formData = buildFormData(payload);
+export const removeFavorite = async (payload: RemoveFavoritePayload) => {
+  const response = await fetch(
+    `${API_URL}/api/favorites/${payload.recipe}/remove_favorite/`,
+    {
+      method: "DELETE",
+      credentials: "include",
+    },
+  );
 
-  const response = await fetch(`${API_URL}/api/favorites/unfavorite/`, {
-    method: "DELETE",
-    body: formData,
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to unfavorite recipe");
+  if (response.status === 204) {
+    return { success: true, recipe: payload.recipe };
+  } else {
+    const errorData = await response.json();
+    console.error(errorData);
   }
-  return response.json();
 };

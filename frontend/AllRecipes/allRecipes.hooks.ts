@@ -6,7 +6,7 @@ import { RECIPE } from "../common/consts/navigation.consts";
 import { Recipe } from "../common/models/Recipe";
 import { getRecipes } from "../api/helpers/recipes";
 import { useAuth } from "../common/hooks/AuthProvider/authProvider.hooks";
-import { addFavorite } from "../api/helpers/favorites";
+import { addFavorite, removeFavorite } from "../api/helpers/favorites";
 
 export const useAllRecipes = () => {
   const { push } = useRouter();
@@ -23,25 +23,37 @@ export const useAllRecipes = () => {
   } = useSwitch();
 
   const handleFavoriteOnClick = async (recipeId: number) => {
-    if (!user?.id) {
+    if (!user) {
       // TODO - feedback
       return;
     }
 
+    // get recipe favorited status
+    const recipe = recipes.find((recipe) => recipe.id === recipeId);
+    if (!recipe) {
+      // TODO - better error UI
+      console.error("Could not find recipe. Please try again.");
+      return;
+    }
+    const favoritedStatus = recipe.favorited;
+
     // optimistically update UI to show recipe was favorited
     setRecipes((prevRecipes) =>
-      prevRecipes.map((recipe) =>
-        recipe.id === recipeId
+      prevRecipes.map((recipe) => {
+        return recipe.id === recipeId
           ? { ...recipe, favorited: !recipe.favorited }
-          : recipe,
-      ),
+          : recipe;
+      }),
     );
 
     try {
-      await addFavorite({
-        recipe: recipeId,
-        favoritedBy: user?.id,
-      });
+      favoritedStatus
+        ? await removeFavorite({
+            recipe: recipeId,
+          })
+        : await addFavorite({
+            recipe: recipeId,
+          });
     } catch {
       // rollback if request failed
       setRecipes((prevRecipes) =>
@@ -52,7 +64,7 @@ export const useAllRecipes = () => {
         ),
       );
       // TODO - better error UI
-      console.log("Failed to save favorite. Please try again.");
+      console.error("Failed to save favorite. Please try again.");
     }
   };
 
