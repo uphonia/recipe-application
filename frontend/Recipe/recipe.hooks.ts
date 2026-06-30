@@ -27,7 +27,7 @@ export const useRecipe = () => {
     }
   };
 
-  const subActionText = `${recipe?.isFavorited ? "Remove from " : "Add to "} favorites`;
+  const subActionText = `${recipe?.favorited ? "Remove from " : "Add to "} favorites`;
 
   useEffect(() => {
     const fetchRecipe = async (recipeId: string) => {

@@ -15,7 +15,10 @@ export const getRecipes = async () => {
 };
 
 export const getRecipe = async (id: string) => {
-  const response = await fetch(`${API_URL}/api/recipes/${id}`);
+  const response = await fetch(`${API_URL}/api/recipes/${id}`, {
+    method: "GET",
+    credentials: "include",
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch recipe");

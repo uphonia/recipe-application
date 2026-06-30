@@ -19,11 +19,18 @@ import {
 import { useRecipe } from "./recipe.hooks";
 
 export const Recipe = () => {
-  const { active, getContent, recipe, setActive, subActionText } = useRecipe();
+  const { active, getContent, isLoading, recipe, setActive, subActionText } =
+    useRecipe();
+
+  // TODO - loading state
+  if (isLoading) {
+    console.warn("loading");
+    return;
+  }
 
   // TODO - Empty state
   if (!recipe) {
-    console.log("could not find recipe");
+    console.warn("could not find recipe");
     return;
   }
 
@@ -43,7 +50,7 @@ export const Recipe = () => {
             )}
           </ImageContainer>
           <Button fluid variant="secondary">
-            {/* <FavoritedIcon isFavorite={recipe.isFavorited} /> // TODO */}
+            <FavoritedIcon isFavorite={recipe.favorited} />
             <Typography variant="body2">{subActionText}</Typography>
           </Button>
         </Section>
