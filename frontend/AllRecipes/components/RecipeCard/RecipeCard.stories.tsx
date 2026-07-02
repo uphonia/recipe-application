@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { RecipeCard } from './RecipeCard';
+import { RecipeCard } from "./RecipeCard";
 
 const meta = {
   component: RecipeCard,
@@ -11,11 +11,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    createdDate: '3/25/26',
+    createdByText: "You",
+    createdDate: "3/25/26",
     isFavorited: true,
-    name: 'Croque Monseiur',
+    name: "Croque Monseiur",
     onClick: () => {},
     onDelete: () => {},
-    onFavorite: () => {}
+    onFavorite: () => {},
   },
 };
