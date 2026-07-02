@@ -9,11 +9,7 @@ import {
   Title,
   Footer,
 } from "../account.styles";
-import {
-  logInFieldOrder,
-  logInInitialValues,
-  logInValidation,
-} from "../account.consts";
+import { logInInitialValues, logInValidation } from "../account.consts";
 import { Button } from "../../common/components/Button/Button";
 import { SIGNUP } from "../../common/consts/navigation.consts";
 import { TextLink } from "../../common/components/TextLink/TextLink";
@@ -30,9 +26,7 @@ export const LogIn = () => {
     <Wrapper>
       <Formik
         initialValues={logInInitialValues}
-        onSubmit={(values, formikHelpers) =>
-          handleSubmit(values, formikHelpers)
-        }
+        onSubmit={handleSubmit}
         validateOnBlur={true}
         validateOnChange={false}
         validationSchema={logInValidation}
@@ -58,10 +52,8 @@ export const LogIn = () => {
                 />
               </FieldsWrapper>
               <ErrorsWrapper>
-                {logInFieldOrder.map((fieldName) => {
-                  const errorMessage = errors[fieldName];
-                  if (typeof errorMessage !== "string") return null;
-                  return <ErrorText>• {errorMessage}</ErrorText>;
+                {Object.values(errors).map((error) => {
+                  return <ErrorText>• {error}</ErrorText>;
                 })}
               </ErrorsWrapper>
               <Footer>

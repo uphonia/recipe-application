@@ -11,9 +11,13 @@ export const signUp = async (payload: SignUpPayload) => {
     credentials: "include",
   });
 
+  if (response.status === 400) {
+    const validationErrors = await response.json();
+    throw { isValidationError: true, fields: validationErrors };
+  }
+
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.error || "Failed to create user account.");
+    throw new Error("Something went wrong. Please try again later.");
   }
 
   return response.json();
@@ -27,9 +31,13 @@ export const logIn = async (payload: LogInPayload) => {
     credentials: "include",
   });
 
+  if (response.status === 401 || response.status === 403) {
+    const validationErrors = await response.json();
+    throw { isValidationError: true, fields: validationErrors };
+  }
+
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.error || "Failed to log in");
+    throw new Error("Something went wrong. Please try again later.");
   }
 
   return response.json();

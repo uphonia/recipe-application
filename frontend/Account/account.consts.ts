@@ -43,8 +43,3 @@ export const logInValidation = object({
   password: string().required("Password is required"),
   username: string().required("Username is required"),
 });
-
-export const logInFieldOrder: Array<keyof LogInFormValues> = [
-  "username",
-  "password",
-];

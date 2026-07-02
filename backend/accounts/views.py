@@ -56,19 +56,14 @@ class LogInView(APIView):
 
         try:
             user = User.objects.get(username=username)
+            if not user.check_password(password):
+                raise User.DoesNotExist
         except User.DoesNotExist:
-            return Response({
-                "error": "No account found with that username."
-            }, status=status.HTTP_404_NOT_FOUND)
-
-        if not user.check_password(password):
-            return Response({
-                "error": "Incorrect password"
-            }, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({"error": ["Invalid username or password"]}, status=status.HTTP_401_UNAUTHORIZED)
 
         if not user.is_active:
             return Response({
-                "error": "This account is inactive."
+                "error": ["This account is inactive."]
         }, status=status.HTTP_403_FORBIDDEN)
         
         refresh = RefreshToken.for_user(user)
