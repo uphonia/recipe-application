@@ -9,7 +9,7 @@ import {
   EmptyImage,
   Title,
   Text,
-  // ActionButtons,
+  ActionButtons,
   IconButton,
   CardFooter,
   Content,
@@ -19,6 +19,7 @@ type Props = {
   createdByText: string;
   createdDate: string;
   image?: File;
+  isDeletable?: boolean;
   isFavorited: boolean;
   name: string;
   onClick: () => void;
@@ -32,6 +33,7 @@ export const RecipeCard = ({
   onDelete,
   onFavorite,
   image,
+  isDeletable,
   isFavorited,
   name,
   onClick,
@@ -68,11 +70,14 @@ export const RecipeCard = ({
       </IconButton>
       <Content>
         <Title>{name}</Title>
-        {/* <ActionButtons>
-          <IconButton onClick={(e) => handleOnDelete(e)}>
-            <DeleteIcon />
-          </IconButton>
-        </ActionButtons> */}
+        {/* TODO - update design */}
+        <ActionButtons>
+          {isDeletable && (
+            <IconButton onClick={(e) => handleOnDelete(e)}>
+              <DeleteIcon />
+            </IconButton>
+          )}
+        </ActionButtons>
         <CardFooter>
           <Text>{createdDate}</Text>
           <Text>Created by {createdByText}</Text>

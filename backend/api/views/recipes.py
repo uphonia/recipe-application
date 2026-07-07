@@ -34,9 +34,9 @@ def get_recipes(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def get_recipe(request, id):
+def get_recipe(request, recipeId):
     try:
-        recipe = Recipe.objects.get(id=id)
+        recipe = Recipe.objects.get(id=recipeId)
     except Recipe.DoesNotExist:
         return Response({'error': 'Recipe not found'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -47,9 +47,10 @@ def get_recipe(request, id):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['DELETE'])
-def delete_recipe(request, id):
+@permission_classes([IsAuthenticated])
+def delete_recipe(request, recipeId):
     try:
-        recipe = Recipe.objects.get(id=id)
+        recipe = Recipe.objects.get(id=recipeId)
     except Recipe.DoesNotExist:
         return Response({'error': 'Recipe not found'}, status=status.HTTP_404_NOT_FOUND)
     recipe.delete()

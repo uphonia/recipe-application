@@ -1,4 +1,5 @@
 import { CreateRecipePayload } from "../payloads/CreateRecipePayload";
+import { DeleteRecipePayload } from "../payloads/DeleteRecipePayload";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -45,4 +46,18 @@ export const createRecipe = async (content: CreateRecipePayload) => {
   }
 
   return response.json();
+};
+
+export const deleteRecipe = async (payload: DeleteRecipePayload) => {
+  const response = await fetch(`${API_URL}/api/recipes/${payload.id}/delete/`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+
+  if (response.status === 204) {
+    return { success: true, recipe: payload.id };
+  } else {
+    const errorData = await response.json();
+    console.error(errorData);
+  }
 };

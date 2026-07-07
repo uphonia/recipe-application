@@ -31,11 +31,13 @@ export const AllRecipes = () => {
         <RecipeList>
           {recipes.map((recipe) => {
             const createdDate = format(new Date(recipe.createdAt), "MM/dd/yy");
+            const allowDelete = recipe.createdBy === currentUserId;
             return (
               <RecipeCard
                 createdByText={createdByWhom(recipe.createdBy, currentUserId)}
                 createdDate={createdDate}
                 image={recipe.image}
+                isDeletable={allowDelete}
                 isFavorited={recipe.favorited}
                 key={recipe.id}
                 name={recipe.name}

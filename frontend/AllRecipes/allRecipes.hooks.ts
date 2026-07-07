@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useSwitch } from "../common/hooks/useSwitch";
 import { RECIPE } from "../common/consts/navigation.consts";
 import { Recipe } from "../common/models/Recipe";
-import { getRecipes } from "../api/helpers/recipes";
+import { deleteRecipe, getRecipes } from "../api/helpers/recipes";
 import { useAuth } from "../common/hooks/AuthProvider/authProvider.hooks";
 import { addFavorite, removeFavorite } from "../api/helpers/favorites";
 
@@ -13,7 +13,7 @@ export const useAllRecipes = () => {
   const { user } = useAuth();
 
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
+  const [recipeToDelete, setRecipeToDelete] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const {
@@ -73,12 +73,31 @@ export const useAllRecipes = () => {
   };
 
   const handleDeleteOnClick = (recipeId: number) => {
-    setIndexToDelete(recipeId);
+    setRecipeToDelete(recipeId);
     openModal();
   };
 
-  const handleDeleteConfirm = () => {
-    // API call to delete recipe based on recipeId
+  const handleDeleteConfirm = async () => {
+    if (!recipeToDelete) {
+      // TODO - feedback
+      return;
+    }
+    const deletedRecipe = recipes.find((r) => r.id === recipeToDelete);
+
+    setRecipes((prevRecipes) =>
+      prevRecipes.filter((recipe) => {
+        return recipe.id !== recipeToDelete;
+      }),
+    );
+
+    try {
+      await deleteRecipe(recipeToDelete.toString());
+    } catch (error) {
+      console.error("Failed to delete recipe. Please try again.");
+      setRecipes((prevRecipes) =>
+        deletedRecipe ? [...prevRecipes, deletedRecipe] : prevRecipes,
+      );
+    }
     closeModal();
   };
 
