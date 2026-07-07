@@ -48,14 +48,14 @@ export const createRecipe = async (content: CreateRecipePayload) => {
   return response.json();
 };
 
-export const deleteRecipe = async (payload: DeleteRecipePayload) => {
-  const response = await fetch(`${API_URL}/api/recipes/${payload.id}/delete/`, {
+export const deleteRecipe = async (id: string) => {
+  const response = await fetch(`${API_URL}/api/recipes/${id}/delete/`, {
     method: "DELETE",
     credentials: "include",
   });
 
   if (response.status === 204) {
-    return { success: true, recipe: payload.id };
+    return { success: true, recipe: id };
   } else {
     const errorData = await response.json();
     console.error(errorData);
