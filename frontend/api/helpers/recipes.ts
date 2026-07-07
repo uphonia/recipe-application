@@ -1,5 +1,4 @@
 import { CreateRecipePayload } from "../payloads/CreateRecipePayload";
-import { DeleteRecipePayload } from "../payloads/DeleteRecipePayload";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 

@@ -55,7 +55,7 @@ export const CreateRecipeForm = () => {
                     onChange={handleChange}
                     value={values.name}
                   />
-                  <ErrorText>{errors.name ? errors.name : ""}</ErrorText>
+                  {!!errors.name && <ErrorText>{errors.name}</ErrorText>}
                 </InputWrapper>
               </FieldWrapper>
               <FieldWrapper>
@@ -68,9 +68,9 @@ export const CreateRecipeForm = () => {
                     type="number"
                     value={values.servings}
                   />
-                  <ErrorText>
-                    {errors.servings ? errors.servings : ""}
-                  </ErrorText>
+                  {!!errors.servings && (
+                    <ErrorText>{errors.servings}</ErrorText>
+                  )}
                 </InputWrapper>
               </FieldWrapper>
               <FieldWrapper>
@@ -85,9 +85,9 @@ export const CreateRecipeForm = () => {
                     }
                     placeholder={INGREDIENTS_INPUT_PLACEHOLDER}
                   />
-                  <ErrorText>
-                    {errors.ingredients ? errors.ingredients : ""}
-                  </ErrorText>
+                  {!!errors.ingredients && (
+                    <ErrorText>{errors.ingredients}</ErrorText>
+                  )}
                 </InputWrapper>
               </FieldWrapper>
               <FieldWrapper>
@@ -102,9 +102,9 @@ export const CreateRecipeForm = () => {
                     }
                     placeholder={INSTRUCTIONS_INPUT_PLACEHOLDER}
                   />
-                  <ErrorText>
-                    {errors.instructions ? errors.instructions : ""}
-                  </ErrorText>
+                  {!!errors.instructions && (
+                    <ErrorText>{errors.instructions}</ErrorText>
+                  )}
                 </InputWrapper>
               </FieldWrapper>
               <FieldWrapper>
