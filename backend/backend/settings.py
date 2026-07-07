@@ -20,10 +20,6 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# path to save files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -34,7 +30,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost']
-
 
 # Application definition
 
@@ -50,6 +45,7 @@ INSTALLED_APPS = [
     'api',
     'accounts',
     'rest_framework_simplejwt.token_blacklist',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -82,7 +78,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
-
 
 # Database
 DATABASES = {
@@ -125,7 +120,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
@@ -165,3 +159,34 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'accounts.User'
+
+# S3/MinIO 
+# MinIO / S3 Storage Configuration
+AWS_ACCESS_KEY_ID = os.getenv("MINIO_ROOT_USER")
+AWS_SECRET_ACCESS_KEY = os.getenv("MINIO_ROOT_PASWORD")
+AWS_STORAGE_BUCKET_NAME = os.getenv("MINIO_BUCKET_NAME")
+
+AWS_S3_ENDPOINT_URL = os.getenv("MINIO_ENDPOINT_URL", "http://minio:9000")
+AWS_S3_EXTERNAL_HOST = os.getenv("MINIO_EXTERNAL_HOST", "localhost:9000")
+
+# CRITICAL FOR LOCAL MINIO: Forces standard path style URLs (http://localhost:9000/bucket/file.jpg)
+AWS_S3_ADDRESSING_STYLE = 'path'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+
+# Tell Django where to send your React frontend to fetch images
+# When your React app requests an image URL, it needs to hit 'localhost', not 'minio'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_S3_EXTERNAL_HOST}/{AWS_STORAGE_BUCKET_NAME}'
+
+# Set file storage backends
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+    },
+    "static": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+}
+
+# Prevents boto3 from querying AWS metadata endpoints
+AWS_PRELOAD_METADATA = True
+AWS_QUERYSTRING_AUTH = False  # Set to True if you want URLs to expire securely

@@ -1,6 +1,6 @@
 services:
   frontend:
-    build: 
+    build:
       context: ./frontend
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
@@ -66,7 +66,34 @@ services:
     networks:
       - recipe-app-network
 
+  minio:
+    image: minio/minio # MinIO Docker image
+    container_name: minio
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+      - MINIO_BUCKET_NAME=${MINIO_BUCKET_NAME}
+    volumes:
+      - minio_data:/data
+    ports: # MinIO default ports
+      - "9000:9000"
+      - "9001:9001"
+    command: server /data --console-address ":9001"
+  create_buckets:
+    image: minio/mc:latest
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      until (/usr/bin/mc alias set localminio ${MINIO_ENDPOINT_URL} ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD}) do echo 'Waiting for MinIO...' && sleep 1; done;
+      /usr/bin/mc mb --ignore-existing localminio/${MINIO_BUCKET_NAME};
+      /usr/bin/mc policy set download localminio/${MINIO_BUCKET_NAME};
+      exit 0;
+      "
+
 volumes:
+  minio_data:
+    driver: local
   postgres_data:
 
 networks:
