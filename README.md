@@ -1,6 +1,6 @@
 # recipe-application
 
-A place where you can create and store your recipes. WIP :)
+A place where you can create and store your recipes. WIP - Prioritizing functionality and learnings over styling :)
 
 Built with React, Typescript, Python, Django
 
