@@ -57,7 +57,7 @@ export const logOut = async () => {
 };
 
 export const me = async () => {
-  const response = await fetch(`${API_URL}/accounts/me`, {
+  const response = await fetch(`${API_URL}/accounts/me/`, {
     credentials: "include",
   });
 
