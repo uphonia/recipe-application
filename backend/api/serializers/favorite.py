@@ -1,11 +1,5 @@
 from rest_framework import serializers
-from .models import Recipe, Favorites
-
-class RecipeSerializer(serializers.ModelSerializer):
-    favorited = serializers.BooleanField(read_only=True)
-    class Meta:
-        model = Recipe
-        fields = "__all__"
+from api.models import Favorites
 
 class FavoritesSerializer(serializers.ModelSerializer):
     class Meta:
