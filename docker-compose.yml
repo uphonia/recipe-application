@@ -73,12 +73,15 @@ services:
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
       - MINIO_BUCKET_NAME=${MINIO_BUCKET_NAME}
+      - MINIO_BROWSER_CORS_ALLOW_ORIGIN=${NEXT_PUBLIC_URL}
+      - MINIO_API_CORS_ALLOW_ORIGIN=${NEXT_PUBLIC_URL}
     volumes:
       - minio_data:/data
     ports: # MinIO default ports
       - "9000:9000"
       - "9001:9001"
     command: server /data --console-address ":9001"
+
   create_buckets:
     image: minio/mc:latest
     depends_on:
@@ -86,8 +89,12 @@ services:
     entrypoint: >
       /bin/sh -c "
       until (/usr/bin/mc alias set localminio ${MINIO_ENDPOINT_URL} ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD}) do echo 'Waiting for MinIO...' && sleep 1; done;
+
+      # Create the bucket first
       /usr/bin/mc mb --ignore-existing localminio/${MINIO_BUCKET_NAME};
-      /usr/bin/mc policy set download localminio/${MINIO_BUCKET_NAME};
+
+      /usr/bin/mc anonymous set download localminio/${MINIO_BUCKET_NAME};
+      echo 'Bucket initialized successfully!';
       exit 0;
       "
 
