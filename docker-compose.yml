@@ -17,17 +17,9 @@ services:
     build: ./backend
     ports:
       - "8000:8000"
-    environment:
-      - DEBUG=${DEBUG}
-      - SECRET_KEY=${SECRET_KEY}
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
-      - DATABASE_URL=${DATABASE_URL}
-      - DB_PORT=${DB_PORT}
-      - DB_SCHEMA=${DB_SCHEMA}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASS=${DB_PASS}
-      - DB_HOST=${DB_HOST}
+    env_file:
+      - .env
+
     depends_on:
       db:
         condition: service_healthy
@@ -81,6 +73,8 @@ services:
       - "9000:9000"
       - "9001:9001"
     command: server /data --console-address ":9001"
+    networks:
+      - recipe-app-network
 
   create_buckets:
     image: minio/mc:latest
@@ -98,7 +92,7 @@ services:
       - |
         until (/usr/bin/mc alias set localminio $MINIO_ENDPOINT_URL $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD); do 
           echo 'Waiting for MinIO...'
-          sleep 1
+          sleep 5
         done
 
         echo "Creating bucket..."
@@ -109,6 +103,8 @@ services:
 
         echo 'Bucket initialized successfully!';
         exit 0;
+    networks:
+      - recipe-app-network
 
 volumes:
   minio_data:
