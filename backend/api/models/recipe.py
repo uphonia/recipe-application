@@ -6,7 +6,6 @@ class Recipe(models.Model):
     servings = models.PositiveIntegerField(null=True, blank=True)
     ingredients = models.TextField()
     instructions = models.TextField()
-    image = models.ImageField(upload_to='recipes/', blank=True, null=True)
     blurb = models.CharField(max_length=500, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(

@@ -19,7 +19,6 @@ class Migration(migrations.Migration):
                 ('servings', models.PositiveIntegerField(blank=True, null=True)),
                 ('ingredients', models.TextField()),
                 ('instructions', models.TextField()),
-                ('image', models.ImageField(blank=True, null=True, upload_to='recipes/')),
                 ('blurb', models.CharField(blank=True, max_length=500)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recipes', to=settings.AUTH_USER_MODEL)),
