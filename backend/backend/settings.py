@@ -14,6 +14,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 import os
+import sys
 
 load_dotenv()
 
@@ -140,6 +141,9 @@ STATIC_URL = 'static/'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # your React dev server, change port if different
 ]
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000", # <-- ADD THIS EXACT LINE (with http://)
+]
 CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
@@ -162,12 +166,12 @@ AUTH_USER_MODEL = 'accounts.User'
 
 # S3/MinIO 
 # MinIO / S3 Storage Configuration
-AWS_ACCESS_KEY_ID = os.getenv("MINIO_ROOT_USER")
-AWS_SECRET_ACCESS_KEY = os.getenv("MINIO_ROOT_PASWORD")
-AWS_STORAGE_BUCKET_NAME = os.getenv("MINIO_BUCKET_NAME")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 
 AWS_S3_ENDPOINT_URL = os.getenv("MINIO_ENDPOINT_URL", "http://minio:9000")
-AWS_S3_EXTERNAL_HOST = os.getenv("MINIO_EXTERNAL_HOST", "localhost:9000")
+AWS_S3_EXTERNAL_HOST = os.getenv("AWS_ENDPOINT_URL", "http://localhost:9000")
 
 # CRITICAL FOR LOCAL MINIO: Forces standard path style URLs (http://localhost:9000/bucket/file.jpg)
 AWS_S3_ADDRESSING_STYLE = 'path'
@@ -180,13 +184,40 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_S3_EXTERNAL_HOST}/{AWS_STORAGE_BUCKET_NAME}'
 # Set file storage backends
 STORAGES = {
     "default": {
-        "BACKEND": "storages.backends.s3.S3Storage",
-    },
-    "static": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 
 # Prevents boto3 from querying AWS metadata endpoints
 AWS_PRELOAD_METADATA = True
 AWS_QUERYSTRING_AUTH = False  # Set to True if you want URLs to expire securely
+
+# Logging
+LOG_LEVEL = os.getenv("DJANGO_LOGGING_LEVEL", "INFO")
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "[{levelname}][{module}][{asctime}]: {message}",
+            "style": "{",
+        }
+    },
+    "handlers": {
+        "timestamped": {
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+            "formatter": "simple",
+            "level": LOG_LEVEL,
+        },
+    },
+    "loggers": {
+        "": {
+            "handlers": ["timestamped"],
+            "level": "DEBUG",
+        },
+    },
+}
