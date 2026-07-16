@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import { Global } from "@emotion/react";
 
 import globalStyles from "../common/styles/global";
+import { toastOverrideStyles } from "../common/components/Toast/toast.styles";
 import { AppProvider } from "../common/hooks/AppProvider/AppProvider";
 import { Layout } from "../common/components/Layout/Layout";
 import { SideBar } from "../common/components/SideBar/Sidebar";
 import { AuthProvider } from "../common/hooks/AuthProvider/AuthProvider";
+import { AlertProvider } from "../common/hooks/AlertProvider/AlertProvider";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -15,13 +17,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <AuthProvider>
-      <AppProvider>
-        <Global styles={globalStyles} />
-        <Layout
-          sidebar={showSidebar ? <SideBar /> : null}
-          content={<Component {...pageProps} />}
-        />
-      </AppProvider>
+      <AlertProvider>
+        <AppProvider>
+          <Global styles={[globalStyles, toastOverrideStyles]} />
+          <Layout
+            sidebar={showSidebar ? <SideBar /> : null}
+            content={<Component {...pageProps} />}
+          />
+        </AppProvider>
+      </AlertProvider>
     </AuthProvider>
   );
 }
