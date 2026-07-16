@@ -1,3 +1,4 @@
+import { Recipe } from "../../common/models/Recipe";
 import { CreateRecipePayload } from "../payloads/CreateRecipePayload";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -15,7 +16,7 @@ export const getRecipes = async () => {
 };
 
 export const getRecipe = async (id: string) => {
-  const response = await fetch(`${API_URL}/api/recipes/${id}`, {
+  const response = await fetch(`${API_URL}/api/recipes/${id}/`, {
     method: "GET",
     credentials: "include",
   });
@@ -26,7 +27,9 @@ export const getRecipe = async (id: string) => {
   return response.json();
 };
 
-export const createRecipe = async (content: CreateRecipePayload) => {
+export const createRecipe = async (
+  content: CreateRecipePayload,
+): Promise<Recipe> => {
   const formData = new FormData();
   Object.entries(content).forEach(([key, value]) => {
     if (value !== undefined && value !== null) {
@@ -44,7 +47,8 @@ export const createRecipe = async (content: CreateRecipePayload) => {
     throw new Error("Failed to create rescipe.");
   }
 
-  return response.json();
+  const data: Recipe = await response.json();
+  return data;
 };
 
 export const deleteRecipe = async (id: string) => {

@@ -25,7 +25,7 @@ import { Button } from "../common/components/Button/Button";
 import { FormLabel } from "../common/components/FormLabel/FormLabel";
 
 export const CreateRecipeForm = () => {
-  const { handleSubmit } = useCreateRecipeForm();
+  const { handleFileChange, handleSubmit } = useCreateRecipeForm();
 
   return (
     <Formik
@@ -114,7 +114,9 @@ export const CreateRecipeForm = () => {
                 <FileInput
                   accept={IMAGE_FORMATS}
                   id="image"
+                  multiple={false}
                   name="image"
+                  onChange={handleFileChange}
                   type="file"
                 />
               </FieldWrapper>
