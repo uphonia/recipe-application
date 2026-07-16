@@ -1,2 +1,2 @@
-from .favorite import FavoritesSerializer
+from .favorite import FavoriteSerializer
 from .recipe import RecipeSerializer

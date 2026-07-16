@@ -3,9 +3,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import OuterRef, Exists, Value, BooleanField
-from api.models import Recipe, Favorites
+from api.models import Recipe, Favorite
 from api.serializers import RecipeSerializer
-from accounts.authentication import CookieJWTAuthentication
 
 @api_view(['POST'])
 def create_recipe(request):
@@ -22,10 +21,9 @@ def get_recipes(request):
 
     queryset = Recipe.objects.all()
 
-    is_favorited_subquery = Favorites.objects.filter(
+    is_favorited_subquery = Favorite.objects.filter(
         recipe=OuterRef('pk'),
         favorited_by=user,
-        favorited=True
     )
     queryset = queryset.annotate(favorited=Exists(is_favorited_subquery))
 
@@ -40,7 +38,7 @@ def get_recipe(request, recipeId):
     except Recipe.DoesNotExist:
         return Response({'error': 'Recipe not found'}, status=status.HTTP_404_NOT_FOUND)
 
-    is_favorited = Favorites.objects.filter(recipe=recipe, favorited_by=request.user)
+    is_favorited = Favorite.objects.filter(recipe=recipe, favorited_by=request.user)
     recipe.favorited = is_favorited
 
     serializer = RecipeSerializer(recipe)

@@ -1,12 +1,11 @@
 from rest_framework import serializers
-from api.models import Favorites
+from api.models import Favorite
 
-class FavoritesSerializer(serializers.ModelSerializer):
+class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Favorites
+        model = Favorite
         fields = "__all__"
 
         extra_kwargs = {
-            'favorited': {'required': False, 'default': True},
             'favorited_by': {'read_only': True}
         }
