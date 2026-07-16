@@ -8,4 +8,6 @@ urlpatterns = [
     path('recipes/<int:recipeId>/delete/', views.delete_recipe, name='delete_recipe'),
     path('favorites/add_favorite/', views.add_favorite, name='add_favorite'),
     path('favorites/<int:recipeId>/remove_favorite/', views.remove_favorite, name='remove_favorite'),
+    path('files/get-upload-url/', views.PresignedUrlView.as_view(), name='get_presigned_upload_url'),
+    path('files/add/', views.ConfirmAndAddFileView.as_view(), name='add_file')
 ]
