@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 import { Toast } from "./Toast";
 import { useAlertProviderContext } from "../../hooks/AlertProvider/alertProvider.hooks";
+import { AlertProvider } from "../../hooks/AlertProvider/AlertProvider";
 
 const meta = {
   component: Toast,
@@ -10,8 +11,6 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-const { addErrorAlert, addSuccessAlert } = useAlertProviderContext();
 
 const Wrapper = styled.div`
   align-items: center;
@@ -23,18 +22,28 @@ const Wrapper = styled.div`
   padding: 8px;
 `;
 
+const Button = () => {
+  const { addErrorAlert, addSuccessAlert } = useAlertProviderContext();
+
+  return (
+    <button
+      onClick={() => {
+        addErrorAlert("This is an error");
+        addSuccessAlert("This is a success");
+      }}
+    >
+      Click Me
+    </button>
+  );
+};
+
 export const Primary: Story = {
   render: () => (
-    <Wrapper>
-      <button
-        onClick={() => {
-          addErrorAlert("This is an error");
-          addSuccessAlert("This is a success");
-        }}
-      >
-        Click Me
-      </button>
-      <Toast />
-    </Wrapper>
+    <AlertProvider>
+      <Wrapper>
+        <Button />
+        <Toast />
+      </Wrapper>
+    </AlertProvider>
   ),
 };
