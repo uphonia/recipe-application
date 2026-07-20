@@ -4,6 +4,17 @@ services:
       - ./frontend:/app
       - /app/node_modules
     command: npm run dev
+  storybook:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.storybook
+    ports:
+      - "6006:6006"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - recipe-app-network
   backend:
     volumes:
       - ./backend:/app
