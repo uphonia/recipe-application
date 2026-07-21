@@ -18,7 +18,7 @@ import {
 type Props = {
   createdByText: string;
   createdDate: string;
-  image?: File;
+  imageUrl?: string;
   isDeletable?: boolean;
   isFavorited: boolean;
   name: string;
@@ -32,7 +32,7 @@ export const RecipeCard = ({
   createdDate,
   onDelete,
   onFavorite,
-  image,
+  imageUrl,
   isDeletable,
   isFavorited,
   name,
@@ -51,11 +51,10 @@ export const RecipeCard = ({
     e.stopPropagation();
     onFavorite();
   };
-
   return (
     <Wrapper onClick={onClick}>
-      {image ? (
-        <Image src={image.name} /> // TODO
+      {imageUrl ? (
+        <Image src={imageUrl} /> // TODO
       ) : (
         <EmptyImage>
           <EmptyImageStateIcon />

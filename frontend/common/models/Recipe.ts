@@ -3,8 +3,8 @@ export type Recipe = {
   createdAt: string;
   createdBy: string;
   favorited: boolean;
+  fileUrl?: string;
   id: number;
-  image?: File;
   ingredients: string;
   instructions: string;
   name: string;

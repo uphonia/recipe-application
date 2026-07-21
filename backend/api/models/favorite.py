@@ -13,6 +13,7 @@ class Favorite(models.Model):
         on_delete=models.CASCADE,
         related_name="favorites"
     )
+    favorited_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         # Prevent user from favoriting same recipe

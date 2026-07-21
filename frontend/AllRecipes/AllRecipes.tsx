@@ -24,6 +24,7 @@ export const AllRecipes = () => {
   if (!recipes.length) {
     return <EmptyState />;
   }
+  console.log(recipes);
 
   return (
     <>
@@ -36,7 +37,7 @@ export const AllRecipes = () => {
               <RecipeCard
                 createdByText={createdByWhom(recipe.createdBy, currentUserId)}
                 createdDate={createdDate}
-                image={recipe.image}
+                imageUrl={recipe.fileUrl}
                 isDeletable={allowDelete}
                 isFavorited={recipe.favorited}
                 key={recipe.id}

@@ -2,13 +2,13 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from django.db.models import OuterRef, Exists, Value, BooleanField
-from api.models import Recipe, Favorite
-from api.serializers import RecipeSerializer
+from django.db.models import OuterRef, Exists, Value, BooleanField, Subquery
+from api.models import Recipe, Favorite, File
+from api.serializers import RecipeBaseSerializer, RecipeListSerializer, RecipeDetailSerializer
 
 @api_view(['POST'])
 def create_recipe(request):
-    serializer = RecipeSerializer(data=request.data)
+    serializer = RecipeBaseSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -25,23 +25,34 @@ def get_recipes(request):
         recipe=OuterRef('pk'),
         favorited_by=user,
     )
-    queryset = queryset.annotate(favorited=Exists(is_favorited_subquery))
 
-    serializer = RecipeSerializer(queryset, many=True)
+    file_url_subquery = File.objects.filter(
+        recipe=OuterRef('pk'),
+    ).order_by('-created_at').values('relative_path')[:1]
+
+    queryset = queryset.annotate(favorited=Exists(is_favorited_subquery), file_url=Subquery(file_url_subquery))
+
+    serializer = RecipeListSerializer(queryset, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_recipe(request, recipeId):
-    try:
-        recipe = Recipe.objects.get(id=recipeId)
-    except Recipe.DoesNotExist:
-        return Response({'error': 'Recipe not found'}, status=status.HTTP_404_NOT_FOUND)
+    user = request.user
 
-    is_favorited = Favorite.objects.filter(recipe=recipe, favorited_by=request.user)
-    recipe.favorited = is_favorited
+    is_favorited_subquery = Favorite.objects.filter(
+        recipe=OuterRef('pk'),
+        favorited_by=user,
+    )
 
-    serializer = RecipeSerializer(recipe)
+    recipe = Recipe.objects.filter(pk=pk).annotate(
+        favorited=Exists(is_favorited_subquery),
+    ).prefetch_related('files').first()
+
+    if recipe is None:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = RecipeDetailSerializer(recipe)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['DELETE'])
