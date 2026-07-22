@@ -40,8 +40,9 @@ export const Recipe = () => {
         <Section>
           <Title>{recipe.name}</Title>
           <ImageContainer>
-            {recipe.fileUrl ? (
-              <Image src={recipe.fileUrl} />
+            {recipe.files?.length ? (
+              // TODO - carousel of images
+              <Image src={recipe.files[0].fileUrl} />
             ) : (
               <EmptyImage>
                 <EmptyImageStateIcon />

@@ -29,6 +29,9 @@ export const Title = styled.h1`
 
 export const Image = styled.img`
   border-radius: 8px;
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
 `;
 
 export const Content = styled.div``;

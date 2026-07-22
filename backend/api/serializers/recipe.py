@@ -8,7 +8,7 @@ class RecipeBaseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ['name', 'servings', 'ingredients', 'instructions', 'blurb', 'created_at', 'created_by', 'favorited']
+        fields = ['id', 'name', 'servings', 'ingredients', 'instructions', 'blurb', 'created_at', 'created_by', 'favorited']
 
 class RecipeListSerializer(RecipeBaseSerializer):
     file_url = serializers.SerializerMethodField()

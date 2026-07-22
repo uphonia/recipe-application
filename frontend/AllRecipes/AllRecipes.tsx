@@ -24,7 +24,6 @@ export const AllRecipes = () => {
   if (!recipes.length) {
     return <EmptyState />;
   }
-  console.log(recipes);
 
   return (
     <>

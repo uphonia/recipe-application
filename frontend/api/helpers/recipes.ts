@@ -15,7 +15,7 @@ export const getRecipes = async () => {
   return response.json();
 };
 
-export const getRecipe = async (id: string) => {
+export const getRecipe = async (id: string): Promise<Recipe> => {
   const response = await fetch(`${API_URL}/api/recipes/${id}/`, {
     method: "GET",
     credentials: "include",

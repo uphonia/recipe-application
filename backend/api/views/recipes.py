@@ -45,7 +45,7 @@ def get_recipe(request, recipeId):
         favorited_by=user,
     )
 
-    recipe = Recipe.objects.filter(pk=pk).annotate(
+    recipe = Recipe.objects.filter(pk=recipeId).annotate(
         favorited=Exists(is_favorited_subquery),
     ).prefetch_related('files').first()
 
