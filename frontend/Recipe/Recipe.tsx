@@ -40,8 +40,8 @@ export const Recipe = () => {
         <Section>
           <Title>{recipe.name}</Title>
           <ImageContainer>
-            {recipe.image ? (
-              <Image src={recipe.image.name} />
+            {recipe.fileUrl ? (
+              <Image src={recipe.fileUrl} />
             ) : (
               <EmptyImage>
                 <EmptyImageStateIcon />
