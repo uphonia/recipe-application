@@ -6,8 +6,11 @@ import { getRecipe } from "../api/helpers/recipes";
 
 import { SWITCHES } from "./recipe.consts";
 import { addFavorite, removeFavorite } from "../api/helpers/favorites";
+import { useAlertProviderContext } from "../common/hooks/AlertProvider/alertProvider.hooks";
 
 export const useRecipe = () => {
+  const { addErrorAlert } = useAlertProviderContext();
+
   const { query } = useRouter();
   const recipeId = query.id ? query.id[0] : null;
 
@@ -36,7 +39,7 @@ export const useRecipe = () => {
         const recipeData = await getRecipe(recipeId);
         setRecipe(recipeData);
       } catch (error) {
-        // handle error
+        addErrorAlert("Could not retrieve recipe. Please try again.");
       }
       setIsLoading(false);
     };
@@ -47,12 +50,15 @@ export const useRecipe = () => {
     const favoritedStatus = recipe?.favorited;
 
     if (!recipe) {
-      console.error("Cound not find recipe. Please try again.");
+      addErrorAlert("Cound not retrieve recipe. Please try again.");
       return;
     }
 
     setRecipe((prevRecipe) => {
-      if (!prevRecipe) return prevRecipe;
+      if (!prevRecipe) {
+        addErrorAlert("Cound not retrieve recipe. Please try again.");
+        return prevRecipe;
+      }
 
       return {
         ...prevRecipe,
@@ -77,8 +83,7 @@ export const useRecipe = () => {
           favorited: !prevRecipe.favorited,
         };
       });
-      // TODO - better error UI
-      console.error("Failed to save favorite. Please try again.");
+      addErrorAlert("Failed to save favorite. Please try again.");
     }
   };
 

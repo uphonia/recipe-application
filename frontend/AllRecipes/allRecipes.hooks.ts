@@ -7,10 +7,12 @@ import { Recipe } from "../common/models/Recipe";
 import { deleteRecipe, getRecipes } from "../api/helpers/recipes";
 import { useAuth } from "../common/hooks/AuthProvider/authProvider.hooks";
 import { addFavorite, removeFavorite } from "../api/helpers/favorites";
+import { useAlertProviderContext } from "../common/hooks/AlertProvider/alertProvider.hooks";
 
 export const useAllRecipes = () => {
   const { push } = useRouter();
   const { user } = useAuth();
+  const { addErrorAlert } = useAlertProviderContext();
 
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [recipeToDelete, setRecipeToDelete] = useState<number | null>(null);
@@ -24,15 +26,13 @@ export const useAllRecipes = () => {
 
   const handleFavoriteOnClick = async (recipeId: number) => {
     if (!user) {
-      // TODO - feedback
+      // TODO - open modal to relog in
       return;
     }
 
-    // get recipe favorited status
     const recipe = recipes.find((recipe) => recipe.id === recipeId);
     if (!recipe) {
-      // TODO - better error UI
-      console.error("Could not find recipe. Please try again.");
+      addErrorAlert("Could not retrieve recipe. Please try again.");
       return;
     }
     const favoritedStatus = recipe.favorited;
@@ -63,8 +63,7 @@ export const useAllRecipes = () => {
             : recipe,
         ),
       );
-      // TODO - better error UI
-      console.error("Failed to save favorite. Please try again.");
+      addErrorAlert("Failed to save favorite. Please try again.");
     }
   };
 
@@ -79,7 +78,7 @@ export const useAllRecipes = () => {
 
   const handleDeleteConfirm = async () => {
     if (!recipeToDelete) {
-      // TODO - feedback
+      addErrorAlert("Cound not retrieve recipe. Please try again.");
       return;
     }
     const deletedRecipe = recipes.find((r) => r.id === recipeToDelete);
@@ -93,7 +92,7 @@ export const useAllRecipes = () => {
     try {
       await deleteRecipe(recipeToDelete.toString());
     } catch (error) {
-      console.error("Failed to delete recipe. Please try again.");
+      addErrorAlert("Failed to delete recipe. Please try again.");
       setRecipes((prevRecipes) =>
         deletedRecipe ? [...prevRecipes, deletedRecipe] : prevRecipes,
       );
@@ -107,7 +106,7 @@ export const useAllRecipes = () => {
         const recipeData = await getRecipes();
         setRecipes(recipeData);
       } catch (error) {
-        // handle error
+        addErrorAlert("Could not retrieve recipes. Please try again");
       }
       setIsLoading(false);
     };

@@ -6,12 +6,13 @@ import { HOME } from "../common/consts/navigation.consts";
 import { createRecipe } from "../api/helpers/recipes";
 import { useAuth } from "../common/hooks/AuthProvider/authProvider.hooks";
 import { addFile, getPresignedUrl, uploadFile } from "../api/helpers/files";
+import { useAlertProviderContext } from "../common/hooks/AlertProvider/alertProvider.hooks";
 
 export const useCreateRecipeForm = () => {
   const { push } = useRouter();
   const { user } = useAuth();
+  const { addErrorAlert } = useAlertProviderContext();
 
-  const [error, setError] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +35,7 @@ export const useCreateRecipeForm = () => {
         created_by: user.id,
       });
     } catch (error) {
-      setError("Unable to create recipe. Please try again.");
+      addErrorAlert("Unable to create recipe. Please try again.");
     }
 
     let fileRelativePath = "";
@@ -79,7 +80,6 @@ export const useCreateRecipeForm = () => {
   };
 
   return {
-    error,
     handleFileChange,
     handleSubmit,
   };

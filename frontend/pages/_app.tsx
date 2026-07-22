@@ -16,8 +16,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     !router.pathname.includes("signup") && !router.pathname.includes("login");
 
   return (
-    <AuthProvider>
-      <AlertProvider>
+    <AlertProvider>
+      <AuthProvider>
         <AppProvider>
           <Global styles={[globalStyles, toastOverrideStyles]} />
           <Layout
@@ -25,7 +25,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             content={<Component {...pageProps} />}
           />
         </AppProvider>
-      </AlertProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </AlertProvider>
   );
 }

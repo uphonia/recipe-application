@@ -6,11 +6,13 @@ import { me } from "../../../api/helpers/accounts";
 import { LOGIN, SIGNUP } from "../../consts/navigation.consts";
 
 import { AuthProviderContext } from "./authProvider.context";
+import { useAlertProviderContext } from "../AlertProvider/alertProvider.hooks";
 
 export const useAuthProvider = () => {
   const [user, setUser] = useState<User | null>(null);
   const [userLoading, setUserLoading] = useState(true);
   const { pathname } = useRouter();
+  const { addErrorAlert } = useAlertProviderContext();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,6 +26,7 @@ export const useAuthProvider = () => {
         }
       }
       setUserLoading(false);
+      addErrorAlert("Unable to log in. Please try again.");
     };
 
     fetchUser();
