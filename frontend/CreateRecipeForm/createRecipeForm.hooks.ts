@@ -11,7 +11,7 @@ import { useAlertProviderContext } from "../common/hooks/AlertProvider/alertProv
 export const useCreateRecipeForm = () => {
   const { push } = useRouter();
   const { user } = useAuth();
-  const { addErrorAlert } = useAlertProviderContext();
+  const { addErrorAlert, addSuccessAlert } = useAlertProviderContext();
 
   const [file, setFile] = useState<File | null>(null);
 
@@ -77,6 +77,7 @@ export const useCreateRecipeForm = () => {
       }
     }
     push(HOME);
+    addSuccessAlert("Recipe was successfully created.");
   };
 
   return {

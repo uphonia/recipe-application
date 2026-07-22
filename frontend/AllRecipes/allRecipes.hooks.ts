@@ -12,7 +12,7 @@ import { useAlertProviderContext } from "../common/hooks/AlertProvider/alertProv
 export const useAllRecipes = () => {
   const { push } = useRouter();
   const { user } = useAuth();
-  const { addErrorAlert } = useAlertProviderContext();
+  const { addErrorAlert, addSuccessAlert } = useAlertProviderContext();
 
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [recipeToDelete, setRecipeToDelete] = useState<number | null>(null);
@@ -98,6 +98,7 @@ export const useAllRecipes = () => {
       );
     }
     closeModal();
+    addSuccessAlert("Recipe was successfully deleted.");
   };
 
   useEffect(() => {
