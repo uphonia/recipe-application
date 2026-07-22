@@ -13,6 +13,7 @@ export const Card = styled.div`
   grid-template-columns: 1fr 1.5fr;
   height: 100%;
   padding: 24px;
+  position: relative;
   width: 100%;
 `;
 
@@ -51,4 +52,19 @@ export const EmptyImage = styled.div`
   display: flex;
   gap: 8px;
   flex-direction: column;
+`;
+
+export const Overlay = styled.div`
+  align-items: center;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 16px;
+  color: white;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  opacity: 0.75;
+  position: absolute;
+  top: 0;
+  width: 100%;
 `;

@@ -17,6 +17,7 @@ import {
   Content,
 } from "./recipe.styles";
 import { useRecipe } from "./recipe.hooks";
+import { EmptyState } from "./EmptyState";
 
 export const Recipe = () => {
   const {
@@ -35,10 +36,8 @@ export const Recipe = () => {
     return;
   }
 
-  // TODO - Empty state
   if (!recipe) {
-    console.warn("could not find recipe");
-    return;
+    return <EmptyState />;
   }
 
   return (
