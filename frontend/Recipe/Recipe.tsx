@@ -19,8 +19,15 @@ import {
 import { useRecipe } from "./recipe.hooks";
 
 export const Recipe = () => {
-  const { active, getContent, isLoading, recipe, setActive, subActionText } =
-    useRecipe();
+  const {
+    active,
+    handleFavoriteOnClick,
+    getContent,
+    isLoading,
+    recipe,
+    setActive,
+    subActionText,
+  } = useRecipe();
 
   // TODO - loading state
   if (isLoading) {
@@ -50,7 +57,7 @@ export const Recipe = () => {
               </EmptyImage>
             )}
           </ImageContainer>
-          <Button fluid variant="secondary">
+          <Button fluid onClick={handleFavoriteOnClick} variant="secondary">
             <FavoritedIcon isFavorite={recipe.favorited} />
             <Typography variant="body2">{subActionText}</Typography>
           </Button>

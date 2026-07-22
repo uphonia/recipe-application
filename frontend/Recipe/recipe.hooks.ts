@@ -5,6 +5,7 @@ import { Recipe } from "../common/models/Recipe";
 import { getRecipe } from "../api/helpers/recipes";
 
 import { SWITCHES } from "./recipe.consts";
+import { addFavorite, removeFavorite } from "../api/helpers/favorites";
 
 export const useRecipe = () => {
   const { query } = useRouter();
@@ -42,9 +43,49 @@ export const useRecipe = () => {
     if (recipeId) fetchRecipe(recipeId);
   }, [recipeId]);
 
+  const handleFavoriteOnClick = async () => {
+    const favoritedStatus = recipe?.favorited;
+
+    if (!recipe) {
+      console.error("Cound not find recipe. Please try again.");
+      return;
+    }
+
+    setRecipe((prevRecipe) => {
+      if (!prevRecipe) return prevRecipe;
+
+      return {
+        ...prevRecipe,
+        favorited: !prevRecipe.favorited,
+      };
+    });
+
+    try {
+      favoritedStatus
+        ? await removeFavorite({
+            recipe: recipe.id,
+          })
+        : await addFavorite({
+            recipe: recipe.id,
+          });
+    } catch {
+      setRecipe((prevRecipe) => {
+        if (!prevRecipe) return prevRecipe;
+
+        return {
+          ...prevRecipe,
+          favorited: !prevRecipe.favorited,
+        };
+      });
+      // TODO - better error UI
+      console.error("Failed to save favorite. Please try again.");
+    }
+  };
+
   return {
     active,
     getContent,
+    handleFavoriteOnClick,
     isLoading,
     recipe,
     setActive,
