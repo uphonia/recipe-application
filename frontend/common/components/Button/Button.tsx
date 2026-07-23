@@ -7,6 +7,7 @@ import { BUTTON_SIZE, BUTTON_TYPE, BUTTON_VARIANT } from "./button.type";
 
 type Props = {
   children: ReactNode;
+  className?: string;
   disabled?: boolean;
   fluid?: boolean;
   loading?: boolean;
@@ -18,6 +19,7 @@ type Props = {
 
 export const Button = ({
   children,
+  className,
   disabled = false,
   loading = false,
   fluid = false,
@@ -28,6 +30,7 @@ export const Button = ({
 }: Props) => {
   return (
     <FormButton
+      className={className}
       disabled={disabled}
       fluid={fluid}
       onClick={onClick}

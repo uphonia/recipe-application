@@ -11,6 +11,7 @@ import { TypographyVariant } from "./typography.types";
 
 type Props = {
   children: ReactNode;
+  className?: string;
   styles?: SxProps;
   variant: TypographyVariant;
 };
@@ -35,9 +36,9 @@ const theme = createTheme({
   },
 });
 
-export const Typography = ({ children, styles, variant }: Props) => (
+export const Typography = ({ children, className, styles, variant }: Props) => (
   <ThemeProvider theme={theme}>
-    <TypographyBase sx={styles} variant={variant}>
+    <TypographyBase className={className} sx={styles} variant={variant}>
       {children}
     </TypographyBase>
   </ThemeProvider>
