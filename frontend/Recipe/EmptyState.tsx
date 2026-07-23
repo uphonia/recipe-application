@@ -20,7 +20,7 @@ export const EmptyState = () => {
     <Wrapper>
       <Card>
         <Section>
-          <Title>[undefined]</Title>
+          <Title variant="h4">[undefined]</Title>
           <ImageContainer>
             <EmptyImage>
               <EmptyImageStateIcon />

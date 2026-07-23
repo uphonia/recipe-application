@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Typography } from "../common/components/Typography/Typography";
 
 export const Wrapper = styled.div`
   height: 100vh;
@@ -22,9 +23,16 @@ export const Section = styled.div`
   flex-direction: column;
   gap: 24px;
   padding: 16px;
+  position: relative;
 `;
 
-export const Title = styled.h1`
+export const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const Title = styled(Typography)`
   font-style: italic;
 `;
 
@@ -45,6 +53,12 @@ export const ImageContainer = styled.div`
   justify-content: center;
   height: 400px;
   width: 100%;
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const EmptyImage = styled.div`

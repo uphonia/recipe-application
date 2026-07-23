@@ -7,16 +7,20 @@ import { getRecipe } from "../api/helpers/recipes";
 import { SWITCHES } from "./recipe.consts";
 import { addFavorite, removeFavorite } from "../api/helpers/favorites";
 import { useAlertProviderContext } from "../common/hooks/AlertProvider/alertProvider.hooks";
+import { useAuth } from "../common/hooks/AuthProvider/authProvider.hooks";
 
 export const useRecipe = () => {
   const { addErrorAlert } = useAlertProviderContext();
+  const { user } = useAuth();
+  const currentUserId = user?.id;
 
   const { query } = useRouter();
   const recipeId = query.id ? query.id[0] : null;
 
-  const [active, setActive] = useState<string | null>(SWITCHES.INGREDIENTS);
+  const [active, setActive] = useState<string>(SWITCHES.INGREDIENTS);
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isEditState, setIsEditState] = useState(false);
 
   const getContent = () => {
     switch (active) {
@@ -45,6 +49,9 @@ export const useRecipe = () => {
     };
     if (recipeId) fetchRecipe(recipeId);
   }, [recipeId]);
+
+  const recipeCreatedBy = recipe?.createdBy;
+  const isOwner = recipeCreatedBy === currentUserId;
 
   const handleFavoriteOnClick = async () => {
     const favoritedStatus = recipe?.favorited;
@@ -87,11 +94,24 @@ export const useRecipe = () => {
     }
   };
 
+  const handleEditOnClick = () => {
+    setIsEditState(true);
+  };
+
+  const handleSaveOnClick = () => {
+    // TODO - call function to save updates to Recipe
+    setIsEditState(false);
+  };
+
   return {
     active,
     getContent,
+    handleEditOnClick,
     handleFavoriteOnClick,
+    handleSaveOnClick,
+    isEditState,
     isLoading,
+    isOwner,
     recipe,
     setActive,
     subActionText,
