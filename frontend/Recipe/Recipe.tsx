@@ -25,16 +25,16 @@ import { RecipeEditState } from "./RecipeEditState/RecipeEditState";
 
 export const Recipe = () => {
   const {
-    active,
+    activeTab,
     getContent,
-    handleEditOnClick,
     handleFavoriteOnClick,
-    handleSaveOnClick,
     isEditState,
     isLoading,
     isOwner,
     recipe,
-    setActive,
+    refreshRecipe,
+    setActiveTab,
+    setIsEditState,
     subActionText,
   } = useRecipe();
 
@@ -51,10 +51,11 @@ export const Recipe = () => {
   if (isEditState) {
     return (
       <RecipeEditState
-        activeTab={active}
-        handleSaveOnClick={handleSaveOnClick}
+        activeTab={activeTab}
+        handleExitEditState={() => setIsEditState(false)}
         recipe={recipe}
-        setActiveTab={setActive}
+        refreshRecipe={refreshRecipe}
+        setActiveTab={setActiveTab}
       />
     );
   }
@@ -84,7 +85,11 @@ export const Recipe = () => {
               <Typography variant="body2">{subActionText}</Typography>
             </Button>
             {isOwner && (
-              <Button fluid onClick={handleEditOnClick} variant="secondary">
+              <Button
+                fluid
+                onClick={() => setIsEditState(true)}
+                variant="secondary"
+              >
                 <EditIcon />
                 <Typography variant="body2">Edit</Typography>
               </Button>
@@ -93,8 +98,8 @@ export const Recipe = () => {
         </Section>
         <Section>
           <SwitchSelector
-            activeSwitch={active}
-            onSelect={setActive}
+            activeSwitch={activeTab}
+            onSelect={setActiveTab}
             switches={Object.values(SWITCHES)}
           />
           <Content dangerouslySetInnerHTML={{ __html: getContent() }} />

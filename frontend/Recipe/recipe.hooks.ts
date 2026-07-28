@@ -17,13 +17,13 @@ export const useRecipe = () => {
   const { query } = useRouter();
   const recipeId = query.id ? query.id[0] : null;
 
-  const [active, setActive] = useState<string>(SWITCHES.INGREDIENTS);
+  const [activeTab, setActiveTab] = useState<string>(SWITCHES.INGREDIENTS);
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isEditState, setIsEditState] = useState(false);
 
   const getContent = () => {
-    switch (active) {
+    switch (activeTab) {
       case SWITCHES.BLURB:
         return recipe?.blurb || "No blurb";
       case SWITCHES.INGREDIENTS:
@@ -94,26 +94,21 @@ export const useRecipe = () => {
     }
   };
 
-  const handleEditOnClick = () => {
-    setIsEditState(true);
-  };
-
-  const handleSaveOnClick = () => {
-    // TODO - call function to save updates to Recipe
-    setIsEditState(false);
+  const refreshRecipe = (recipe: Recipe) => {
+    setRecipe(recipe);
   };
 
   return {
-    active,
+    activeTab,
     getContent,
-    handleEditOnClick,
     handleFavoriteOnClick,
-    handleSaveOnClick,
     isEditState,
     isLoading,
     isOwner,
     recipe,
-    setActive,
+    refreshRecipe,
+    setActiveTab,
+    setIsEditState,
     subActionText,
   };
 };

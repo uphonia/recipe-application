@@ -1,5 +1,5 @@
 import EmptyImageStateIcon from "@mui/icons-material/Restaurant";
-import RswEditor from "react-simple-wysiwyg";
+import Editor from "react-simple-wysiwyg";
 import { Form, Formik } from "formik";
 import { Dispatch, SetStateAction } from "react";
 
@@ -20,24 +20,35 @@ import {
 import { useRecipeEditState } from "./recipeEditState.hooks";
 import { getFormValue } from "./recipeEditState.utils";
 import { SaveButton, Input } from "./recipeEditState.styles";
+import { validation } from "./recipeEditState.consts";
 
 type Props = {
   activeTab: string;
-  handleSaveOnClick: () => void;
+  handleExitEditState: () => void;
   recipe: Recipe;
+  refreshRecipe: (recipe: Recipe) => void;
   setActiveTab: Dispatch<SetStateAction<string>>;
 };
 
 export const RecipeEditState = ({
   activeTab,
-  handleSaveOnClick,
+  handleExitEditState,
   recipe,
+  refreshRecipe,
   setActiveTab,
 }: Props) => {
-  const { initialValues } = useRecipeEditState(recipe);
-
+  const { handleSave, initialValues } = useRecipeEditState(
+    handleExitEditState,
+    recipe,
+    refreshRecipe,
+  );
   return (
-    <Formik initialValues={initialValues} onSubmit={() => {}}>
+    // TODO - properly validate form before submission
+    <Formik
+      initialValues={initialValues}
+      onSubmit={(values) => handleSave(values)}
+      validationSchema={validation}
+    >
       {({ handleChange, isSubmitting, setFieldValue, values }) => (
         <Form>
           <Wrapper>
@@ -56,6 +67,7 @@ export const RecipeEditState = ({
                       id="servings"
                       name="servings"
                       onChange={handleChange}
+                      type="number"
                       value={values.servings}
                     />
                   </Typography>
@@ -78,7 +90,7 @@ export const RecipeEditState = ({
                   onSelect={setActiveTab}
                   switches={Object.values(SWITCHES)}
                 />
-                <RswEditor
+                <Editor
                   id={activeTab.toLocaleLowerCase()}
                   name={activeTab.toLocaleLowerCase()}
                   value={getFormValue(values, activeTab)}
@@ -86,7 +98,12 @@ export const RecipeEditState = ({
                     setFieldValue(activeTab.toLocaleLowerCase(), e.target.value)
                   }
                 />
-                <SaveButton onClick={handleSaveOnClick} variant="primary">
+                {/* TODO - add button to exit edit state without saving */}
+                <SaveButton
+                  loading={isSubmitting}
+                  type="submit"
+                  variant="primary"
+                >
                   <Typography variant="body2">Save</Typography>
                 </SaveButton>
               </Section>
