@@ -4,5 +4,5 @@ export type UpdateRecipePayload = {
   ingredients?: string;
   instructions?: string;
   name?: string;
-  servings?: string;
+  servings?: number;
 };

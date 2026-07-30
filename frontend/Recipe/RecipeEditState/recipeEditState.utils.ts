@@ -1,3 +1,4 @@
+import { isEmptyHtml } from "../../common/utils/isEmptyHtml";
 import { SWITCHES } from "../recipe.consts";
 import { EditFormValues } from "./recipeEditState.consts";
 
@@ -5,14 +6,21 @@ export const getFormValue = (
   formValue: EditFormValues,
   currentSwitch: string,
 ) => {
+  let currentFormValue = "";
+
   switch (currentSwitch) {
     case SWITCHES.BLURB:
-      return formValue.blurb;
+      currentFormValue = formValue.blurb || "";
+      break;
     case SWITCHES.INGREDIENTS:
-      return formValue.ingredients;
+      currentFormValue = formValue.ingredients || "";
+      break;
     case SWITCHES.INSTRUCTIONS:
-      return formValue.instructions;
+      currentFormValue = formValue.instructions || "";
+      break;
     default:
       return "";
   }
+
+  return isEmptyHtml(currentFormValue) ? "" : currentFormValue;
 };

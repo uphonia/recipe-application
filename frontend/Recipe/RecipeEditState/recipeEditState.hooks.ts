@@ -15,7 +15,7 @@ export const useRecipeEditState = (
     ingredients: recipe?.ingredients || "",
     instructions: recipe?.instructions || "",
     name: recipe?.name || "",
-    servings: recipe?.servings || "0",
+    servings: recipe?.servings || 0,
   };
 
   const handleSave = async (values: EditFormValues) => {

@@ -73,7 +73,7 @@ export const updateRecipe = async (
   const formData = new FormData();
   Object.entries(content).forEach(([key, value]) => {
     if (value !== undefined && value !== null) {
-      formData.append(key, value);
+      formData.append(key, value.toString());
     }
   });
 

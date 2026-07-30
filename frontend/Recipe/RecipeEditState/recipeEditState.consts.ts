@@ -5,7 +5,7 @@ export type EditFormValues = {
   ingredients: string;
   instructions: string;
   name: string;
-  servings?: string;
+  servings?: number;
 };
 
 export const validation = object({

@@ -19,8 +19,14 @@ import {
 } from "../recipe.styles";
 import { useRecipeEditState } from "./recipeEditState.hooks";
 import { getFormValue } from "./recipeEditState.utils";
-import { SaveButton, Input } from "./recipeEditState.styles";
+import {
+  SaveButton,
+  Input,
+  InputWrapper,
+  ErrorText,
+} from "./recipeEditState.styles";
 import { validation } from "./recipeEditState.consts";
+import { isEmptyHtml } from "../../common/utils/isEmptyHtml";
 
 type Props = {
   activeTab: string;
@@ -42,14 +48,21 @@ export const RecipeEditState = ({
     recipe,
     refreshRecipe,
   );
+
   return (
-    // TODO - properly validate form before submission
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => handleSave(values)}
       validationSchema={validation}
     >
-      {({ handleChange, isSubmitting, setFieldValue, values }) => (
+      {({
+        errors,
+        handleChange,
+        isSubmitting,
+        isValid,
+        setFieldValue,
+        values,
+      }) => (
         <Form>
           <Wrapper>
             <Card>
@@ -61,8 +74,8 @@ export const RecipeEditState = ({
                     onChange={handleChange}
                     value={values.name}
                   />
-                  <Typography variant="body2">
-                    Servings:{" "}
+                  <InputWrapper>
+                    <Typography variant="body2">Servings:</Typography>
                     <Input
                       id="servings"
                       name="servings"
@@ -70,8 +83,9 @@ export const RecipeEditState = ({
                       type="number"
                       value={values.servings}
                     />
-                  </Typography>
+                  </InputWrapper>
                 </Header>
+                {/* TODO - allow edit of uploaded images */}
                 <ImageContainer>
                   {recipe.files?.length ? (
                     // TODO - carousel of images
@@ -94,12 +108,21 @@ export const RecipeEditState = ({
                   id={activeTab.toLocaleLowerCase()}
                   name={activeTab.toLocaleLowerCase()}
                   value={getFormValue(values, activeTab)}
-                  onChange={(e) =>
-                    setFieldValue(activeTab.toLocaleLowerCase(), e.target.value)
-                  }
+                  onChange={(e) => {
+                    const text = e.target.value;
+                    setFieldValue(
+                      activeTab.toLocaleLowerCase(),
+                      isEmptyHtml(text) ? "" : text,
+                    );
+                  }}
                 />
+                {!!Object.keys(errors).length &&
+                  Object.values(errors).map((error) => (
+                    <ErrorText>{error}</ErrorText>
+                  ))}
                 {/* TODO - add button to exit edit state without saving */}
                 <SaveButton
+                  disabled={!isValid}
                   loading={isSubmitting}
                   type="submit"
                   variant="primary"

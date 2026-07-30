@@ -11,5 +11,5 @@ export type Recipe = {
   ingredients: string;
   instructions: string;
   name: string;
-  servings: string;
+  servings: number;
 };
