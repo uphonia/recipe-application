@@ -8,7 +8,6 @@ import {
   InputWrapper,
   Input,
   Footer,
-  TextArea,
   FileInput,
   ButtonsWrapper,
   ErrorText,
@@ -23,6 +22,7 @@ import {
 import { useCreateRecipeForm } from "./createRecipeForm.hooks";
 import { Button } from "../common/components/Button/Button";
 import { FormLabel } from "../common/components/FormLabel/FormLabel";
+import { isEmptyHtml } from "../common/utils/isEmptyHtml";
 
 export const CreateRecipeForm = () => {
   const { handleFileChange, handleSubmit } = useCreateRecipeForm();
@@ -80,9 +80,13 @@ export const CreateRecipeForm = () => {
                     id="ingredients"
                     name="ingredients"
                     value={values.ingredients}
-                    onChange={(e) =>
-                      setFieldValue("ingredients", e.target.value)
-                    }
+                    onChange={(e) => {
+                      const text = e.target.value;
+                      setFieldValue(
+                        "ingredients",
+                        isEmptyHtml(text) ? "" : text,
+                      );
+                    }}
                     placeholder={INGREDIENTS_INPUT_PLACEHOLDER}
                   />
                   {!!errors.ingredients && (
@@ -97,9 +101,13 @@ export const CreateRecipeForm = () => {
                     id="instructions"
                     name="instructions"
                     value={values.instructions}
-                    onChange={(e) =>
-                      setFieldValue("instructions", e.target.value)
-                    }
+                    onChange={(e) => {
+                      const text = e.target.value;
+                      setFieldValue(
+                        "instructions",
+                        isEmptyHtml(text) ? "" : text,
+                      );
+                    }}
                     placeholder={INSTRUCTIONS_INPUT_PLACEHOLDER}
                   />
                   {!!errors.instructions && (
@@ -124,11 +132,14 @@ export const CreateRecipeForm = () => {
                 <FormLabel label="Blurb" name="blurb">
                   <OptionalNote>(Optional)</OptionalNote>
                 </FormLabel>
-                <TextArea
+                <Editor
                   id="blurb"
                   name="blurb"
-                  onChange={handleChange}
                   value={values.blurb}
+                  onChange={(e) => {
+                    const text = e.target.value;
+                    setFieldValue("blurb", isEmptyHtml(text) ? "" : text);
+                  }}
                 />
               </FieldWrapper>
             </FormWrapper>
