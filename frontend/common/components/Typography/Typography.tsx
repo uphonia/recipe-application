@@ -13,7 +13,7 @@ type Props = {
   children: ReactNode;
   className?: string;
   styles?: SxProps;
-  variant: TypographyVariant;
+  variant?: TypographyVariant;
 };
 
 const theme = createTheme({
@@ -36,7 +36,12 @@ const theme = createTheme({
   },
 });
 
-export const Typography = ({ children, className, styles, variant }: Props) => (
+export const Typography = ({
+  children,
+  className,
+  styles,
+  variant = "body2",
+}: Props) => (
   <ThemeProvider theme={theme}>
     <TypographyBase className={className} sx={styles} variant={variant}>
       {children}
