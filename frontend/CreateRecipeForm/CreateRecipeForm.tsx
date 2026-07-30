@@ -143,7 +143,7 @@ export const CreateRecipeForm = () => {
                 disabled={isSubmitting}
                 onClick={() => resetForm()}
                 type="reset"
-                variant="secondary"
+                variant="white"
               >
                 Clear
               </Button>
