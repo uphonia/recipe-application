@@ -84,7 +84,7 @@ export const Recipe = () => {
             )}
           </ImageContainer>
           <ButtonsContainer>
-            <Button fluid onClick={handleFavoriteOnClick} variant="secondary">
+            <Button fluid onClick={handleFavoriteOnClick} variant="primary">
               <FavoritedIcon isFavorite={recipe.favorited} />
               <Typography variant="body2">{subActionText}</Typography>
             </Button>

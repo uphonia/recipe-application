@@ -6,8 +6,6 @@ import {
   getBackgroundColor,
   getFontSize,
   getHeight,
-  getWidth,
-  getPadding,
   getHoverBackgroundColor,
 } from "./button.utils";
 
@@ -26,8 +24,8 @@ export const FormButton = styled.button<ButtonProps>`
   gap: 8px;
   height: ${({ size }) => getHeight(size)};
   justify-content: center;
-  width: ${({ size }) => getWidth(size)};
-  padding: ${({ size }) => getPadding(size)};
+  padding: 12px 24px;
+  width: auto;
 
   ${({ fluid }) =>
     fluid &&
