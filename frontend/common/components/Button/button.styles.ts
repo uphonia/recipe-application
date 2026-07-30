@@ -38,4 +38,8 @@ export const FormButton = styled.button<ButtonProps>`
   &:hover {
     background-color: ${({ variant }) => getHoverBackgroundColor(variant)};
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
