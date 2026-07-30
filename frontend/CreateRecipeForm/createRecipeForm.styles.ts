@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 
+import { Typography } from "../common/components/Typography/Typography";
+
 export const Title = styled.h1``;
 
 export const Main = styled.div`
@@ -27,11 +29,6 @@ export const Input = styled.input`
 
 export const Divider = styled.div`
   border-top: 1px solid black;
-`;
-
-export const TextArea = styled.textarea`
-  height: 150px;
-  width: 100%;
 `;
 
 export const FileInput = styled.input`
@@ -63,6 +60,6 @@ export const InputWrapper = styled.div`
   width: 100%;
 `;
 
-export const ErrorText = styled.p`
+export const ErrorText = styled(Typography)`
   color: red;
 `;

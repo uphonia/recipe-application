@@ -66,7 +66,11 @@ export const Recipe = () => {
         <Section>
           <Header>
             <Title variant="h4">{recipe.name}</Title>
-            <Typography variant="body2">Servings: {recipe.servings}</Typography>
+            {recipe.servings !== 0 && (
+              <Typography variant="body2">
+                Servings: {recipe.servings}
+              </Typography>
+            )}
           </Header>
           <ImageContainer>
             {recipe.files?.length ? (
