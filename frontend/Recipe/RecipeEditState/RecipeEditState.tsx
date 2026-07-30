@@ -24,6 +24,7 @@ import {
   Input,
   InputWrapper,
   ErrorText,
+  CancelButton,
 } from "./recipeEditState.styles";
 import { validation } from "./recipeEditState.consts";
 import { isEmptyHtml } from "../../common/utils/isEmptyHtml";
@@ -97,6 +98,9 @@ export const RecipeEditState = ({
                     </EmptyImage>
                   )}
                 </ImageContainer>
+                <CancelButton onClick={handleExitEditState} variant="secondary">
+                  <Typography variant="body2">Cancel</Typography>
+                </CancelButton>
               </Section>
               <Section>
                 <SwitchSelector
@@ -120,7 +124,6 @@ export const RecipeEditState = ({
                   Object.values(errors).map((error) => (
                     <ErrorText>{error}</ErrorText>
                   ))}
-                {/* TODO - add button to exit edit state without saving */}
                 <SaveButton
                   disabled={!isValid}
                   loading={isSubmitting}

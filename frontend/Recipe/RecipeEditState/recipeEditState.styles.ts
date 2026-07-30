@@ -9,6 +9,12 @@ export const SaveButton = styled(Button)`
   right: 0;
 `;
 
+export const CancelButton = styled(Button)`
+  bottom: 0;
+  left: 0;
+  position: absolute;
+`;
+
 export const Input = styled.input`
   border: 1px solid black;
   height: 30px;
