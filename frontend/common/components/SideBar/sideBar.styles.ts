@@ -1,6 +1,8 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
+import { Button } from "../Button/Button";
+
 export const Wrapper = styled.div`
   background-color: #574b40;
   display: flex;
@@ -71,18 +73,10 @@ export const LogOutButtonWrapper = styled.div`
   justify-content: center;
 `;
 
-export const LogOutButton = styled.button`
+export const LogOutButton = styled(Button)`
   align-items: center;
-  background-color: white;
-  border-radius: 8px;
   bottom: 16px;
   display: flex;
   gap: 8px;
-  justify-content: center;
-  padding: 8px 16px;
   position: absolute;
-
-  &:hover {
-    opacity: 0.8;
-  }
 `;

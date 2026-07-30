@@ -32,7 +32,7 @@ export const SideBar = () => {
         </Link>
         {/* TODO - temp button. need to make it cohesive with rest of app style */}
         <LogOutButtonWrapper>
-          <LogOutButton onClick={handleLogOut}>
+          <LogOutButton onClick={handleLogOut} size="small" variant="white">
             Log Out <LogoutIcon />
           </LogOutButton>
         </LogOutButtonWrapper>
