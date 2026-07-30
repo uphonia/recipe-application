@@ -1,20 +1,26 @@
 import styled from "@emotion/styled";
+import { Form } from "formik";
 
 import { Typography } from "../common/components/Typography/Typography";
 
 export const Title = styled.h1``;
 
-export const Main = styled.div`
+export const Main = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
   position: relative;
+  width: 100%;
 `;
 
 export const FormWrapper = styled.div`
   display: flex;
-  flex: 1 0 auto;
   flex-direction: column;
   gap: 20px;
-  padding: 24px;
-  width: 60%;
+  height: 100%;
+  padding: 36px 48px;
+  width: 80%;
 `;
 
 export const OptionalNote = styled.span`
@@ -39,10 +45,9 @@ export const Footer = styled.div`
   background-color: #d6a577;
   border-top: 2px solid #574b40;
   bottom: 0;
-  margin-left: auto;
-  overflow: hidden;
   padding: 16px;
   position: sticky;
+  width: 100%;
   z-index: 1;
 `;
 

@@ -1,4 +1,4 @@
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 import Editor from "react-simple-wysiwyg";
 
 import {
@@ -43,128 +43,121 @@ export const CreateRecipeForm = () => {
         setFieldValue,
         values,
       }) => (
-        <Form>
-          <Main>
-            <FormWrapper>
-              <FieldWrapper>
-                <FormLabel label="Name" name="name" />
-                <InputWrapper>
-                  <Input
-                    id="name"
-                    name="name"
-                    onChange={handleChange}
-                    value={values.name}
-                  />
-                  {!!errors.name && <ErrorText>{errors.name}</ErrorText>}
-                </InputWrapper>
-              </FieldWrapper>
-              <FieldWrapper>
-                <FormLabel label="# of Servings" name="servings" />
-                <InputWrapper>
-                  <Input
-                    id="servings"
-                    name="servings"
-                    onChange={handleChange}
-                    type="number"
-                    value={values.servings}
-                  />
-                  {!!errors.servings && (
-                    <ErrorText>{errors.servings}</ErrorText>
-                  )}
-                </InputWrapper>
-              </FieldWrapper>
-              <FieldWrapper>
-                <FormLabel label="Ingredients" name="ingredients" />
-                <InputWrapper>
-                  <Editor
-                    id="ingredients"
-                    name="ingredients"
-                    value={values.ingredients}
-                    onChange={(e) => {
-                      const text = e.target.value;
-                      setFieldValue(
-                        "ingredients",
-                        isEmptyHtml(text) ? "" : text,
-                      );
-                    }}
-                    placeholder={INGREDIENTS_INPUT_PLACEHOLDER}
-                  />
-                  {!!errors.ingredients && (
-                    <ErrorText>{errors.ingredients}</ErrorText>
-                  )}
-                </InputWrapper>
-              </FieldWrapper>
-              <FieldWrapper>
-                <FormLabel label="Instructions" name="instructions" />
-                <InputWrapper>
-                  <Editor
-                    id="instructions"
-                    name="instructions"
-                    value={values.instructions}
-                    onChange={(e) => {
-                      const text = e.target.value;
-                      setFieldValue(
-                        "instructions",
-                        isEmptyHtml(text) ? "" : text,
-                      );
-                    }}
-                    placeholder={INSTRUCTIONS_INPUT_PLACEHOLDER}
-                  />
-                  {!!errors.instructions && (
-                    <ErrorText>{errors.instructions}</ErrorText>
-                  )}
-                </InputWrapper>
-              </FieldWrapper>
-              <FieldWrapper>
-                <FormLabel label="Image" name="image">
-                  <OptionalNote>(Optional)</OptionalNote>
-                </FormLabel>
-                <FileInput
-                  accept={IMAGE_FORMATS}
-                  id="image"
-                  multiple={false}
-                  name="image"
-                  onChange={handleFileChange}
-                  type="file"
+        <Main>
+          <FormWrapper>
+            <FieldWrapper>
+              <FormLabel label="Name" name="name" />
+              <InputWrapper>
+                <Input
+                  id="name"
+                  name="name"
+                  onChange={handleChange}
+                  value={values.name}
                 />
-              </FieldWrapper>
-              <FieldWrapper>
-                <FormLabel label="Blurb" name="blurb">
-                  <OptionalNote>(Optional)</OptionalNote>
-                </FormLabel>
+                {!!errors.name && <ErrorText>{errors.name}</ErrorText>}
+              </InputWrapper>
+            </FieldWrapper>
+            <FieldWrapper>
+              <FormLabel label="# of Servings" name="servings" />
+              <InputWrapper>
+                <Input
+                  id="servings"
+                  name="servings"
+                  onChange={handleChange}
+                  type="number"
+                  value={values.servings}
+                />
+                {!!errors.servings && <ErrorText>{errors.servings}</ErrorText>}
+              </InputWrapper>
+            </FieldWrapper>
+            <FieldWrapper>
+              <FormLabel label="Ingredients" name="ingredients" />
+              <InputWrapper>
                 <Editor
-                  id="blurb"
-                  name="blurb"
-                  value={values.blurb}
+                  id="ingredients"
+                  name="ingredients"
+                  value={values.ingredients}
                   onChange={(e) => {
                     const text = e.target.value;
-                    setFieldValue("blurb", isEmptyHtml(text) ? "" : text);
+                    setFieldValue("ingredients", isEmptyHtml(text) ? "" : text);
                   }}
+                  placeholder={INGREDIENTS_INPUT_PLACEHOLDER}
                 />
-              </FieldWrapper>
-            </FormWrapper>
-            <Footer>
-              <ButtonsWrapper>
-                <Button
-                  disabled={isSubmitting}
-                  onClick={() => resetForm()}
-                  type="reset"
-                  variant="secondary"
-                >
-                  Clear
-                </Button>
-                <Button
-                  loading={isSubmitting}
-                  size="medium"
-                  type="submit"
-                  variant="primary"
-                >
-                  Save
-                </Button>
-              </ButtonsWrapper>
-            </Footer>
-          </Main>
-        </Form>
+                {!!errors.ingredients && (
+                  <ErrorText>{errors.ingredients}</ErrorText>
+                )}
+              </InputWrapper>
+            </FieldWrapper>
+            <FieldWrapper>
+              <FormLabel label="Instructions" name="instructions" />
+              <InputWrapper>
+                <Editor
+                  id="instructions"
+                  name="instructions"
+                  value={values.instructions}
+                  onChange={(e) => {
+                    const text = e.target.value;
+                    setFieldValue(
+                      "instructions",
+                      isEmptyHtml(text) ? "" : text,
+                    );
+                  }}
+                  placeholder={INSTRUCTIONS_INPUT_PLACEHOLDER}
+                />
+                {!!errors.instructions && (
+                  <ErrorText>{errors.instructions}</ErrorText>
+                )}
+              </InputWrapper>
+            </FieldWrapper>
+            <FieldWrapper>
+              <FormLabel label="Image" name="image">
+                <OptionalNote>(Optional)</OptionalNote>
+              </FormLabel>
+              <FileInput
+                accept={IMAGE_FORMATS}
+                id="image"
+                multiple={false}
+                name="image"
+                onChange={handleFileChange}
+                type="file"
+              />
+            </FieldWrapper>
+            <FieldWrapper>
+              <FormLabel label="Blurb" name="blurb">
+                <OptionalNote>(Optional)</OptionalNote>
+              </FormLabel>
+              <Editor
+                id="blurb"
+                name="blurb"
+                value={values.blurb}
+                onChange={(e) => {
+                  const text = e.target.value;
+                  setFieldValue("blurb", isEmptyHtml(text) ? "" : text);
+                }}
+              />
+            </FieldWrapper>
+          </FormWrapper>
+          <Footer>
+            <ButtonsWrapper>
+              <Button
+                disabled={isSubmitting}
+                onClick={() => resetForm()}
+                type="reset"
+                variant="secondary"
+              >
+                Clear
+              </Button>
+              <Button
+                loading={isSubmitting}
+                size="medium"
+                type="submit"
+                variant="primary"
+              >
+                Save
+              </Button>
+            </ButtonsWrapper>
+          </Footer>
+        </Main>
       )}
     </Formik>
   );

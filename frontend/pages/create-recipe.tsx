@@ -1,5 +1,5 @@
-import { CreateRecipe } from "../CreateRecipe/CreateRecipe";
+import { CreateRecipeForm } from "../CreateRecipeForm/CreateRecipeForm";
 
 export default function CreateRecipePage() {
-  return <CreateRecipe />;
+  return <CreateRecipeForm />;
 }
