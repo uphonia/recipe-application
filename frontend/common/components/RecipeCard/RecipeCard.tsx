@@ -1,7 +1,7 @@
-import DeleteIcon from "@mui/icons-material/Delete";
 import FavoritedIcon from "@mui/icons-material/Favorite";
 import FavoriteIcon from "@mui/icons-material/FavoriteBorder";
 import EmptyImageStateIcon from "@mui/icons-material/Restaurant";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import {
   Wrapper,
@@ -9,10 +9,10 @@ import {
   EmptyImage,
   Title,
   Text,
-  ActionButtons,
   IconButton,
   CardFooter,
   Content,
+  ActionButtons,
 } from "./recipeCard.styles";
 
 type Props = {
@@ -23,26 +23,26 @@ type Props = {
   isFavorited: boolean;
   name: string;
   onClick: () => void;
-  onDelete: () => void;
+  onDelete?: () => void;
   onFavorite: () => void;
 };
 
 export const RecipeCard = ({
   createdByText,
   createdDate,
-  onDelete,
-  onFavorite,
   imageUrl,
   isDeletable,
   isFavorited,
   name,
   onClick,
+  onDelete,
+  onFavorite,
 }: Props) => {
   const handleOnDelete = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     e.stopPropagation();
-    onDelete();
+    if (onDelete) onDelete();
   };
 
   const handleOnFavorite = (
@@ -51,6 +51,7 @@ export const RecipeCard = ({
     e.stopPropagation();
     onFavorite();
   };
+
   return (
     <Wrapper onClick={onClick}>
       {imageUrl ? (

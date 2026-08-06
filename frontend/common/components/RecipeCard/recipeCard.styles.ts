@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
-import { mq } from "../../../common/utils/mediaQueries";
+import { mq } from "../../utils/mediaQueries";
 
 export const Wrapper = styled.div`
   background-color: #f2f0f0;
@@ -52,12 +52,6 @@ export const CardFooter = styled.div`
   text-align: end;
 `;
 
-export const Text = styled.p`
-  color: black;
-  font-size: 12px;
-  font-weight: 400;
-`;
-
 export const ActionButtons = styled.div`
   display: flex;
   flex-direction: row;
@@ -65,6 +59,12 @@ export const ActionButtons = styled.div`
   position: absolute;
   right: 8px;
   top: 8px;
+`;
+
+export const Text = styled.p`
+  color: black;
+  font-size: 12px;
+  font-weight: 400;
 `;
 
 type IconButtonProps = {
