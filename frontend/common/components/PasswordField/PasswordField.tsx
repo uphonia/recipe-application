@@ -36,7 +36,13 @@ export const PasswordField = ({
       slotProps={{
         input: {
           endAdornment: (
-            <button onClick={(e) => handleShowPassword(e)}>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                handleShowPassword(e);
+              }}
+              type="button"
+            >
               {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </button>
           ),
