@@ -10,7 +10,7 @@ import { useAlertProviderContext } from "../common/hooks/AlertProvider/alertProv
 import { useAuth } from "../common/hooks/AuthProvider/authProvider.hooks";
 
 export const useRecipe = () => {
-  const { addErrorAlert } = useAlertProviderContext();
+  const { addErrorAlert, addSuccessAlert } = useAlertProviderContext();
   const { user } = useAuth();
   const currentUserId = user?.id;
 
@@ -74,13 +74,17 @@ export const useRecipe = () => {
     });
 
     try {
-      favoritedStatus
-        ? await removeFavorite({
-            recipe: recipe.id,
-          })
-        : await addFavorite({
-            recipe: recipe.id,
-          });
+      if (favoritedStatus) {
+        await removeFavorite({
+          recipe: recipe.id,
+        });
+        addSuccessAlert(`Removed from Favorites`);
+      } else {
+        await addFavorite({
+          recipe: recipe.id,
+        });
+        addSuccessAlert(`Added to Favorites`);
+      }
     } catch {
       setRecipe((prevRecipe) => {
         if (!prevRecipe) return prevRecipe;
@@ -90,7 +94,7 @@ export const useRecipe = () => {
           favorited: !prevRecipe.favorited,
         };
       });
-      addErrorAlert("Failed to save favorite. Please try again.");
+      addErrorAlert("Failed to favorite recipe. Please try again.");
     }
   };
 

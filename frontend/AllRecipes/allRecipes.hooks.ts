@@ -47,13 +47,17 @@ export const useAllRecipes = () => {
     );
 
     try {
-      favoritedStatus
-        ? await removeFavorite({
-            recipe: recipeId,
-          })
-        : await addFavorite({
-            recipe: recipeId,
-          });
+      if (favoritedStatus) {
+        await removeFavorite({
+          recipe: recipeId,
+        });
+        addSuccessAlert(`Removed "${recipe.name}" from Favorites`);
+      } else {
+        await addFavorite({
+          recipe: recipeId,
+        });
+        addSuccessAlert(`Added "${recipe.name}" to Favorites`);
+      }
     } catch {
       // rollback if request failed
       setRecipes((prevRecipes) =>
