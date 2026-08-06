@@ -1,4 +1,5 @@
 import EmptyImageStateIcon from "@mui/icons-material/Restaurant";
+import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
 import { SwitchSelector } from "../common/components/SwitchSelector/SwitchSelector";
@@ -22,14 +23,19 @@ import {
 import { useRecipe } from "./recipe.hooks";
 import { EmptyState } from "./EmptyState";
 import { RecipeEditState } from "./RecipeEditState/RecipeEditState";
+import { ConfirmationModal } from "../common/components/ConfirmationModal/ConfirmationModal";
 
 export const Recipe = () => {
   const {
     activeTab,
+    closeModal,
     getContent,
+    handleDeleteConfirm,
+    handleDeleteOnClick,
     handleFavoriteOnClick,
     isEditState,
     isLoading,
+    isModalOpen,
     isOwner,
     recipe,
     refreshRecipe,
@@ -61,54 +67,74 @@ export const Recipe = () => {
   }
 
   return (
-    <Wrapper>
-      <Card>
-        <Section>
-          <Header>
-            <Title variant="h4">{recipe.name}</Title>
-            {recipe.servings !== 0 && (
-              <Typography variant="body2">
-                Servings: {recipe.servings}
-              </Typography>
-            )}
-          </Header>
-          <ImageContainer>
-            {recipe.files?.length ? (
-              // TODO - carousel of images
-              <Image src={recipe.files[0].fileUrl} />
-            ) : (
-              <EmptyImage>
-                <EmptyImageStateIcon />
-                <p>No image provided</p>
-              </EmptyImage>
-            )}
-          </ImageContainer>
-          <ButtonsContainer>
-            <Button fluid onClick={handleFavoriteOnClick} variant="primary">
-              <FavoritedIcon isFavorite={recipe.favorited} />
-              <Typography variant="body2">{subActionText}</Typography>
-            </Button>
-            {isOwner && (
-              <Button
-                fluid
-                onClick={() => setIsEditState(true)}
-                variant="secondary"
-              >
-                <EditIcon />
-                <Typography variant="body2">Edit</Typography>
+    <>
+      <Wrapper>
+        <Card>
+          <Section>
+            <Header>
+              <Title variant="h4">{recipe.name}</Title>
+              {recipe.servings !== 0 && (
+                <Typography variant="body2">
+                  Servings: {recipe.servings}
+                </Typography>
+              )}
+            </Header>
+            <ImageContainer>
+              {recipe.files?.length ? (
+                // TODO - carousel of images
+                <Image src={recipe.files[0].fileUrl} />
+              ) : (
+                <EmptyImage>
+                  <EmptyImageStateIcon />
+                  <p>No image provided</p>
+                </EmptyImage>
+              )}
+            </ImageContainer>
+            <ButtonsContainer>
+              <Button fluid onClick={handleFavoriteOnClick} variant="primary">
+                <FavoritedIcon isFavorite={recipe.favorited} />
+                <Typography variant="body2">{subActionText}</Typography>
               </Button>
-            )}
-          </ButtonsContainer>
-        </Section>
-        <Section>
-          <SwitchSelector
-            activeSwitch={activeTab}
-            onSelect={setActiveTab}
-            switches={Object.values(SWITCHES)}
-          />
-          <Content dangerouslySetInnerHTML={{ __html: getContent() }} />
-        </Section>
-      </Card>
-    </Wrapper>
+              {isOwner && (
+                <>
+                  <Button
+                    fluid
+                    onClick={() => setIsEditState(true)}
+                    variant="secondary"
+                  >
+                    <EditIcon />
+                    <Typography variant="body2">Edit</Typography>
+                  </Button>
+                  <Button
+                    fluid
+                    onClick={handleDeleteOnClick}
+                    variant="secondary"
+                  >
+                    <DeleteIcon />
+                    <Typography variant="body2">Delete</Typography>
+                  </Button>
+                </>
+              )}
+            </ButtonsContainer>
+          </Section>
+          <Section>
+            <SwitchSelector
+              activeSwitch={activeTab}
+              onSelect={setActiveTab}
+              switches={Object.values(SWITCHES)}
+            />
+            <Content dangerouslySetInnerHTML={{ __html: getContent() }} />
+          </Section>
+        </Card>
+      </Wrapper>
+      <ConfirmationModal
+        closeModal={closeModal}
+        description="Do you want to delete this recipe?"
+        isOpen={isModalOpen}
+        onConfirm={handleDeleteConfirm}
+        onConfirmText="Delete"
+        title="Delete"
+      />
+    </>
   );
 };
