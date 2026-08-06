@@ -1,0 +1,15 @@
+import { TextLink } from "../../common/components/TextLink/TextLink";
+import { Typography } from "../../common/components/Typography/Typography";
+import { CREATE_RECIPE } from "../../common/consts/navigation.consts";
+import { Wrapper, Container } from "./emptyState.styles";
+
+export const EmptyState = () => (
+  <Wrapper>
+    <Container>
+      <Typography variant="body1">You have no recipes :(</Typography>
+      <Typography variant="body1">
+        Start your collection <TextLink href={CREATE_RECIPE} text="here" />!
+      </Typography>
+    </Container>
+  </Wrapper>
+);
