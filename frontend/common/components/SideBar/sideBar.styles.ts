@@ -29,16 +29,22 @@ type NavigationProps = {
 };
 
 export const Navigation = styled.div<NavigationProps>`
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   background-color: #d6a577;
   color: inherit;
   display: flex;
   justify-content: center;
+  margin-left: auto;
   padding: 12px 24px;
   text-decoration: none;
+  transition: width 0.5s;
+  width: 80%;
 
   &:hover {
     background-color: #96887a;
     cursor: pointer;
+    width: 85%;
   }
 
   ${({ selected }) =>
@@ -47,24 +53,21 @@ export const Navigation = styled.div<NavigationProps>`
       background-color: #96887a;
       text-decoration: underline;
       text-underline-offset: 2px;
+      width: 85%;
     `}
 `;
 
 export const SubNavigation = styled(Navigation)`
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  margin-left: auto;
-  width: 60%;
+  width: 70%;
 
   &:hover {
-    transition: width 0.5s;
-    width: 65%;
+    width: 75%;
   }
 
   ${({ selected }) =>
     selected &&
     css`
-      width: 65%;
+      width: 75%;
     `}
 `;
 
