@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useSwitch } from "../common/hooks/useSwitch";
 import { RECIPE } from "../common/consts/navigation.consts";
 import { Recipe } from "../common/models/Recipe";
-import { deleteRecipe, getRecipes } from "../api/helpers/recipes";
+import { getRecipes } from "../api/helpers/recipes";
 import { useAuth } from "../common/hooks/AuthProvider/authProvider.hooks";
 import { addFavorite, removeFavorite } from "../api/helpers/favorites";
 import { useAlertProviderContext } from "../common/hooks/AlertProvider/alertProvider.hooks";
@@ -15,7 +15,6 @@ export const useAllRecipes = () => {
   const { addErrorAlert, addSuccessAlert } = useAlertProviderContext();
 
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [recipeToDelete, setRecipeToDelete] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const {
@@ -75,36 +74,6 @@ export const useAllRecipes = () => {
     push(`${RECIPE}/${recipeId}`);
   };
 
-  const handleDeleteOnClick = (recipeId: number) => {
-    setRecipeToDelete(recipeId);
-    openModal();
-  };
-
-  const handleDeleteConfirm = async () => {
-    if (!recipeToDelete) {
-      addErrorAlert("Cound not retrieve recipe. Please try again.");
-      return;
-    }
-    const deletedRecipe = recipes.find((r) => r.id === recipeToDelete);
-
-    setRecipes((prevRecipes) =>
-      prevRecipes.filter((recipe) => {
-        return recipe.id !== recipeToDelete;
-      }),
-    );
-
-    try {
-      await deleteRecipe(recipeToDelete.toString());
-    } catch (error) {
-      addErrorAlert("Failed to delete recipe. Please try again.");
-      setRecipes((prevRecipes) =>
-        deletedRecipe ? [...prevRecipes, deletedRecipe] : prevRecipes,
-      );
-    }
-    closeModal();
-    addSuccessAlert("Recipe was successfully deleted.");
-  };
-
   useEffect(() => {
     const handleFetch = async () => {
       try {
@@ -121,8 +90,6 @@ export const useAllRecipes = () => {
   return {
     closeModal,
     currentUserId: user?.id,
-    handleDeleteOnClick,
-    handleDeleteConfirm,
     handleFavoriteOnClick,
     handleOnClick,
     isModalOpen,
