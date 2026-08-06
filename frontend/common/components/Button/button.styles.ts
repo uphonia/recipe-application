@@ -7,6 +7,7 @@ import {
   getFontSize,
   getHeight,
   getHoverBackgroundColor,
+  getTextColor,
 } from "./button.utils";
 
 type ButtonProps = {
@@ -19,6 +20,7 @@ export const FormButton = styled.button<ButtonProps>`
   align-items: center;
   background-color: ${({ variant }) => getBackgroundColor(variant)};
   border-radius: 8px;
+  color: ${({ variant }) => getTextColor(variant)};
   display: flex;
   font-size: ${({ size }) => getFontSize(size)};
   gap: 8px;

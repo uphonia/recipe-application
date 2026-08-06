@@ -8,8 +8,19 @@ export const getBackgroundColor = (variant: BUTTON_VARIANT) => {
       return "#CDC3B9";
     case "white":
       return "#FFFFFF";
+    case "black":
+      return "#070D0D";
     default:
       return "#FF7C55";
+  }
+};
+
+export const getTextColor = (variant: BUTTON_VARIANT) => {
+  switch (variant) {
+    case "black":
+      return "#FFFFFF";
+    default:
+      return "#000000";
   }
 };
 
@@ -21,6 +32,8 @@ export const getHoverBackgroundColor = (variant: BUTTON_VARIANT) => {
       return "#B0A59A";
     case "white":
       return "#F7F6F5";
+    case "black":
+      return "#28282B";
     default:
       return "#E56740";
   }
