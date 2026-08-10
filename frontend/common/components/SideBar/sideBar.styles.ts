@@ -39,12 +39,12 @@ export const Navigation = styled.div<NavigationProps>`
   padding: 12px 24px;
   text-decoration: none;
   transition: width 0.5s;
-  width: 80%;
+  width: 85%;
 
   &:hover {
     background-color: #96887a;
     cursor: pointer;
-    width: 85%;
+    width: 95%;
   }
 
   ${({ selected }) =>
@@ -53,7 +53,7 @@ export const Navigation = styled.div<NavigationProps>`
       background-color: #96887a;
       text-decoration: underline;
       text-underline-offset: 2px;
-      width: 85%;
+      width: 95%;
     `}
 `;
 

@@ -1,7 +1,12 @@
 import Link from "next/link";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-import { CREATE_RECIPE, HOME, ORGANIZE } from "../../consts/navigation.consts";
+import {
+  ARCHIVE,
+  CREATE_RECIPE,
+  HOME,
+  ORGANIZE,
+} from "../../consts/navigation.consts";
 
 import {
   Wrapper,
@@ -29,6 +34,9 @@ export const SideBar = () => {
         </Link>
         <Link href={ORGANIZE} passHref>
           <SubNavigation selected={isActive(ORGANIZE)}>Organize</SubNavigation>
+        </Link>
+        <Link href={ARCHIVE} passHref>
+          <SubNavigation selected={isActive(ARCHIVE)}>Archive</SubNavigation>
         </Link>
         {/* TODO - temp button. need to make it cohesive with rest of app style */}
         <LogOutButtonWrapper>
