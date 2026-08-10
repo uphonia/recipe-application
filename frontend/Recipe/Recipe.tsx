@@ -1,5 +1,4 @@
 import EmptyImageStateIcon from "@mui/icons-material/Restaurant";
-import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
 import { SwitchSelector } from "../common/components/SwitchSelector/SwitchSelector";
@@ -23,19 +22,14 @@ import {
 import { useRecipe } from "./recipe.hooks";
 import { EmptyState } from "./EmptyState";
 import { RecipeEditState } from "./RecipeEditState/RecipeEditState";
-import { ConfirmationModal } from "../common/components/ConfirmationModal/ConfirmationModal";
 
 export const Recipe = () => {
   const {
     activeTab,
-    closeModal,
     getContent,
-    handleDeleteConfirm,
-    handleDeleteOnClick,
     handleFavoriteOnClick,
     isEditState,
     isLoading,
-    isModalOpen,
     isOwner,
     recipe,
     refreshRecipe,
@@ -96,24 +90,14 @@ export const Recipe = () => {
                 <Typography variant="body2">{subActionText}</Typography>
               </Button>
               {isOwner && (
-                <>
-                  <Button
-                    fluid
-                    onClick={() => setIsEditState(true)}
-                    variant="secondary"
-                  >
-                    <EditIcon />
-                    <Typography variant="body2">Edit</Typography>
-                  </Button>
-                  <Button
-                    fluid
-                    onClick={handleDeleteOnClick}
-                    variant="secondary"
-                  >
-                    <DeleteIcon />
-                    <Typography variant="body2">Delete</Typography>
-                  </Button>
-                </>
+                <Button
+                  fluid
+                  onClick={() => setIsEditState(true)}
+                  variant="secondary"
+                >
+                  <EditIcon />
+                  <Typography variant="body2">Edit</Typography>
+                </Button>
               )}
             </ButtonsContainer>
           </Section>
@@ -127,14 +111,6 @@ export const Recipe = () => {
           </Section>
         </Card>
       </Wrapper>
-      <ConfirmationModal
-        closeModal={closeModal}
-        description="Do you want to delete this recipe?"
-        isOpen={isModalOpen}
-        onConfirm={handleDeleteConfirm}
-        onConfirmText="Delete"
-        title="Delete"
-      />
     </>
   );
 };

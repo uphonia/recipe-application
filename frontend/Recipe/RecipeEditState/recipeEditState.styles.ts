@@ -9,10 +9,14 @@ export const SaveButton = styled(Button)`
   right: 0;
 `;
 
-export const CancelButton = styled(Button)`
+export const ButtonsContainer = styled.div`
   bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   left: 0;
   position: absolute;
+  width: 100%;
 `;
 
 export const Input = styled.input`

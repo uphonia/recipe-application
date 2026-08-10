@@ -2,21 +2,19 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { Recipe } from "../common/models/Recipe";
-import { deleteRecipe, getRecipe } from "../api/helpers/recipes";
+import { getRecipe } from "../api/helpers/recipes";
 
 import { SWITCHES } from "./recipe.consts";
 import { addFavorite, removeFavorite } from "../api/helpers/favorites";
 import { useAlertProviderContext } from "../common/hooks/AlertProvider/alertProvider.hooks";
 import { useAuth } from "../common/hooks/AuthProvider/authProvider.hooks";
-import { useSwitch } from "../common/hooks/useSwitch";
-import { HOME } from "../common/consts/navigation.consts";
 
 export const useRecipe = () => {
   const { addErrorAlert, addSuccessAlert } = useAlertProviderContext();
   const { user } = useAuth();
   const currentUserId = user?.id;
 
-  const { push, query } = useRouter();
+  const { query } = useRouter();
   const recipeId = query.id ? query.id[0] : null;
 
   const [activeTab, setActiveTab] = useState<string>(SWITCHES.INGREDIENTS);
@@ -104,38 +102,12 @@ export const useRecipe = () => {
     setRecipe(recipe);
   };
 
-  const {
-    isOn: isModalOpen,
-    turnOff: closeModal,
-    turnOn: openModal,
-  } = useSwitch();
-
-  const handleDeleteOnClick = () => {
-    openModal();
-  };
-
-  const handleDeleteConfirm = async () => {
-    if (!recipe) return;
-    try {
-      await deleteRecipe(recipe.id.toString());
-    } catch (error) {
-      addErrorAlert("Failed to delete recipe. Please try again.");
-    }
-    closeModal();
-    push(HOME);
-    addSuccessAlert(`"${recipe.name}" was successfully deleted.`);
-  };
-
   return {
     activeTab,
-    closeModal,
     getContent,
-    handleDeleteConfirm,
-    handleDeleteOnClick,
     handleFavoriteOnClick,
     isEditState,
     isLoading,
-    isModalOpen,
     isOwner,
     recipe,
     refreshRecipe,
