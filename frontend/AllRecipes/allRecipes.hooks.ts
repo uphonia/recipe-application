@@ -92,6 +92,7 @@ export const useAllRecipes = () => {
     currentUserId: user?.id,
     handleFavoriteOnClick,
     handleOnClick,
+    isLoading,
     isModalOpen,
     recipes,
   };

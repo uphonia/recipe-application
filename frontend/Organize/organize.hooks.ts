@@ -120,6 +120,7 @@ export const useOrganize = () => {
     handleDeleteOnClick,
     handleFavoriteOnClick,
     handleOnClick,
+    isLoading,
     isModalOpen,
     recipes,
   };

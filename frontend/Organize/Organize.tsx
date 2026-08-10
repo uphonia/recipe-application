@@ -6,6 +6,7 @@ import { createdByWhom } from "../common/utils/createdByWhom";
 import { RecipeCard } from "../common/components/RecipeCard/RecipeCard";
 import { EmptyState } from "./EmptyState/EmptyState";
 import { ConfirmationModal } from "../common/components/ConfirmationModal/ConfirmationModal";
+import { LoadingSpinnerLayout } from "../common/components/LoadingSpinnerLayout/LoadingSpinnerLayout";
 
 export const Organize = () => {
   const {
@@ -15,6 +16,7 @@ export const Organize = () => {
     handleDeleteOnClick,
     handleFavoriteOnClick,
     handleOnClick,
+    isLoading,
     isModalOpen,
     recipes,
   } = useOrganize();
@@ -22,6 +24,8 @@ export const Organize = () => {
   if (!recipes.length) {
     return <EmptyState />;
   }
+
+  if (isLoading) return <LoadingSpinnerLayout />;
 
   return (
     <>

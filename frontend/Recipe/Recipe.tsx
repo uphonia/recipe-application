@@ -22,6 +22,7 @@ import {
 import { useRecipe } from "./recipe.hooks";
 import { EmptyState } from "./EmptyState";
 import { RecipeEditState } from "./RecipeEditState/RecipeEditState";
+import { LoadingSpinnerLayout } from "../common/components/LoadingSpinnerLayout/LoadingSpinnerLayout";
 
 export const Recipe = () => {
   const {
@@ -38,10 +39,8 @@ export const Recipe = () => {
     subActionText,
   } = useRecipe();
 
-  // TODO - loading state
   if (isLoading) {
-    console.warn("loading");
-    return;
+    return <LoadingSpinnerLayout />;
   }
 
   if (!recipe) {

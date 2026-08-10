@@ -7,14 +7,22 @@ import { EmptyState } from "./components/EmptyState/EmptyState";
 import { Wrapper, RecipeList } from "./allRecipes.styles";
 import { useAllRecipes } from "./allRecipes.hooks";
 import { createdByWhom } from "../common/utils/createdByWhom";
+import { LoadingSpinnerLayout } from "../common/components/LoadingSpinnerLayout/LoadingSpinnerLayout";
 
 export const AllRecipes = () => {
-  const { currentUserId, handleFavoriteOnClick, handleOnClick, recipes } =
-    useAllRecipes();
+  const {
+    currentUserId,
+    handleFavoriteOnClick,
+    handleOnClick,
+    isLoading,
+    recipes,
+  } = useAllRecipes();
 
   if (!recipes.length) {
     return <EmptyState />;
   }
+
+  if (isLoading) return <LoadingSpinnerLayout />;
 
   return (
     <>
