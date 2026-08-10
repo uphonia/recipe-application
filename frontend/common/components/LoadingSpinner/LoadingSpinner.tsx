@@ -5,5 +5,5 @@ type Props = {
 };
 
 export const LoadingSpinner = ({ size }: Props) => (
-  <CircularProgress size={size} />
+  <CircularProgress color="inherit" size={size} />
 );
