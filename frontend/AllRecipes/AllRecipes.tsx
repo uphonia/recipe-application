@@ -1,10 +1,19 @@
 import { format } from "date-fns";
 
-import { RecipeCard } from "../common/components/RecipeCard/RecipeCard";
+import GridViewIcon from "@mui/icons-material/GridView";
+import ViewListIcon from "@mui/icons-material/ViewList";
+
 import { Filter } from "./components/Filter/Filter";
 import { EmptyState } from "./components/EmptyState/EmptyState";
 
-import { Wrapper, RecipeList } from "./allRecipes.styles";
+import {
+  Wrapper,
+  RecipeListWrapper,
+  RecipeList,
+  ToggleViewContainer,
+  ToggleViewDivider,
+  Toggle,
+} from "./allRecipes.styles";
 import { useAllRecipes } from "./allRecipes.hooks";
 import { createdByWhom } from "../common/utils/createdByWhom";
 import { LoadingSpinnerLayout } from "../common/components/LoadingSpinnerLayout/LoadingSpinnerLayout";
@@ -16,6 +25,9 @@ export const AllRecipes = () => {
     handleOnClick,
     isLoading,
     recipes,
+    setToggleView,
+    toggleView,
+    RecipeItemComponent,
   } = useAllRecipes();
 
   if (!recipes.length) {
@@ -25,13 +37,27 @@ export const AllRecipes = () => {
   if (isLoading) return <LoadingSpinnerLayout />;
 
   return (
-    <>
-      <Wrapper>
-        <RecipeList>
+    <Wrapper>
+      <RecipeListWrapper>
+        <ToggleViewContainer>
+          <Toggle
+            active={toggleView === "grid"}
+            onClick={() => setToggleView("grid")}
+          >
+            <GridViewIcon /> Grid
+          </Toggle>
+          <Toggle
+            active={toggleView === "list"}
+            onClick={() => setToggleView("list")}
+          >
+            <ViewListIcon /> List
+          </Toggle>
+        </ToggleViewContainer>
+        <RecipeList toggleView={toggleView}>
           {recipes.map((recipe) => {
             const createdDate = format(new Date(recipe.createdAt), "MM/dd/yy");
             return (
-              <RecipeCard
+              <RecipeItemComponent
                 createdByText={createdByWhom(recipe.createdBy, currentUserId)}
                 createdDate={createdDate}
                 imageUrl={recipe.fileUrl}
@@ -44,8 +70,8 @@ export const AllRecipes = () => {
             );
           })}
         </RecipeList>
-        <Filter />
-      </Wrapper>
-    </>
+      </RecipeListWrapper>
+      <Filter />
+    </Wrapper>
   );
 };

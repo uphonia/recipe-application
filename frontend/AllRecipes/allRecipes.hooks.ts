@@ -1,13 +1,14 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import { useSwitch } from "../common/hooks/useSwitch";
 import { RECIPE } from "../common/consts/navigation.consts";
 import { Recipe } from "../common/models/Recipe";
 import { getRecipes } from "../api/helpers/recipes";
 import { useAuth } from "../common/hooks/AuthProvider/authProvider.hooks";
 import { addFavorite, removeFavorite } from "../api/helpers/favorites";
 import { useAlertProviderContext } from "../common/hooks/AlertProvider/alertProvider.hooks";
+import { RecipeCard } from "../common/components/RecipeCard/RecipeCard";
+import { RecipeRow } from "../common/components/RecipeRow/RecipeRow";
 
 export const useAllRecipes = () => {
   const { push } = useRouter();
@@ -16,12 +17,7 @@ export const useAllRecipes = () => {
 
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const {
-    isOn: isModalOpen,
-    turnOff: closeModal,
-    turnOn: openModal,
-  } = useSwitch();
+  const [toggleView, setToggleView] = useState<"list" | "grid">("grid");
 
   const handleFavoriteOnClick = async (recipeId: number) => {
     if (!user) {
@@ -87,13 +83,16 @@ export const useAllRecipes = () => {
     handleFetch();
   }, []);
 
+  const RecipeItemComponent = toggleView === "grid" ? RecipeCard : RecipeRow;
+
   return {
-    closeModal,
     currentUserId: user?.id,
     handleFavoriteOnClick,
     handleOnClick,
     isLoading,
-    isModalOpen,
     recipes,
+    setToggleView,
+    toggleView,
+    RecipeItemComponent,
   };
 };
