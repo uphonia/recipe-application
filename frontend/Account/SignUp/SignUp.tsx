@@ -6,10 +6,16 @@ import {
   FieldsWrapper,
   ErrorsWrapper,
   ErrorText,
+  RulesContainer,
+  RulesWrapper,
+  Rule,
+  CheckIcon,
+  EmptyIcon,
   Title,
   Footer,
 } from "../account.styles";
 import {
+  passwordRules,
   signUpFieldOrder,
   signUpInitialValues,
   signUpValidation,
@@ -34,7 +40,7 @@ export const SignUp = () => {
         validateOnChange={false}
         validationSchema={signUpValidation}
       >
-        {({ errors, handleChange, isSubmitting }) => (
+        {({ errors, handleChange, isSubmitting, values }) => (
           <Form>
             <FormWrapper>
               <Title variant="h6">Sign Up</Title>
@@ -61,6 +67,25 @@ export const SignUp = () => {
                   placeholder="Confirm Password"
                 />
               </FieldsWrapper>
+              <RulesContainer>
+                <RulesWrapper>
+                  {passwordRules.map((rule) => (
+                    <Rule
+                      key={rule.label}
+                      style={{
+                        color: rule.test(values.password) ? "green" : "gray",
+                      }}
+                    >
+                      {rule.test(values.password) ? (
+                        <CheckIcon />
+                      ) : (
+                        <EmptyIcon />
+                      )}{" "}
+                      {rule.label}
+                    </Rule>
+                  ))}
+                </RulesWrapper>
+              </RulesContainer>
               <ErrorsWrapper>
                 {signUpFieldOrder.map((fieldName) => {
                   const errorMessage = errors[fieldName];

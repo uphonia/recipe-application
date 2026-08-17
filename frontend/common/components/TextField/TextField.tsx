@@ -35,8 +35,8 @@ export const TextField = ({
     placeholder={placeholder}
     size={size}
     slotProps={{
-      input: { notched: false },
       ...slotProps,
+      input: { ...slotProps?.input, notched: false },
     }}
     sx={styles}
     type={type}

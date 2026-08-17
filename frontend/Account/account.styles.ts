@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import CheckIconBase from "@mui/icons-material/Check";
+import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 
 import { Typography } from "../common/components/Typography/Typography";
 
@@ -39,6 +41,37 @@ export const ErrorsWrapper = styled.div`
   &:empty {
     display: none;
   }
+`;
+
+export const RulesContainer = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+export const RulesWrapper = styled.div`
+  column-gap: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 4px;
+`;
+
+export const Rule = styled.li`
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  list-style: none;
+`;
+
+export const CheckIcon = styled(CheckIconBase)`
+  height: 12px;
+  width: 12px;
+`;
+
+export const EmptyIcon = styled(CircleOutlinedIcon)`
+  height: 12px;
+  width: 12px;
 `;
 
 export const ErrorText = styled.p`
