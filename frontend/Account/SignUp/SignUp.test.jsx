@@ -5,6 +5,13 @@ import { SignUp } from './SignUp';
 import { HOME } from '../../common/consts/navigation.consts';
 import { mockPush } from '../../jest-setup';
 
+function setup() {
+  return {
+    user: userEvent.setup(),
+    ...render(<SignUp />),
+  };
+}
+
 describe('Sign Up form', () => {
     test('Is empty', async () => {
         render(<SignUp />)
@@ -16,8 +23,7 @@ describe('Sign Up form', () => {
 
 describe('Check for valid username', () => {
     test('Short username', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const username = screen.getByTestId('signup-username')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
 
@@ -27,8 +33,7 @@ describe('Check for valid username', () => {
     })
 
     test('Numerical username', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const username = screen.getByTestId('signup-username')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
 
@@ -38,8 +43,7 @@ describe('Check for valid username', () => {
     })
 
     test('Username with special characters', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const username = screen.getByTestId('signup-username')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
 
@@ -49,8 +53,7 @@ describe('Check for valid username', () => {
     })
 
     test('Valid username', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const username = screen.getByTestId('signup-username')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
 
@@ -62,8 +65,7 @@ describe('Check for valid username', () => {
 
 describe('Check for valid password and confirmed password', () => {
     test('Short password', async () => {
-            const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const password = screen.getByTestId('signup-password')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
 
@@ -73,8 +75,7 @@ describe('Check for valid password and confirmed password', () => {
     })
 
     test('Password with no lowercase letter', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const password = screen.getByTestId('signup-password')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
 
@@ -84,8 +85,7 @@ describe('Check for valid password and confirmed password', () => {
     })
 
     test('Password with no uppercase letter', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const password = screen.getByTestId('signup-password')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
 
@@ -95,8 +95,7 @@ describe('Check for valid password and confirmed password', () => {
     })
 
     test('Password with no number', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const password = screen.getByTestId('signup-password')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
 
@@ -106,8 +105,7 @@ describe('Check for valid password and confirmed password', () => {
     })
 
     test('Password with no special character', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const password = screen.getByTestId('signup-password')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
 
@@ -117,8 +115,7 @@ describe('Check for valid password and confirmed password', () => {
     })
 
     test('No password confirmed', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const password = screen.getByTestId('signup-password')
         const passwordConfirm = screen.getByTestId('signup-passwordConfirm')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
@@ -129,8 +126,7 @@ describe('Check for valid password and confirmed password', () => {
     })
 
     test('Passwords do not match', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const password = screen.getByTestId('signup-password')
         const passwordConfirm = screen.getByTestId('signup-passwordConfirm')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
@@ -142,8 +138,7 @@ describe('Check for valid password and confirmed password', () => {
     })
 
     test('Passwords match', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const password = screen.getByTestId('signup-password')
         const passwordConfirm = screen.getByTestId('signup-passwordConfirm')
         const submitButton = screen.getByRole('button', { name: /Sign Up/i})
@@ -159,8 +154,7 @@ describe('Check for valid password and confirmed password', () => {
 const mockPush = jest.fn();
 describe('Sign Up form', () => {
     test('Is complete', async () => {
-        const user = userEvent.setup()
-        render(<SignUp />)
+        const { user } = setup()
         const username = screen.getByTestId('signup-username')
         const password = screen.getByTestId('signup-password')
         const passwordConfirm = screen.getByTestId('signup-passwordConfirm')
