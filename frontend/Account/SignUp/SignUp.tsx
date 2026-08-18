@@ -46,7 +46,7 @@ export const SignUp = () => {
               <Title variant="h6">Sign Up</Title>
               <FieldsWrapper>
                 <TextField
-                  data-testid="signup-username"
+                  dataTestId="signup-username"
                   fluid
                   id="username"
                   name="username"
@@ -54,7 +54,7 @@ export const SignUp = () => {
                   placeholder="Username"
                 />
                 <PasswordField
-                  data-testid="signup-password"
+                  dataTestId="signup-password"
                   fluid
                   id="password"
                   name="password"
@@ -62,7 +62,7 @@ export const SignUp = () => {
                   placeholder="Password"
                 />
                 <PasswordField
-                  data-testid="signup-passwordConfirm"
+                  dataTestId="signup-passwordConfirm"
                   fluid
                   id="passwordConfirm"
                   name="passwordConfirm"
@@ -93,12 +93,18 @@ export const SignUp = () => {
                 {signUpFieldOrder.map((fieldName) => {
                   const errorMessage = errors[fieldName];
                   if (typeof errorMessage !== "string") return null;
-                  return <ErrorText>• {errorMessage}</ErrorText>;
+                  return (
+                    <ErrorText
+                      data-testid={`error-${fieldName}`}
+                      key={`error-${fieldName}`}
+                    >
+                      • {errorMessage}
+                    </ErrorText>
+                  );
                 })}
               </ErrorsWrapper>
               <Footer>
                 <Button
-                  data-testid="signup-submit"
                   loading={isSubmitting}
                   size="medium"
                   type="submit"

@@ -5,6 +5,7 @@ import { styles } from "./textField.styles";
 
 type Props = {
   autoFocus?: boolean;
+  dataTestId?: string;
   fluid?: boolean;
   id: string;
   name: string;
@@ -17,6 +18,7 @@ type Props = {
 
 export const TextField = ({
   autoFocus,
+  dataTestId,
   fluid,
   id,
   name,
@@ -37,6 +39,7 @@ export const TextField = ({
     slotProps={{
       ...slotProps,
       input: { ...slotProps?.input, notched: false },
+      htmlInput: { "data-testid": dataTestId },
     }}
     sx={styles}
     type={type}

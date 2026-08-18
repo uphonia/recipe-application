@@ -6,6 +6,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { TextField } from "../TextField/TextField";
 
 type Props = {
+  dataTestId: string;
   fluid?: boolean;
   id: string;
   name: string;
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export const PasswordField = ({
+  dataTestId,
   fluid,
   id,
   name,
@@ -28,6 +30,7 @@ export const PasswordField = ({
 
   return (
     <TextField
+      dataTestId={dataTestId}
       fluid={fluid}
       id={id}
       name={name}

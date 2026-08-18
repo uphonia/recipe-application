@@ -14,14 +14,15 @@ export const signUpInitialValues: SignUpFormValues = {
 };
 
 export const signUpValidation = object({
-  password: string().required("Password is required"),
-  passwordConfirm: string()
-    .required("Please confirm your password")
+  password: string()
+    .required("Password is required")
     .min(8, "Password must be at least 8 characters")
     .matches(/^(?=.*[a-z])/, "Must contain one lowercase letter")
     .matches(/^(?=.*[A-Z])/, "Must contain one uppercase letter")
-    .matches(/^(?=.*[0-9])/, "Must contain one numerical letter")
-    .matches(/^(?=.*[!@#\$%\^&\*])/, "Must contain one special character")
+    .matches(/^(?=.*[0-9])/, "Must contain one number")
+    .matches(/^(?=.*[!@#\$%\^&\*])/, "Must contain one special character"),
+  passwordConfirm: string()
+    .required("Please confirm your password")
     .oneOf([ref("password")], "Passwords must match"),
   username: string()
     .required("Username is required")
