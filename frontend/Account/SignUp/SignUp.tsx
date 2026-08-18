@@ -46,6 +46,7 @@ export const SignUp = () => {
               <Title variant="h6">Sign Up</Title>
               <FieldsWrapper>
                 <TextField
+                  data-testid="signup-username"
                   fluid
                   id="username"
                   name="username"
@@ -53,6 +54,7 @@ export const SignUp = () => {
                   placeholder="Username"
                 />
                 <PasswordField
+                  data-testid="signup-password"
                   fluid
                   id="password"
                   name="password"
@@ -60,6 +62,7 @@ export const SignUp = () => {
                   placeholder="Password"
                 />
                 <PasswordField
+                  data-testid="signup-passwordConfirm"
                   fluid
                   id="passwordConfirm"
                   name="passwordConfirm"
@@ -95,6 +98,7 @@ export const SignUp = () => {
               </ErrorsWrapper>
               <Footer>
                 <Button
+                  data-testid="signup-submit"
                   loading={isSubmitting}
                   size="medium"
                   type="submit"
@@ -104,7 +108,11 @@ export const SignUp = () => {
                 </Button>
                 <Typography variant="body2">
                   Already have an account?{" "}
-                  <TextLink href={LOGIN} text="Log in"></TextLink>
+                  <TextLink
+                    data-testid="signup-navigate-login"
+                    href={LOGIN}
+                    text="Log in"
+                  ></TextLink>
                 </Typography>
               </Footer>
             </FormWrapper>
