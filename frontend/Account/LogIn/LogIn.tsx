@@ -37,6 +37,7 @@ export const LogIn = () => {
               <Title variant="h6">Log In</Title>
               <FieldsWrapper>
                 <TextField
+                  dataTestId="login-username"
                   fluid
                   id="username"
                   name="username"
@@ -44,6 +45,7 @@ export const LogIn = () => {
                   placeholder="Username"
                 />
                 <PasswordField
+                  dataTestId="login-password"
                   fluid
                   id="password"
                   name="password"
