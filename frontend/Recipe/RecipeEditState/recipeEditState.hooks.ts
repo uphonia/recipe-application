@@ -29,8 +29,7 @@ export const useRecipeEditState = (
         id: recipe.id.toString(),
         ...values,
       });
-      const recipeImages = recipe.files;
-      refreshRecipe({ ...updatedRecipe, files: recipeImages });
+      refreshRecipe({ ...recipe, ...updatedRecipe });
       handleExitEditState();
     } catch {
       addErrorAlert("Failed to update recipe. Please try again.");
