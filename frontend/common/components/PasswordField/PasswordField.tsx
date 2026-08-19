@@ -6,7 +6,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { TextField } from "../TextField/TextField";
 
 type Props = {
-  dataTestId: string;
+  dataTestId?: string;
   fluid?: boolean;
   id: string;
   name: string;
